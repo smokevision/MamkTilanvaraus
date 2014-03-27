@@ -36,7 +36,7 @@ public class LoginPapu extends TietokantaPerus {
     public boolean kirjauduSisaan(String tunnus, String salasana) {
         boolean tila = false;
         try {
-             String lause = "select count(*) from users where tunnus=? and salasana=?";
+             String lause = "select count(*) from yllapito where tunnus=? and salasana=?";
              this.komento = this.yhteys.prepareStatement(lause);
              komento.setString(1, tunnus);
              komento.setString(2, salasana);

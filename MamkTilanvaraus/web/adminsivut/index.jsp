@@ -1,3 +1,8 @@
+<%
+    if ((session.getAttribute("loginStatus") == null) || (session.getAttribute("loginStatus") == "")) {
+        response.sendRedirect("login.jsp");
+    } else if (session.getAttribute("loginStatus") == "logged") {
+%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -9,3 +14,4 @@
         <h1>Admin index</h1>
     </body>
 </html>
+<% } %>
