@@ -63,7 +63,6 @@ public final class login_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("        <meta charset=\"UTF-8\"/>\n");
       out.write("        <title>Kirjaudu sisään</title>\n");
       out.write("        <link href='http://fonts.googleapis.com/css?family=Open+Sans:400' rel='stylesheet' type='text/css' />\n");
-      out.write("        <link rel=\"stylesheet\" type=\"text/css\" href=\"tyylit.css\"/>\n");
       out.write("    </head>\n");
       out.write("    <body>\n");
       out.write("        <div id=\"container\">\n");

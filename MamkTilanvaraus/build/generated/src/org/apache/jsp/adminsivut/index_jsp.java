@@ -43,7 +43,7 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
 
 
     if ((session.getAttribute("loginStatus") == null) || (session.getAttribute("loginStatus") == "")) {
-        response.sendRedirect("login.jsp");
+        response.sendRedirect("./login.jsp");
     } else if (session.getAttribute("loginStatus") == "logged") {
 
       out.write("\n");
@@ -53,8 +53,14 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("    <head>\n");
       out.write("        <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\n");
       out.write("        <title>Admin index</title>\n");
+      out.write("        <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'/>\n");
+      out.write("        <link rel=\"stylesheet\" type=\"text/css\" href=\"../css/admin.css\"/>\n");
+      out.write("        \n");
       out.write("    </head>\n");
       out.write("    <body>\n");
+      out.write("        <div id=\"header\">\n");
+      out.write("            <img src=\"../kuvat/ulkoasu/MAMK_logo_400.png\" alt=\"logo\"/>\n");
+      out.write("        </div>\n");
       out.write("        <h1>Admin index</h1>\n");
       out.write("    </body>\n");
       out.write("</html>\n");

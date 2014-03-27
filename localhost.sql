@@ -2,10 +2,10 @@
 -- version 4.0.4
 -- http://www.phpmyadmin.net
 --
--- Host: localhost
--- Generation Time: Mar 27, 2014 at 10:51 AM
--- Server version: 5.6.12-log
--- PHP Version: 5.4.12
+-- Palvelin: localhost
+-- Luontiaika: 27.03.2014 klo 12:36
+-- Palvelimen versio: 5.6.12-log
+-- PHP:n versio: 5.4.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Database: `tilanvaraus_mamk`
+-- Tietokanta: `tilanvaraus_mamk`
 --
 CREATE DATABASE IF NOT EXISTS `tilanvaraus_mamk` DEFAULT CHARACTER SET utf8 COLLATE utf8_swedish_ci;
 USE `tilanvaraus_mamk`;
@@ -25,7 +25,7 @@ USE `tilanvaraus_mamk`;
 -- --------------------------------------------------------
 
 --
--- Table structure for table `kaupunki`
+-- Rakenne taululle `kaupunki`
 --
 
 CREATE TABLE IF NOT EXISTS `kaupunki` (
@@ -37,7 +37,7 @@ CREATE TABLE IF NOT EXISTS `kaupunki` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `kayttaja`
+-- Rakenne taululle `kayttaja`
 --
 
 CREATE TABLE IF NOT EXISTS `kayttaja` (
@@ -54,11 +54,12 @@ CREATE TABLE IF NOT EXISTS `kayttaja` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `kuva`
+-- Rakenne taululle `kuva`
 --
 
 CREATE TABLE IF NOT EXISTS `kuva` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `polku` text COLLATE utf8_swedish_ci NOT NULL,
   `tilaId` int(10) unsigned DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_swedish_ci AUTO_INCREMENT=1 ;
@@ -66,7 +67,7 @@ CREATE TABLE IF NOT EXISTS `kuva` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `palvelu`
+-- Rakenne taululle `palvelu`
 --
 
 CREATE TABLE IF NOT EXISTS `palvelu` (
@@ -80,7 +81,7 @@ CREATE TABLE IF NOT EXISTS `palvelu` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tila`
+-- Rakenne taululle `tila`
 --
 
 CREATE TABLE IF NOT EXISTS `tila` (
@@ -96,7 +97,7 @@ CREATE TABLE IF NOT EXISTS `tila` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `varauksenpalvelut`
+-- Rakenne taululle `varauksenpalvelut`
 --
 
 CREATE TABLE IF NOT EXISTS `varauksenpalvelut` (
@@ -110,7 +111,7 @@ CREATE TABLE IF NOT EXISTS `varauksenpalvelut` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `varaus`
+-- Rakenne taululle `varaus`
 --
 
 CREATE TABLE IF NOT EXISTS `varaus` (
@@ -125,7 +126,7 @@ CREATE TABLE IF NOT EXISTS `varaus` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `yllapito`
+-- Rakenne taululle `yllapito`
 --
 
 CREATE TABLE IF NOT EXISTS `yllapito` (
@@ -134,7 +135,14 @@ CREATE TABLE IF NOT EXISTS `yllapito` (
   `salasana` varchar(50) COLLATE utf8_swedish_ci NOT NULL,
   `oikeus` varchar(50) COLLATE utf8_swedish_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_swedish_ci AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_swedish_ci AUTO_INCREMENT=2 ;
+
+--
+-- Vedos taulusta `yllapito`
+--
+
+INSERT INTO `yllapito` (`id`, `tunnus`, `salasana`, `oikeus`) VALUES
+(1, 'admin', '023efff6da238fb3b97281cf03b32729', '');
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

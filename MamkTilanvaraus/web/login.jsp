@@ -21,7 +21,7 @@
                 String salasana = apu1.salasanaMuunnos(request.getParameter("salasana"));
                 if (apu1.kirjauduSisaan(tunnus, salasana)){
                     session.setAttribute("loginStatus", "logged");
-                    response.sendRedirect("index.jsp");
+                    response.sendRedirect("adminsivut/index.jsp");
                 } else {
                     out.print("<p class='virhe'>Käyttäjätunnus ja salasana eivät täsmää</p>");
                 }
