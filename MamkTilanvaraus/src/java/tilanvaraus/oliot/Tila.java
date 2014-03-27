@@ -11,4 +11,17 @@ public class Tila extends TietokantaPerus {
         this.yhteys_auki = this.avaaYhteys("root", "");
     }
     
+    public boolean listaaTilat() {
+        boolean tila = true;
+        try {
+             String lause = "select * from tila order by nimi asc;";
+             komento = yhteys.prepareStatement(lause);
+             vastaus = komento.executeQuery();
+        } catch (Exception e1) {
+            tila = false;
+        } finally {
+            return tila;
+        }
+    }
+    
 }
