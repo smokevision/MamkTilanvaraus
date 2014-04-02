@@ -15,7 +15,7 @@
     </head>
     <body>
         <div id="header">
-            <img src="../kuvat/ulkoasu/MAMK_logo_400.png" alt="logo" id="logo"/>
+            <a href="http://www.mamk.fi"><img src="../kuvat/ulkoasu/MAMK_logo_400.png" alt="logo" id="logo"/></a>
             <ul id="navi">
                 <li id="eka"><a href="tilat.jsp">Tilat</a></li>
                 <li><a href="tilat.jsp">Varaukset</a></li>

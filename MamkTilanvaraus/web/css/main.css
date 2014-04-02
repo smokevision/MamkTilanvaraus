@@ -17,26 +17,28 @@ html,body{
     margin:20px 0px 40px 20px;
 }
 #container{
+    float:left;
+    width:100%;
+}
+#palsta{
     width:960px;
     margin:0 auto;
-    border:1px solid #000;
     padding:30px 20px;
 }
-#uloskirjaus{
+#kirjautuminen{
     float:right;
     text-align:center;
     height:100%;
-    width:300px;
     font-size:20px;
     padding-top:20px;
     padding-right:30px;
 }
-#uloskirjaus a{
+#kirjautuminen a{
     text-decoration:none;
     color:#000;
     font-size:25px;
 }
-#uloskirjaus a:hover{
+#kirjautuminen a:hover{
     color:rgba(1,158,226,1);
 }
 #navi{
@@ -63,4 +65,8 @@ html,body{
 }
 #navi li#eka{
     border:none;
+}
+#kirjautuminen input[type="text"], #kirjautuminen input[type="password"]{
+    width: 200px;
+    margin: 3px 0px 3px 5px;
 }
