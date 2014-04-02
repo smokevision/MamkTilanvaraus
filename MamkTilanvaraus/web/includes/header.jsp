@@ -1,8 +1,9 @@
 <div id="header">
     <a href="http://www.mamk.fi"><img src="kuvat/ulkoasu/MAMK_logo_400.png" alt="logo" id="logo"/></a>
     <ul id="navi">
-        <li id="eka"><a href="tilat.jsp">Tilat</a></li>
-        <li><a href="tilat.jsp">Varaukset</a></li>
+        <li id="eka"><a href="index.jsp">Etusivu</a></li>
+        <li><a href="tilat.jsp">Tilat</a></li>
+        <li><a href="palvelut.jsp">Palvelut</a></li>
     </ul>
     <div id="kirjautuminen">
         Kirjaudu sis‰‰n<br/>
@@ -12,4 +13,7 @@
             <input type="submit" value="Kirjaudu"/> Unohtuiko salasana?
         </form>
     </div>
+</div>
+<div id="banneri">
+    T‰h‰n banneri
 </div>
