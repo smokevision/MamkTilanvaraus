@@ -46,8 +46,8 @@ public final class login_jsp extends org.apache.jasper.runtime.HttpJspBase
         response.sendRedirect("adminsivut/index.jsp");
     } else {
 
-      out.write('\n');
-      out.write('\n');
+      out.write("\r\n");
+      out.write("\r\n");
       tilanvaraus.oliot.LoginPapu apu1 = null;
       synchronized (_jspx_page_context) {
         apu1 = (tilanvaraus.oliot.LoginPapu) _jspx_page_context.getAttribute("apu1", PageContext.PAGE_SCOPE);
@@ -56,16 +56,16 @@ public final class login_jsp extends org.apache.jasper.runtime.HttpJspBase
           _jspx_page_context.setAttribute("apu1", apu1, PageContext.PAGE_SCOPE);
         }
       }
-      out.write("\n");
-      out.write("<!DOCTYPE html>\n");
-      out.write("<html>\n");
-      out.write("    <head>\n");
-      out.write("        <meta charset=\"UTF-8\"/>\n");
-      out.write("        <title>Kirjaudu sisään</title>\n");
-      out.write("        <link href='http://fonts.googleapis.com/css?family=Open+Sans:400' rel='stylesheet' type='text/css' />\n");
-      out.write("    </head>\n");
-      out.write("    <body>\n");
-      out.write("        <div id=\"container\">\n");
+      out.write("\r\n");
+      out.write("<!DOCTYPE html>\r\n");
+      out.write("<html>\r\n");
+      out.write("    <head>\r\n");
+      out.write("        <meta charset=\"UTF-8\"/>\r\n");
+      out.write("        <title>Kirjaudu sisään</title>\r\n");
+      out.write("        <link href='http://fonts.googleapis.com/css?family=Open+Sans:400' rel='stylesheet' type='text/css' />\r\n");
+      out.write("    </head>\r\n");
+      out.write("    <body>\r\n");
+      out.write("        <div id=\"container\">\r\n");
       out.write("        ");
 
         if (request.getParameter("nappi") != null) {
@@ -74,25 +74,25 @@ public final class login_jsp extends org.apache.jasper.runtime.HttpJspBase
                 String salasana = apu1.salasanaMuunnos(request.getParameter("salasana"));
                 if (apu1.kirjauduSisaan(tunnus, salasana)){
                     session.setAttribute("loginStatus", "logged");
-                    response.sendRedirect("index.jsp");
+                    response.sendRedirect("adminsivut/index.jsp");
                 } else {
                     out.print("<p class='virhe'>Käyttäjätunnus ja salasana eivät täsmää</p>");
                 }
             }
         }
         
-      out.write("\n");
-      out.write("        <h1>Kirjautuminen</h1>\n");
-      out.write("        <form method=\"POST\" action=\"login.jsp\">\n");
-      out.write("            <p>Käyttäjätunnus<br/>\n");
-      out.write("            <input type=\"text\" name=\"tunnus\"/></p>\n");
-      out.write("            <p>Salasana<br/>\n");
-      out.write("            <input type=\"password\" name=\"salasana\"/></p>\n");
-      out.write("            <input type=\"submit\" name=\"nappi\" value=\"Kirjaudu\"/>\n");
-      out.write("        </form>\n");
-      out.write("        </div>\n");
-      out.write("    </body>\n");
-      out.write("</html>\n");
+      out.write("\r\n");
+      out.write("        <h1>Kirjautuminen</h1>\r\n");
+      out.write("        <form method=\"POST\" action=\"login.jsp\">\r\n");
+      out.write("            <p>Käyttäjätunnus<br/>\r\n");
+      out.write("            <input type=\"text\" name=\"tunnus\"/></p>\r\n");
+      out.write("            <p>Salasana<br/>\r\n");
+      out.write("            <input type=\"password\" name=\"salasana\"/></p>\r\n");
+      out.write("            <input type=\"submit\" name=\"nappi\" value=\"Kirjaudu\"/>\r\n");
+      out.write("        </form>\r\n");
+      out.write("        </div>\r\n");
+      out.write("    </body>\r\n");
+      out.write("</html>\r\n");
  } 
     } catch (Throwable t) {
       if (!(t instanceof SkipPageException)){
