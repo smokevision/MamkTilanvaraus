@@ -1,7 +1,12 @@
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-
+$(document).ready(function(){
+    $("#loginlink").on("click",function(){
+        $("#kirjautuminen").show();
+        return false;
+    });
+    $(document).click(function() {
+        $("#kirjautuminen").hide();
+    });
+    $("#kirjautuminen").click(function(e) {
+        e.stopPropagation();
+    });
+});

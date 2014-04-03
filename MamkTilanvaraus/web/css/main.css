@@ -1,3 +1,5 @@
+@import url("header.css");
+@import url("footer.css");
 html,body{
     height:100%;
     width:100%;
@@ -12,133 +14,33 @@ html,body{
     display:block;
 }
 #container{
-    min-width:1024px;
-    max-width:70%;
+    width:1024px;
     min-height:100%;
     background-color:#fff;
     margin:0 auto;
-}
-#header{
-    height:120px;
-    width:calc(100% - 20px);
-    border-bottom: 8px solid rgba(1,158,226,1);
-    box-sizing:border-box;
-    margin:0 auto;
-}
-#banneri{
-    clear:both;
-    width:calc(100% - 20px);
-    height:150px;
-    border:1px solid #000;
-    margin:10px auto;
-    box-sizing:border-box;
-}
-#logo{
-    float:left;
-    width:300px;
-    height:80px;
-    margin:20px 0px 40px 20px;
+    -webkit-box-shadow: 0px 0px 2px 1px #999;
+       -moz-box-shadow: 0px 0px 2px 1px #999;
+            box-shadow: 0px 0px 2px 1px #999;
 }
 #palsta{
     clear:both;
     display:block;
     width:calc(100% - 20px);
     margin:0 auto;
+    padding:10px;
     box-sizing:border-box;
 }
-#navi{
-    list-style:none;
-    float:left;
-    height:28px;
-    margin-top:65px;
-    margin-left:50px;
-}
-#navi li{
-    display:inline-block;
-    font-size:20px;
-    border-left: 1px solid rgba(1,158,226,1);
-    padding:0 20px;
-}
-#navi li a{
-    text-decoration:none;
-    padding-left:15px;
-    padding-right:15px;
-    color:#000;
-}
-#navi li a:hover{
-    color:rgba(1,158,226,1);
-}
-#navi li#eka{
+#tilalista{
     border:none;
 }
-#kirjautuminen{
-    float:right;
-    text-align:center;
-    height:100%;
-    width:160px;
-    font-size:15px;
+#tilalista td{
+    padding:1px 20px;
 }
-#kirjautuminen a{
-    text-decoration:none;
-    color:#000;
-    font-size:25px;
-}
-#kirjautuminen a:hover{
-    color:rgba(1,158,226,1);
-}
-#kirjautuminen input[type="text"], #kirjautuminen input[type="password"]{
-    width: 200px;
-    margin: 3px 0px 3px 5px;
-}
-#footer{
-    min-width:1024px;
-    max-width:70%;
-    margin:0 auto;
-    padding:22px 18px;
-    box-sizing:border-box;
-    display:block;
-}
-#footer .logo{
-    float: left;
-    margin: 0 75px 0 0;
-}
-.columns {
-    overflow: hidden;
-    padding: 7px 0 0;
-}
-.columns .column {
-    float: left;
-    max-width: 160px;
-    margin: 0 23px 0 0;
-}
-.columns .title {
-    display: block;
-    margin: 0 0 18px;
-}
-.columns ul {
-    list-style: none;
-    margin: 0;
-    padding: 0 0 0 15px;
-    font-size: 14px;
-    line-height: 13px;
-}
-.columns ul li {
-    margin: 0 0 5px;
-    display: list-item;
-    text-align: -webkit-match-parent;
-}
-.columns ul a {
-    color: #000;
-    font-size:12px;
-}
-.columns ul a:hover {
-    text-decoration: underline;
-}
-
-
-
 
 a{
-    text-decoration: none;
-    color: #0089cd;
+    text-decoration:none;
+    color:#0089cd;
+}
+a:hover{
+    text-decoration:underline;
 }

@@ -1,0 +1,94 @@
+#header{
+    position:relative;
+    height:120px;
+    width:calc(100% - 20px);
+    border-bottom: 5px solid #00abe3;
+    box-sizing:border-box;
+    margin:0 auto;
+}
+#banneri{
+    clear:both;
+    width:calc(100% - 20px);
+    height:180px;
+    margin:10px auto;
+    box-sizing:border-box;
+    background:url('../kuvat/ulkoasu/banneri/banneri1.jpg') no-repeat;
+}
+#logo{
+    float:left;
+    width:300px;
+    height:80px;
+    margin:20px 0px 40px 20px;
+}
+#navi{
+    list-style:none;
+    float:left;
+    height:28px;
+    margin-top:65px;
+    margin-left:50px;
+}
+#navi li{
+    display:inline-block;
+    font-size:20px;
+    border-left: 1px solid #00abe3;
+    padding:0 20px;
+}
+#navi li a{
+    text-decoration:none;
+    padding-left:15px;
+    padding-right:15px;
+    color:#000;
+}
+#navi li a:hover{
+    color:#00abe3;
+}
+#navi li#eka{
+    border:none;
+}
+#loginlink{
+    position:absolute;
+    right:15px;
+    top:15px;
+    height:30px;
+    line-height:30px;
+}
+#loginlink:hover{
+    text-decoration:none;
+    color:#000;
+}
+#loginlink img{
+    vertical-align:middle;
+    margin-left:4px;
+}
+#kirjautuminen{
+    display:none;
+    position:absolute;
+    right:15px;
+    top:15px;
+    text-align:center;
+    height:160px;
+    width:280px;
+    font-size:15px;
+    z-index:99;
+    background-color:#fff;
+    border-radius:6px;
+    -webkit-box-shadow: 0px 0px 3px 1px #999;
+       -moz-box-shadow: 0px 0px 3px 1px #999;
+            box-shadow: 0px 0px 3px 1px #999;
+}
+#kirjautuminen a{
+    text-decoration:none;
+    color:#000;
+}
+#kirjautuminen a:hover{
+    color:#00abe3;
+}
+#kirjautuminen input[type="text"], #kirjautuminen input[type="password"]{
+    width: 150px;
+    margin: 3px 0px 3px 5px;
+}
+#kirjautuminen h2{
+    font-size:20px;
+    margin-bottom:5px;
+    color:#00abe3;
+}

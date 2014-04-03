@@ -4,10 +4,12 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="shortcut icon" type="image/x-icon" href="kuvat/ulkoasu/favicon.ico">
-        <title>Etusivu</title>
+        <title>Mikkelin ammattikorkeakoulu - Tilanvaraus - Etusivu</title>
         <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'/>
         <link rel="stylesheet" type="text/css" href="css/main.css"/>
-        
+        <script src="js/jquery.min.js"></script>
+        <script src="js/jquery-ui.min.js"></script>
+        <script src="js/main.js"></script>
     </head>
     <body>
         <div id="wrapper">
