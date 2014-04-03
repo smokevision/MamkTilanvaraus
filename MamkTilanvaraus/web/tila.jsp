@@ -17,28 +17,28 @@
             <div id="container">
                  
                 <%@ include file="includes/header.jsp" %>
-                <div id="tila_palsta">
-                <%
-                int id = Integer.parseInt(request.getParameter("id"));
-                apu.setTilaId(id);
-                if(apu.listaaTila()){
-                    while (apu.getVastaus().next()) {
-                        out.print("<h1>"+apu.getVastaus().getString("nimi")+"</h1>");
-                        out.print(apu.getVastaus().getString("kuvaus"));
+                <div id="palsta">
+                    <%
+                    int id = Integer.parseInt(request.getParameter("id"));
+                    apu.setTilaId(id);
+                    if(apu.listaaTila()){
+                        while (apu.getVastaus().next()) {
+                            out.print("<h1>"+apu.getVastaus().getString("nimi")+"</h1>");
+                            out.print(apu.getVastaus().getString("kuvaus"));
+                        }
                     }
-                }
-                %>
-                <div id="kalenteri_container">
-                    <p>Varauskalenteri</p>
+                    %>
+                    <div id="kalenteri_container">
+                        <p>Varauskalenteri</p>
+                    </div>
+                    <div id="kuvat_container">
+                        <p>Kuvia tilasta</p>
+                    </div>
+                    <div id="valikko_container">
+                        <p>Tilavalikko</p>
+                    </div>
                 </div>
             </div>
-                </div>
-                <div id="valikko_container">
-                    <p>Tilavalikko</p>
-                </div>
-            <div id="kuvat_container">
-                <p>Kuvia tilasta</p>
-                </div>    
             <%@ include file="includes/footer.jsp" %>
         </div>
     </body>

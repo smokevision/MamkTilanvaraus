@@ -23,6 +23,7 @@ html,body{
             box-shadow: 0px 0px 2px 1px #999;
 }
 #palsta{
+    position:relative;
     clear:both;
     display:block;
     width:calc(100% - 20px);
@@ -30,16 +31,6 @@ html,body{
     padding:10px;
     box-sizing:border-box;
 }
-#tila_palsta{
-    font-size: 13px;
-    clear:both;
-    display:block;
-    width:calc(100% - 20px);
-    margin:0 auto;
-    padding:10px;
-    box-sizing:border-box;
-}
-
 #tilalista{
     border:none;
 }
@@ -60,26 +51,27 @@ a:hover{
     width:200px;
     border: solid black;
     background-color:#FFFFFF;
-    position:relative;
-    bottom: 370px;
-    left: 750px;
+    position:absolute;
+    right:40px;
+    top:40px;
+    box-sizing:border-box;
 }
 
 #kuvat_container{
     height:120px;
-    width:800px;
+    width:80%;
     border: solid black;
     background-color:#FFFFFF;
-    position:absolute;
-    bottom:90px;
-    left: 450px;
+    margin-top:30px;
+    margin-bottom:30px;
+    box-sizing:border-box;
 }
 
 #valikko_container{
-    height:80px;
-    width:1000px;
+    height:100px;
+    width:100%;
     border: solid black;
     background-color:#FFFFFF;
-    position:absolute;
     left: 450px;
+    box-sizing:border-box;
 }   
