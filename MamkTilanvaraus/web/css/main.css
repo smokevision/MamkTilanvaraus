@@ -76,11 +76,10 @@ a:hover{
 }
 
 #valikko_container{
-    height:60px;
+    height:80px;
     width:1000px;
     border: solid black;
     background-color:#FFFFFF;
     position:absolute;
-    bottom:10px;
     left: 450px;
 }   
