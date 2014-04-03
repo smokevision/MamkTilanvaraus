@@ -1,6 +1,6 @@
 <%
     if ((session.getAttribute("loginStatus") == null) || (session.getAttribute("loginStatus") == "")) {
-        response.sendRedirect("./login.jsp");
+        response.sendRedirect("login.jsp");
     } else if (session.getAttribute("loginStatus") == "logged") {
 %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -8,27 +8,25 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <link rel="shortcut icon" type="image/x-icon" href="kuvat/ulkoasu/favicon.ico">
-        <title>Admin index</title>
+        <link rel="shortcut icon" type="image/x-icon" href="../kuvat/ulkoasu/favicon.ico">
+        <title>Mikkelin ammattikorkeakoulu - Tilanvaraus - Etusivu</title>
         <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'/>
-        <link rel="stylesheet" type="text/css" href="../css/admin.css"/>
-        
+        <link rel="stylesheet" type="text/css" href="../css/main.css"/>
+        <script src="../js/jquery.min.js"></script>
+        <script src="../js/jquery-ui.min.js"></script>
     </head>
     <body>
-        <div id="header">
-            <a href="http://www.mamk.fi"><img src="../kuvat/ulkoasu/MAMK_logo_400.png" alt="logo" id="logo"/></a>
-            <ul id="navi">
-                <li id="eka"><a href="tilat.jsp">Tilat</a></li>
-                <li><a href="tilat.jsp">Varaukset</a></li>
-            </ul>
-            <div id="uloskirjaus">
-                Olet kirjautunut tunnuksella<br/>
-                Ylläpitäjä<br/>
-                <a href="../logout.jsp">Kirjaudu ulos</a>
+        <div id="wrapper">
+            <div id="container">
+                <%@ include file="../includes/adminheader.jsp" %>
+                <div id="palsta">    
+                <h1>Ylläpidon etusivu</h1>
+                <p>
+                    Olet kirjautunut sisään
+                </p>
+                </div>
             </div>
-        </div>
-        <div id="container">   
-        <h1>Admin index</h1>
+            <%@ include file="../includes/adminfooter.jsp" %>
         </div>
     </body>
 </html>

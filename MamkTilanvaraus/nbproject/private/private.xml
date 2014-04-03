@@ -3,14 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/GitHub/MamkTilanvaraus/MamkTilanvaraus/web/css/main.css</file>
-            <file>file:/C:/GitHub/MamkTilanvaraus/MamkTilanvaraus/web/tilat.jsp</file>
-            <file>file:/C:/GitHub/MamkTilanvaraus/MamkTilanvaraus/web/adminsivut/tilanlisays.jsp</file>
-            <file>file:/C:/GitHub/MamkTilanvaraus/MamkTilanvaraus/src/java/tilanvaraus/oliot/LoginPapu.java</file>
-            <file>file:/C:/GitHub/MamkTilanvaraus/MamkTilanvaraus/web/tila.jsp</file>
-            <file>file:/C:/GitHub/MamkTilanvaraus/MamkTilanvaraus/web/login.jsp</file>
-            <file>file:/C:/GitHub/MamkTilanvaraus/MamkTilanvaraus/src/java/tilanvaraus/oliot/Tila.java</file>
-            <file>file:/C:/GitHub/MamkTilanvaraus/MamkTilanvaraus/src/java/tilanvaraus/oliot/TietokantaPerus.java</file>
+            <file>file:/Applications/XAMPP/xamppfiles/htdocs/MamkTilanvaraus/MamkTilanvaraus/web/css/main.css</file>
+            <file>file:/Applications/XAMPP/xamppfiles/htdocs/MamkTilanvaraus/MamkTilanvaraus/web/tila.jsp</file>
+            <file>file:/Applications/XAMPP/xamppfiles/htdocs/MamkTilanvaraus/MamkTilanvaraus/web/js/main.js</file>
         </group>
     </open-files>
 </project-private>

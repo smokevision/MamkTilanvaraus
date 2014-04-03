@@ -14,6 +14,7 @@ html,body{
     display:block;
 }
 #container{
+    position:relative;
     width:1024px;
     min-height:100%;
     background-color:#fff;
@@ -28,7 +29,7 @@ html,body{
     display:block;
     width:calc(100% - 20px);
     margin:0 auto;
-    padding:10px;
+    padding:10px 10px 50px 10px;
     box-sizing:border-box;
 }
 #tilalista{
@@ -37,7 +38,13 @@ html,body{
 #tilalista td{
     padding:1px 20px;
 }
-
+.tilataulu{
+    border:none;
+    border-collapse:collapse;
+}
+.tilataulu td{
+    padding:6px 3px;
+}
 a{
     text-decoration:none;
     color:#0089cd;
@@ -45,33 +52,154 @@ a{
 a:hover{
     text-decoration:underline;
 }
-
-#kalenteri_container{
-    height:200px;
-    width:200px;
-    border: solid black;
-    background-color:#FFFFFF;
-    position:absolute;
-    right:40px;
-    top:40px;
-    box-sizing:border-box;
+#kuvaus{
+    position:relative;
+    float:left;
+    min-height:300px;
+    width:calc(100% - 260px);
+    margin-bottom:10px;
+}
+#kuvaus input[type="submit"]{
+    padding:4px 6px;
+    font-size:15px;
+    border:1px solid #000;
+    background-color:#fff;
+    cursor:pointer;
+}
+#kuvaus input[type="submit"]:hover{
+    color:#0089cd;
+    border:1px solid #0089cd;
 }
 
+#kuvaus input[type="text"]{
+    font-size:15px;
+}
+#kalenteri_container{
+    position:relative;
+    float:right;
+    height:250px;
+    width:250px;
+    border:1px solid black;
+    background-color:#FFFFFF;
+    box-sizing:border-box;
+}
 #kuvat_container{
-    height:120px;
-    width:80%;
-    border: solid black;
+    position:relative;
+    clear:both;
+    height:160px;
+    width:100%;
+    border:1px solid black;
     background-color:#FFFFFF;
     margin-top:30px;
     margin-bottom:30px;
     box-sizing:border-box;
 }
-
-#valikko_container{
-    height:100px;
-    width:100%;
-    border: solid black;
-    background-color:#FFFFFF;
-    left: 450px;
+#loginpalsta{
+    width:500px;
+    margin:0 auto;
+    text-align:center;
+    padding:200px 0;
     box-sizing:border-box;
-}   
+}
+#loginpalsta input[type="text"], #loginpalsta input[type="password"]{
+    font-size:15px;
+}
+#loginpalsta input[type="submit"]{
+    padding:4px 6px;
+    font-size:15px;
+    border:1px solid #000;
+    background-color:#fff;
+    cursor:pointer;
+}
+#loginpalsta input[type="submit"]:hover{
+    color:#0089cd;
+    border:1px solid #0089cd;
+}
+
+/* Frame */
+#valikko_container {
+    height:160px;
+    line-height:160px;
+    overflow: hidden;
+}
+#valikko_container ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-size: 50px;
+}
+#valikko_container ul li {
+    float: left;
+    width: 160px;
+    height: 100%;
+    margin: 0 1px 0 0;
+    padding: 0;
+    background: #333;
+    color: #ddd;
+    text-align: center;
+    cursor: pointer;
+    font-size:12px;
+}
+#valikko_container ul li.active {
+    color:#fff;
+    background:#0089cd;
+}
+
+/* Scrollbar */
+.scrollbar {
+    margin:15px 0;
+    height:2px;
+    background:#ccc;
+    line-height:0;
+}
+.scrollbar .handle {
+    width: 50px;
+    height: 100%;
+    background: #292a33;
+    cursor: pointer;
+}
+.scrollbar .handle .mousearea {
+    position: absolute;
+    top: -9px;
+    left: 0;
+    width: 100%;
+    height: 20px;
+}
+#valikko_container {
+    -webkit-perspective: 1000px;
+    -ms-perspective: 1000px;
+    perspective: 1000px;
+    -webkit-perspective-origin: 50% 50%;
+    -ms-perspective-origin: 50% 50%;
+    perspective-origin: 50% 50%;
+    overflow-y: show;
+}
+#valikko_container ul {
+    -webkit-transform-style: preserve-3d;
+    -ms-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+}
+#valikko_container ul li {
+    position: relative;
+    margin: 0 -20px;
+    -webkit-transform: rotateY(60deg) scale(0.9);
+    -ms-transform: rotateY(60deg) scale(0.9);
+    transform: rotateY(60deg) scale(0.9);
+    -webkit-transition: -webkit-transform 300ms ease-out;
+    transition: transform 300ms ease-out;
+}
+#valikko_container ul li.active {
+    z-index: 10;
+    -webkit-transform: scale(1);
+    -ms-transform: scale(1);
+    transform: scale(1);
+}
+#valikko_container ul li.active ~ li {
+    -webkit-transform: rotateY(-60deg) scale(0.9);
+    -ms-transform: rotateY(-60deg) scale(0.9);
+    transform: rotateY(-60deg) scale(0.9);
+}
+#valikko_container ul li.active a{
+    color:#fff;
+}

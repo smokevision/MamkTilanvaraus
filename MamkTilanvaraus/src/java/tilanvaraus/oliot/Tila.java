@@ -53,6 +53,25 @@ public class Tila extends TietokantaPerus {
             return tila;
         }
     }
+    
+    public boolean paivitaTila() {
+         boolean tila = true;
+         try {
+             String lause = "update tila set tunnus=?, nimi=?, kuvaus=?, hinta=?, henkilomaara=? where id=?;";
+             komento = yhteys.prepareStatement(lause);
+             komento.setString(1, this.tunnus);
+             komento.setString(2, this.nimi);
+             komento.setString(3, this.kuvaus);
+             komento.setString(4, this.hinta);
+             komento.setString(5, this.henkilomaara);
+             komento.setInt(6, this.tilaId);
+             komento.executeUpdate();
+        } catch (Exception e1) {
+            tila = false;
+        } finally {
+            return tila;
+        }
+    }
      
     public boolean listaaTilat() {
         boolean tila = true;
