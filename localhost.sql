@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Palvelin: localhost
--- Luontiaika: 03.04.2014 klo 10:36
+-- Luontiaika: 03.04.2014 klo 11:51
 -- Palvelimen versio: 5.6.12-log
 -- PHP:n versio: 5.4.12
 
@@ -74,23 +74,24 @@ CREATE TABLE IF NOT EXISTS `palvelu` (
 
 CREATE TABLE IF NOT EXISTS `tila` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `tunnus` varchar(20) COLLATE utf8_swedish_ci DEFAULT NULL,
-  `nimi` varchar(75) COLLATE utf8_swedish_ci DEFAULT NULL,
-  `kuvaus` varchar(200) COLLATE utf8_swedish_ci DEFAULT NULL,
-  `hinta` int(50) DEFAULT NULL,
+  `tunnus` text COLLATE utf8_swedish_ci,
+  `nimi` text COLLATE utf8_swedish_ci,
+  `kuvaus` text COLLATE utf8_swedish_ci,
+  `hinta` text COLLATE utf8_swedish_ci,
   `henkilomaara` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_swedish_ci AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_swedish_ci AUTO_INCREMENT=7 ;
 
 --
 -- Vedos taulusta `tila`
 --
 
 INSERT INTO `tila` (`id`, `tunnus`, `nimi`, `kuvaus`, `hinta`, `henkilomaara`) VALUES
-(1, 'Mikpolisali', 'Mikpolisali', 'Mikpolisali on Kasarmin kampuksen digitaalinen esitysauditorio, jossa on 117 kiinteää istumapaikkaa. Salissa on elokuvatasoiset kuva-, ääni- ja tietojärjestelmät.', 0, 177),
-(2, 'Kampussali A', 'Kampussali A', 'Patteristonkatu 3, A-rakennus, Mikkeli', 0, 269),
-(3, 'Kampussali D', 'Kampussali D', 'Patteristonkatu 3, D-rakennus, Mikkeli', 0, 70),
-(4, '', 'Kokoustila Kuitula', 'Mikpoli-rakennus, 3. kerros, Patteristonkatu 2, Mikkeli', 0, 22);
+(1, 'Mikpolisali', 'Mikpolisali', 'Mikpolisali on Kasarmin kampuksen digitaalinen esitysauditorio, jossa on 117 kiinteää istumapaikkaa. Salissa on elokuvatasoiset kuva-, ääni- ja tietojärjestelmät.', '0', 177),
+(2, 'Kampussali A', 'Kampussali A', 'Patteristonkatu 3, A-rakennus, Mikkeli', '0', 269),
+(3, 'Kampussali D', 'Kampussali D', 'Patteristonkatu 3, D-rakennus, Mikkeli', '0', 70),
+(4, '', 'Kokoustila Kuitula', 'Mikpoli-rakennus, 3. kerros, Patteristonkatu 2, Mikkeli', '0', 22),
+(6, 'X124', 'Kokoustila X124', '<p>Patteristonkatu 3, X-rakennus, 1. krs., Mikkeli</p>\r\n\r\n<ul style="list-style-type:square">\r\n	<li>kiinte&auml; pc</li>\r\n	<li>internetyhteys (kiinte&auml; + WLAN)</li>\r\n	<li>dataprojektori</li>\r\n	<li>heijastava sein&auml;</li>\r\n	<li>fl&auml;ppitaulu</li>\r\n</ul>\r\n\r\n<p>T&auml;m&auml;n tilan kokoustarjoiluja hoitaa Ravintola DeXi<br />\r\np. 0153 556 090.</p>\r\n', '0', 14);
 
 -- --------------------------------------------------------
 

@@ -39,7 +39,7 @@ public class Tila extends TietokantaPerus {
     public boolean lisaaTila() {
          boolean tila = true;
          try {
-             String lause = "INSERT INTO `tila`(`tunnus`, `nimi`, `kuvaus`, `hinta`, `henkilomaara`) VALUES (?,?,?,?,?)";
+             String lause = "insert into tila (tunnus, nimi, kuvaus, hinta, henkilomaara) values (?,?,?,?,?);";
              komento = yhteys.prepareStatement(lause);
              komento.setString(1, this.tunnus);
              komento.setString(2, this.nimi);
