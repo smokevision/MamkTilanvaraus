@@ -1,4 +1,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<jsp:useBean id="apu" class="tilanvaraus.oliot.Tila"/>
 <!DOCTYPE html>
 <html>
     <head>
@@ -21,22 +22,15 @@
                     Kasarmin kampuksen tilat tarjoavat ainutlaatuiset puitteet niin intiimeille kokouksille, räätälöidyille yritystapahtumille kuin suuremmille seminaaritapahtumillekin. Uusi Ravintola DeXin tapahtumastage, DeXi-stage, antaa mahdollisuudet lasten tapahtumista live-konsertteihin.
                 </p>
                 <table id="tilalista">
-                    <tr>
-                        <td><a href="">Mikpolisali</a></td>
-                        <td>117 hengelle</td>
-                    </tr>
-                    <tr>
-                        <td><a href="">Kampussali A</a></td>
-                        <td>269 hengelle</td>
-                    </tr>
-                    <tr>
-                        <td><a href="">Kampussali D</a></td>
-                        <td>70 hengelle</td>
-                    </tr>
-                    <tr>
-                        <td><a href="">Kokoustila Kuitula</a></td>
-                        <td>22 hengelle</td>
-                    </tr>
+                    <% 
+                    if(apu.listaaTilat("Mikkeli")){
+                        while (apu.getVastaus().next()) {
+                            out.print("<tr><td>");
+                            out.print("<a href='#'>"+apu.getVastaus().getString("nimi")+"</</td><td>");
+                            out.print(apu.getVastaus().getString("henkilomaara")+" hengelle</td></tr>");
+                        }
+                    }
+                    %>
                 </table>
                 </div>
             </div>
