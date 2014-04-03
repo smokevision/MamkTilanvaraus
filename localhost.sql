@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Palvelin: localhost
--- Luontiaika: 03.04.2014 klo 10:04
+-- Luontiaika: 03.04.2014 klo 10:36
 -- Palvelimen versio: 5.6.12-log
 -- PHP:n versio: 5.4.12
 
@@ -21,26 +21,6 @@ SET time_zone = "+00:00";
 --
 CREATE DATABASE IF NOT EXISTS `tilanvaraus_mamk` DEFAULT CHARACTER SET utf8 COLLATE utf8_swedish_ci;
 USE `tilanvaraus_mamk`;
-
--- --------------------------------------------------------
-
---
--- Rakenne taululle `kaupunki`
---
-
-CREATE TABLE IF NOT EXISTS `kaupunki` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `nimi` varchar(50) COLLATE utf8_swedish_ci NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_swedish_ci AUTO_INCREMENT=3 ;
-
---
--- Vedos taulusta `kaupunki`
---
-
-INSERT INTO `kaupunki` (`id`, `nimi`) VALUES
-(1, 'Mikkeli'),
-(2, 'Savonlinna');
 
 -- --------------------------------------------------------
 
@@ -94,7 +74,6 @@ CREATE TABLE IF NOT EXISTS `palvelu` (
 
 CREATE TABLE IF NOT EXISTS `tila` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `kaupunkiId` int(10) unsigned NOT NULL,
   `tunnus` varchar(20) COLLATE utf8_swedish_ci DEFAULT NULL,
   `nimi` varchar(75) COLLATE utf8_swedish_ci DEFAULT NULL,
   `kuvaus` varchar(200) COLLATE utf8_swedish_ci DEFAULT NULL,
@@ -107,11 +86,11 @@ CREATE TABLE IF NOT EXISTS `tila` (
 -- Vedos taulusta `tila`
 --
 
-INSERT INTO `tila` (`id`, `kaupunkiId`, `tunnus`, `nimi`, `kuvaus`, `hinta`, `henkilomaara`) VALUES
-(1, 1, 'Mikpolisali', 'Mikpolisali', 'Mikpolisali on Kasarmin kampuksen digitaalinen esitysauditorio, jossa on 117 kiinteää istumapaikkaa. Salissa on elokuvatasoiset kuva-, ääni- ja tietojärjestelmät.', 0, 177),
-(2, 1, 'Kampussali A', 'Kampussali A', 'Patteristonkatu 3, A-rakennus, Mikkeli', 0, 269),
-(3, 1, 'Kampussali D', 'Kampussali D', 'Patteristonkatu 3, D-rakennus, Mikkeli', 0, 70),
-(4, 1, '', 'Kokoustila Kuitula', 'Mikpoli-rakennus, 3. kerros, Patteristonkatu 2, Mikkeli', 0, 22);
+INSERT INTO `tila` (`id`, `tunnus`, `nimi`, `kuvaus`, `hinta`, `henkilomaara`) VALUES
+(1, 'Mikpolisali', 'Mikpolisali', 'Mikpolisali on Kasarmin kampuksen digitaalinen esitysauditorio, jossa on 117 kiinteää istumapaikkaa. Salissa on elokuvatasoiset kuva-, ääni- ja tietojärjestelmät.', 0, 177),
+(2, 'Kampussali A', 'Kampussali A', 'Patteristonkatu 3, A-rakennus, Mikkeli', 0, 269),
+(3, 'Kampussali D', 'Kampussali D', 'Patteristonkatu 3, D-rakennus, Mikkeli', 0, 70),
+(4, '', 'Kokoustila Kuitula', 'Mikpoli-rakennus, 3. kerros, Patteristonkatu 2, Mikkeli', 0, 22);
 
 -- --------------------------------------------------------
 

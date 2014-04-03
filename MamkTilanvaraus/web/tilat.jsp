@@ -23,10 +23,10 @@
                 </p>
                 <table id="tilalista">
                     <% 
-                    if(apu.listaaTilat("Mikkeli")){
+                    if(apu.listaaTilat()){
                         while (apu.getVastaus().next()) {
                             out.print("<tr><td>");
-                            out.print("<a href='#'>"+apu.getVastaus().getString("nimi")+"</</td><td>");
+                            out.print("<a href='tila.jsp?id="+apu.getVastaus().getString("id")+"'>"+apu.getVastaus().getString("nimi")+"</a></td><td>");
                             out.print(apu.getVastaus().getString("henkilomaara")+" hengelle</td></tr>");
                         }
                     }
