@@ -1,16 +1,16 @@
 #header{
     position:relative;
     height:120px;
-    width:calc(100% - 20px);
+    width:calc(100% - 40px);
     border-bottom: 5px solid #00abe3;
     box-sizing:border-box;
     margin:0 auto;
 }
 #banneri{
     clear:both;
-    width:calc(100% - 20px);
+    width:calc(100% - 40px);
     height:180px;
-    margin:10px auto;
+    margin:20px auto;
     box-sizing:border-box;
     background:url('../kuvat/ulkoasu/banneri/banneri1.jpg') no-repeat;
 }
@@ -23,20 +23,19 @@
 #navi{
     list-style:none;
     float:left;
-    height:28px;
-    margin-top:65px;
-    margin-left:50px;
+    height:25px;
+    margin-top:80px;
 }
 #navi li{
     display:inline-block;
-    font-size:20px;
+    font-size:18px;
     border-left: 1px solid #00abe3;
     padding:0 20px;
 }
 #navi li a{
     text-decoration:none;
-    padding-left:15px;
-    padding-right:15px;
+    padding-left:10px;
+    padding-right:10px;
     color:#000;
 }
 #navi li a:hover{
@@ -84,11 +83,18 @@
     color:#00abe3;
 }
 #kirjautuminen input[type="text"], #kirjautuminen input[type="password"]{
-    width: 150px;
-    margin: 3px 0px 3px 5px;
+    width:150px;
+    height:20px;
+    margin:3px 0px 3px 5px;
+    border-radius:4px;
+    font-size:15px;
 }
 #kirjautuminen h2{
     font-size:20px;
     margin-bottom:5px;
     color:#00abe3;
+}
+#logintable{
+    border-collapse:collapse;
+    margin:0 auto;
 }

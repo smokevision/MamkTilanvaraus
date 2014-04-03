@@ -1,10 +1,10 @@
 $(document).ready(function(){
     $("#loginlink").on("click",function(){
-        $("#kirjautuminen").show();
+        $("#kirjautuminen").fadeIn();
         return false;
     });
     $(document).click(function() {
-        $("#kirjautuminen").hide();
+        $("#kirjautuminen").fadeOut();
     });
     $("#kirjautuminen").click(function(e) {
         e.stopPropagation();

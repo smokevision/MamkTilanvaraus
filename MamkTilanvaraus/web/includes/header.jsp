@@ -9,9 +9,20 @@
     <div id="kirjautuminen">
         <h2>Kirjaudu sis‰‰n</h2>
         <form>
-            Tunnus <input type="text" name="user" /><br/>
-            Salasana <input type="password" name="pass" /><br/>
-            <input type="submit" value="Kirjaudu"/> <a href="kirjautuminen.jsp">Unohtuiko salasana?</a>
+            <table id="logintable">
+                <tr>
+                    <td>Tunnus</td>
+                    <td><input type="text" name="user" /></td>
+                </tr>
+                <tr>
+                    <td>Salasana</td>
+                    <td><input type="password" name="pass" /></td>
+                </tr>
+                <tr>
+                    <td><input type="submit" value="Kirjaudu"/></td>
+                    <td><a href="kirjautuminen.jsp">Unohtuiko salasana?</a></td>
+                </tr>
+            </table>
         </form>
     </div>
 </div>
