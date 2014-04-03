@@ -30,6 +30,16 @@ html,body{
     padding:10px;
     box-sizing:border-box;
 }
+#tila_palsta{
+    font-size: 13px;
+    clear:both;
+    display:block;
+    width:calc(100% - 20px);
+    margin:0 auto;
+    padding:10px;
+    box-sizing:border-box;
+}
+
 #tilalista{
     border:none;
 }
@@ -44,3 +54,33 @@ a{
 a:hover{
     text-decoration:underline;
 }
+
+#kalenteri_container{
+    height:200px;
+    width:200px;
+    border: solid black;
+    background-color:#FFFFFF;
+    position:relative;
+    bottom: 370px;
+    left: 750px;
+}
+
+#kuvat_container{
+    height:120px;
+    width:800px;
+    border: solid black;
+    background-color:#FFFFFF;
+    position:absolute;
+    bottom:90px;
+    left: 450px;
+}
+
+#valikko_container{
+    height:60px;
+    width:1000px;
+    border: solid black;
+    background-color:#FFFFFF;
+    position:absolute;
+    bottom:10px;
+    left: 450px;
+}   

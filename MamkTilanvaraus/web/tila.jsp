@@ -15,8 +15,9 @@
     <body>
         <div id="wrapper">
             <div id="container">
+                 
                 <%@ include file="includes/header.jsp" %>
-                <div id="palsta">
+                <div id="tila_palsta">
                 <%
                 int id = Integer.parseInt(request.getParameter("id"));
                 apu.setTilaId(id);
@@ -27,8 +28,17 @@
                     }
                 }
                 %>
+                <div id="kalenteri_container">
+                    <p>Varauskalenteri</p>
                 </div>
             </div>
+                </div>
+                <div id="valikko_container">
+                    <p>Tilavalikko</p>
+                </div>
+            <div id="kuvat_container">
+                <p>Kuvia tilasta</p>
+                </div>    
             <%@ include file="includes/footer.jsp" %>
         </div>
     </body>
