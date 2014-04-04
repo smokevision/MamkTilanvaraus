@@ -2,7 +2,7 @@
     position:relative;
     height:120px;
     width:calc(100% - 40px);
-    border-bottom: 5px solid #00abe3;
+    border-bottom: 3px solid #00abe3;
     box-sizing:border-box;
     margin:0 auto;
 }
@@ -30,7 +30,7 @@
     display:inline-block;
     font-size:18px;
     border-left: 1px solid #00abe3;
-    padding:0 20px;
+    padding:0 15px;
 }
 #navi li a{
     text-decoration:none;
@@ -44,18 +44,18 @@
 #navi li#eka{
     border:none;
 }
-#loginlink{
+#loginlink, #logoutlink{
     position:absolute;
     right:15px;
     top:15px;
     height:30px;
     line-height:30px;
 }
-#loginlink:hover{
+#loginlink:hover, #logoutlink:hover{
     text-decoration:none;
     color:#000;
 }
-#loginlink img{
+#loginlink img, #logoutlink img{
     vertical-align:middle;
     margin-left:4px;
 }

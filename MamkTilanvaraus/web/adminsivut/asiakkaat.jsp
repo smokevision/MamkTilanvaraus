@@ -4,13 +4,13 @@
     } else if (session.getAttribute("loginStatus") == "logged") {
 %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<jsp:useBean id="apu" class="tilanvaraus.oliot.Tila"/>
+<jsp:useBean id="apu" class="tilanvaraus.oliot.Asiakas"/>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="shortcut icon" type="image/x-icon" href="../kuvat/ulkoasu/favicon.ico">
-        <title>Mikkelin ammattikorkeakoulu - Tilanvaraus - Tilat</title>
+        <title>Mikkelin ammattikorkeakoulu - Tilanvaraus - Asiakkaat</title>
         <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'/>
         <link rel="stylesheet" type="text/css" href="../css/main.css"/>
         <script src="../js/jquery.min.js"></script>
@@ -21,20 +21,28 @@
             <div id="container">
                 <%@ include file="../includes/adminheader.jsp" %>
                 <div id="palsta">
-                <h1>Tilat</h1>
-                <p>
-                    Kasarmin kampuksen tilat tarjoavat ainutlaatuiset puitteet niin intiimeille kokouksille, räätälöidyille yritystapahtumille kuin suuremmille seminaaritapahtumillekin. Uusi Ravintola DeXin tapahtumastage, DeXi-stage, antaa mahdollisuudet lasten tapahtumista live-konsertteihin.
-                </p>
-                <table id="tilalista">
+                <h1>Asiakkaat</h1>
+                <a href="uusiasiakas.jsp">+Lisää uusi</a>
+                <table id="asiakaslista">
                     <tr>
-                        <td colspan='2'><a href="uusitila.jsp">+Lisää uusi</a></td>
+                        <th>ID</th>
+                        <th>Etunimi</th>
+                        <th>Sukunimi</th>
+                        <th>Email</th>
+                        <th>Puhelin</th>
+                        <th>Yritys</th>
                     </tr>
                     <% 
-                    if(apu.listaaTilat()){
+                    if(apu.haeAsiakkaat()){
                         while (apu.getVastaus().next()) {
+                            String linkki = "asiakas.jsp?id="+apu.getVastaus().getString("id");
                             out.print("<tr><td>");
-                            out.print("<a href='tila.jsp?id="+apu.getVastaus().getString("id")+"'>"+apu.getVastaus().getString("nimi")+"</a></td><td>");
-                            out.print(apu.getVastaus().getString("henkilomaara")+" hengelle</td></tr>");
+                            out.print("<a href='"+linkki+"'>"+apu.getVastaus().getString("id")+"</a></td><td>");
+                            out.print("<a href='"+linkki+"'>"+apu.getVastaus().getString("etunimi")+"</a></td><td>");
+                            out.print("<a href='"+linkki+"'>"+apu.getVastaus().getString("sukunimi")+"</a></td><td>");
+                            out.print("<a href='"+linkki+"'>"+apu.getVastaus().getString("email")+"</a></td><td>");
+                            out.print("<a href='"+linkki+"'>"+apu.getVastaus().getString("puh")+"</a></td><td>");
+                            out.print("<a href='"+linkki+"'>"+apu.getVastaus().getString("yritys")+"</a></td></tr>");
                         }
                     }
                     %>

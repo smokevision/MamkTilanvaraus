@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.1.6
+-- version 4.0.4
 -- http://www.phpmyadmin.net
 --
--- Host: localhost
--- Generation Time: 03.04.2014 klo 21:41
--- Palvelimen versio: 5.6.16
--- PHP Version: 5.5.9
+-- Palvelin: localhost
+-- Luontiaika: 04.04.2014 klo 07:20
+-- Palvelimen versio: 5.6.12-log
+-- PHP:n versio: 5.4.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,8 +17,10 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Database: `tilanvaraus_mamk`
+-- Tietokanta: `tilanvaraus_mamk`
 --
+CREATE DATABASE IF NOT EXISTS `tilanvaraus_mamk` DEFAULT CHARACTER SET utf8 COLLATE utf8_swedish_ci;
+USE `tilanvaraus_mamk`;
 
 -- --------------------------------------------------------
 
@@ -29,13 +31,21 @@ SET time_zone = "+00:00";
 CREATE TABLE IF NOT EXISTS `kayttaja` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `etunimi` varchar(50) COLLATE utf8_swedish_ci NOT NULL,
-  `sukunimi` varchar(50) COLLATE utf8_swedish_ci NOT NULL,
-  `email` varchar(50) COLLATE utf8_swedish_ci NOT NULL,
-  `puh` varchar(50) COLLATE utf8_swedish_ci NOT NULL,
-  `yritys` varchar(50) COLLATE utf8_swedish_ci DEFAULT NULL,
-  `salasana` varchar(50) COLLATE utf8_swedish_ci NOT NULL,
+  `sukunimi` text COLLATE utf8_swedish_ci NOT NULL,
+  `email` text COLLATE utf8_swedish_ci NOT NULL,
+  `puh` text COLLATE utf8_swedish_ci NOT NULL,
+  `yritys` text COLLATE utf8_swedish_ci,
+  `salasana` text COLLATE utf8_swedish_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_swedish_ci AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_swedish_ci AUTO_INCREMENT=3 ;
+
+--
+-- Vedos taulusta `kayttaja`
+--
+
+INSERT INTO `kayttaja` (`id`, `etunimi`, `sukunimi`, `email`, `puh`, `yritys`, `salasana`) VALUES
+(1, 'Matti', 'Meikäläinen', 'matti.meikalainen@mail.com', '0404856073', '', '023efff6da238fb3b97281cf03b32729'),
+(2, 'Kalle', 'Virtanen', 'kvirtanen@gmail.com', '0506862342', '', '5c54fe614285a0e57ecb54c05c016108');
 
 -- --------------------------------------------------------
 
@@ -78,7 +88,7 @@ CREATE TABLE IF NOT EXISTS `tila` (
   `hinta` text COLLATE utf8_swedish_ci,
   `henkilomaara` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_swedish_ci AUTO_INCREMENT=17 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_swedish_ci AUTO_INCREMENT=18 ;
 
 --
 -- Vedos taulusta `tila`

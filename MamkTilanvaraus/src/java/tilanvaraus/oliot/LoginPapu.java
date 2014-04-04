@@ -1,7 +1,6 @@
 package tilanvaraus.oliot;
-
+import java.sql.*;
 import java.security.*;
-import java.sql.ResultSet;
 
 public class LoginPapu extends TietokantaPerus {
     protected ResultSet tulosjoukko = null;
@@ -33,7 +32,27 @@ public class LoginPapu extends TietokantaPerus {
         return muunnettuSalasana;
     }
     
-    public boolean kirjauduSisaan(String tunnus, String salasana) {
+    public boolean userLogin(String tunnus, String salasana) {
+        boolean tila = false;
+        try {
+             String lause = "select count(*) from kayttaja where email=? and salasana=?";
+             this.komento = this.yhteys.prepareStatement(lause);
+             komento.setString(1, tunnus);
+             komento.setString(2, salasana);
+             tulosjoukko = komento.executeQuery();
+             while (tulosjoukko.next()) {
+                if(tulosjoukko.getInt(1) == 1){
+                    tila = true;
+                }
+             }
+        } catch (Exception e1) {
+            tila = false;
+        } finally {
+            return tila;
+        }
+    }
+    
+    public boolean adminLogin(String tunnus, String salasana) {
         boolean tila = false;
         try {
              String lause = "select count(*) from yllapito where tunnus=? and salasana=?";

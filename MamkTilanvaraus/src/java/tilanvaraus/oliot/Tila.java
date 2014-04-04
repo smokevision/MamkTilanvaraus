@@ -99,4 +99,17 @@ public class Tila extends TietokantaPerus {
             return tila;
         } 
     }
+    public boolean poistaTila() {
+        boolean tila = true;
+        try {
+             String lause = "delete * from tila where id = ?;";
+             komento = yhteys.prepareStatement(lause);
+             komento.setInt(1, this.tilaId);
+             vastaus = komento.executeQuery();
+        } catch (Exception e1) {
+            tila = false;
+        } finally {
+            return tila;
+        } 
+    }
 }

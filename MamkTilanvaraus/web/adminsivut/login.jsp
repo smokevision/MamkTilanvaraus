@@ -4,7 +4,7 @@
     } else {
 %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<jsp:useBean id="apu1" class="tilanvaraus.oliot.LoginPapu"/>
+<jsp:useBean id="apu" class="tilanvaraus.oliot.LoginPapu"/>
 <!DOCTYPE html>
 <html>
     <head>
@@ -22,10 +22,10 @@
                 <div id="loginpalsta">    
                 <%
                 if (request.getParameter("nappi") != null) {
-                    if(apu1.getYhteysAuki()){
+                    if(apu.getYhteysAuki()){
                         String tunnus = request.getParameter("tunnus");
-                        String salasana = apu1.salasanaMuunnos(request.getParameter("salasana"));
-                        if (apu1.kirjauduSisaan(tunnus, salasana)){
+                        String salasana = apu.salasanaMuunnos(request.getParameter("salasana"));
+                        if (apu.adminLogin(tunnus, salasana)){
                             session.setAttribute("loginStatus", "logged");
                             response.sendRedirect("index.jsp");
                         } else {

@@ -45,6 +45,16 @@ html,body{
 .tilataulu td{
     padding:6px 3px;
 }
+#asiakaslista{
+    width:100%;
+    margin:10px 0;
+    border-collapse:collapse;
+}
+#asiakaslista td, #asiakaslista th{
+    padding:2px 20px;
+    border:1px solid #0089cd;
+    text-align:center;
+}
 a{
     text-decoration:none;
     color:#0089cd;
@@ -98,11 +108,11 @@ a:hover{
     width:500px;
     margin:0 auto;
     text-align:center;
-    padding:200px 0;
     box-sizing:border-box;
 }
 #loginpalsta input[type="text"], #loginpalsta input[type="password"]{
     font-size:15px;
+    width:250px;
 }
 #loginpalsta input[type="submit"]{
     padding:4px 6px;

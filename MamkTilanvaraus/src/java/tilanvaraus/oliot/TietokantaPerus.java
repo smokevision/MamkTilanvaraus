@@ -1,6 +1,7 @@
 package tilanvaraus.oliot;
 import java.io.*;
 import java.sql.*;
+import java.security.*;
 
 public class TietokantaPerus implements Serializable {
     protected Connection yhteys = null;
