@@ -3,6 +3,7 @@
     <ul id="navi">
         <li id="eka"><a href="index.jsp">Etusivu</a></li>
         <li><a href="tilat.jsp">Tilat</a></li>
+        <li><a href="varaukset.jsp">Varaukset</a></li>
         <li><a href="asiakkaat.jsp">Asiakkaat</a></li>
     </ul>
     <a href="logout.jsp" id="loginlink">Kirjaudu ulos <img src="../kuvat/ulkoasu/logout.png" alt="Kirjaudu ulos"/></a>
