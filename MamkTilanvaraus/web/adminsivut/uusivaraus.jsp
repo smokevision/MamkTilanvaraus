@@ -15,9 +15,11 @@
         <link rel="shortcut icon" type="image/x-icon" href="../kuvat/ulkoasu/favicon.ico">
         <title>Mikkelin ammattikorkeakoulu - Tilanvaraus - Uusi varaus</title>
         <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'/>
+        <link href="../css/cupertino/jquery-ui-1.10.4.custom.css" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="../css/main.css"/>
         <script src="../js/jquery.min.js"></script>
         <script src="../js/jquery-ui.min.js"></script>
+        <script src="../js/main.js"></script>
     </head>
     <body>
         <div id="wrapper">
@@ -75,7 +77,7 @@
                         <tr>
                             <td>Päivämäärä:</td>
                             <td>
-                                <input type="text" name="pvm"/>
+                                <input type="text" name="pvm" id="datepicker1" class="datepicker"/>
                             <td>
                         </tr>
                         <tr>

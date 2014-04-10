@@ -213,3 +213,7 @@ a:hover{
 #valikko_container ul li.active a{
     color:#fff;
 }
+
+.datepicker{
+    width:100px;
+}

@@ -1,4 +1,5 @@
 $(document).ready(function(){
+    //loginruutu
     $("#loginlink").on("click",function(){
         $("#kirjautuminen").fadeIn();
         return false;
@@ -8,6 +9,14 @@ $(document).ready(function(){
     });
     $("#kirjautuminen").click(function(e) {
         e.stopPropagation();
+    });
+    
+    //datepicker
+    $("#datepicker1, #datepicker2").datepicker({
+		dateFormat: "dd.mm.yy",
+		firstDay: 1,
+		dayNamesMin: ["Su", "Ma", "Ti", "Ke", "To", "Pe", "La"],
+		monthNames: ["Tammikuu", "Helmikuu", "Maaliskuu", "Huhtikuu", "Toukokuu", "Kesäkuu", "Heinäkuu", "Elokuu", "Syyskuu", "Lokakuu", "Marraskuu", "Joulukuu"]
     });
     
     //tilanavigaatio
