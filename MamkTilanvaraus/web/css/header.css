@@ -9,10 +9,10 @@
 #banneri{
     clear:both;
     width:calc(100% - 40px);
-    height:180px;
+    height:200px;
     margin:20px auto;
     box-sizing:border-box;
-    background:url('../kuvat/ulkoasu/banneri/banneri1.jpg') no-repeat;
+    background:url('../kuvat/ulkoasu/banneri/banneri2.jpg') no-repeat;
 }
 #logo{
     float:left;
