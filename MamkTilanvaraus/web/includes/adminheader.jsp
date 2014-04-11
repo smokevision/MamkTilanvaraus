@@ -8,4 +8,3 @@
     </ul>
     <a href="logout.jsp" id="loginlink">Kirjaudu ulos <img src="../kuvat/ulkoasu/logout.png" alt="Kirjaudu ulos"/></a>
 </div>
-<div id="banneri"></div>
