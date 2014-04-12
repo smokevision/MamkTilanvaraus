@@ -126,7 +126,7 @@ div.tyhja{
     <body>
         <h1>Hello World!</h1>
         <%
-        out.print(kalenteri.luoKalenteri(0,0));
+        out.print(kalenteri.luoKalenteri(2013,12,0));
         %>
     </body>
 </html>

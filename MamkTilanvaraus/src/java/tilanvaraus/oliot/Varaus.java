@@ -65,6 +65,20 @@ public class Varaus extends TietokantaPerus {
         }
     }
     
+    public boolean haeTilanVaraukset(int tilaId) {
+        boolean tila = true;
+        try {
+             String lause = "select * from varaus where tilaid = ? order by loppuAika asc;";
+             komento = yhteys.prepareStatement(lause);
+             komento.setInt(1, tilaId);
+             vastaus = komento.executeQuery();
+        } catch (Exception e1) {
+            tila = false;
+        } finally {
+            return tila;
+        }
+    }
+    
     public boolean haeVaraus() {
         boolean tila = true;
         try {

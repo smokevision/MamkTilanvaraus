@@ -1,6 +1,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <jsp:useBean id="apu" class="tilanvaraus.oliot.Tila"/>
-<jsp:useBean id="kalenteri" class="tilanvaraus.oliot.Kalenteri"/>
 <!DOCTYPE html>
 <html>
     <head>
@@ -32,11 +31,18 @@
                     }
                     %>
                     </div>
-                    <div id="kalenteri_container">
+                    <div id="varaus_container">
                         <h3>Varaa tila</h3>
-                        <%
-                            out.print(kalenteri.luoKalenteri(0,0));
-                        %>
+                        <div id="kalenteri_container">
+                            <jsp:include page="includes/kalenteri.jsp" >
+                                <jsp:param name="tilaid" value="<%=id%>" />
+                                <jsp:param name="vuosi" value="0" />
+                                <jsp:param name="kuukausi" value="0" />
+                            </jsp:include>
+                            <div id="varaus_kellonajat">
+                                <p>Valitse päivämäärä</p>
+                            </div>
+                        </div>
                     </div>
                     <div id="kuvat_container">
                         <p>Kuvia tilasta</p>
@@ -62,5 +68,24 @@
             </div>
             <%@ include file="includes/footer.jsp" %>
         </div>
+        <script>
+        var tilaid = 0;
+        $(document).on("click",".edellinen, .seuraava",function(e){
+            e.preventDefault();
+            var arr = $(this).attr("value").split(',');
+            var vuosi = arr[1];
+            var kuukausi = arr[0];
+            $("#kalenteri_container").load("includes/kalenteri.jsp", {tilaid: tilaid, vuosi: vuosi, kuukausi: kuukausi});
+        });
+        $(document).on("click",".paiva",function(e){
+            var arr = $(this).attr("id").split('-');
+            var vuosi = arr[1];
+            var kuukausi = arr[2];
+            var paiva = arr[3];
+            $("#varaus_kellonajat").load("includes/varauskello.jsp", {tilaid: tilaid, vuosi: vuosi, kuukausi: kuukausi, paiva: paiva}, function() {
+                $( "#selectable" ).selectable();
+            });
+        });
+        </script>
     </body>
 </html>
