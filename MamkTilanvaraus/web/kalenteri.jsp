@@ -8,10 +8,10 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
         <style>
-            div#kalenteri{
+div#kalenteri{
     margin:0px auto;
     padding:0px;
-    width: 742px;
+    width:238px;
 }
 
 div#kalenteri div.box{
@@ -19,19 +19,19 @@ div#kalenteri div.box{
     top:0px;
     left:0px;
     width:100%;
-    height:40px;
+    height:30px;
     background-color:#787878;
 }
 
 div#kalenteri div.header{
     width:100%;
     position:relative;
-    line-height:35px;
+    line-height:25px;
     vertical-align:middle;
-    width:742px;
-    height:35px;
+    width:238px;
+    height:25px;
     text-align:center;
-    font-size:18px;
+    font-size:14px;
     color:#fff;
 }
 
@@ -46,11 +46,11 @@ div#kalenteri div.header a.edellinen, div#kalenteri div.header a.seuraava{
 }
 
 div#kalenteri div.header a.edellinen{
-    left:10px;
+    left:5px;
 }
 
 div#kalenteri div.header a.seuraava{
-    right:10px;
+    right:5px;
 }
 
 div#kalenteri div.box-content{
@@ -69,16 +69,16 @@ div#kalenteri ul.label{
 div#kalenteri ul.label li{
     margin:0px;
     padding:0px;
-    margin-right:5px;
+    margin-right:3px;
     float:left;
     list-style-type:none;
-    width:100px;
-    height:40px;
-    line-height:40px;
+    width:30px;
+    height:18px;
+    line-height:18px;
     vertical-align:middle;
     text-align:center;
     color:#000;
-    font-size: 15px;
+    font-size:14px;
     background-color:transparent;
     display:inline-block;
 }
@@ -103,16 +103,16 @@ div#kalenteri ul.paivat li.nykyinen{
 div#kalenteri ul.paivat li{
     position:relative;
     box-sizing: border-box;
-    margin:5px 5px 0 0;
-    padding:4px 7px 0 0;
+    margin:3px 3px 0 0;
     float:left;
     list-style-type:none;
-    width:100px;
-    height:100px;
+    width:30px;
+    height:30px;
     font-size:16px;
     background-color:#ddd;
     color:#000;
-    text-align:right;
+    line-height:30px;
+    text-align:center;
 }
 :focus{
     outline:none;
@@ -126,21 +126,6 @@ div.tyhja{
     <body>
         <h1>Hello World!</h1>
         <%
-        DateFormat dateFormat = new SimpleDateFormat("Y-M-d");
-        Calendar cal = Calendar.getInstance();
-
-        dateFormat = new SimpleDateFormat("Y");
-        int vuosi = Integer.parseInt(dateFormat.format(cal.getTime()));
-        dateFormat = new SimpleDateFormat("M");
-        int kuukausi = Integer.parseInt(dateFormat.format(cal.getTime()));
-        
-        int paivia = 0;
-        Calendar calendar = Calendar.getInstance();
-        calendar.set(Calendar.YEAR, vuosi);
-        calendar.set(Calendar.MONTH, kuukausi-1);
-        paivia = calendar.getActualMaximum(Calendar.DATE);
-        out.print(paivia);
-
         out.print(kalenteri.luoKalenteri(0,0));
         %>
     </body>

@@ -1,38 +1,30 @@
 package tilanvaraus.oliot;
+import org.joda.time.DateTime;
 import java.util.*;
-import java.text.*;
 
-public class Kalenteri extends TietokantaPerus {
+public class Kalenteri extends Varaus {
     private String[] paivienNimet = {"Ma","Ti","Ke","To","Pe","La","Su"};
     private int nykVuosi = 0;
     private int nykKuukausi = 0;
     private int nykPaiva = 0;
     private String nykPaivays = null;
     private int paiviaKuukaudessa = 0;
-    private String naviLinkki = null;
+    private String naviLinkki = "kalenteri.jsp";
     private String nykyinenPaiva = null;
     
-    private boolean yhteys_auki = false;
-    public boolean getYhteysAuki() {
-        return this.yhteys_auki;
-    }
-    
     public Kalenteri() {
-        this.yhteys_auki = this.avaaYhteys("root", "");
+        
     }
     
     public String luoKalenteri(int hakuVuosi, int hakuKuukausi){
         String sisalto = "";
-        DateFormat dateFormat = new SimpleDateFormat("Y-M-d");
-        Calendar cal = Calendar.getInstance();
-        this.nykyinenPaiva = dateFormat.format(cal.getTime());
+        DateTime paiva = new DateTime();
+        this.nykyinenPaiva = paiva.toString("Y-MM-dd");
         int vuosi = 0;
         int kuukausi = 0;
         
-        dateFormat = new SimpleDateFormat("Y");
-        vuosi = Integer.parseInt(dateFormat.format(cal.getTime()));
-        dateFormat = new SimpleDateFormat("M");
-        kuukausi = Integer.parseInt(dateFormat.format(cal.getTime()));
+        vuosi = paiva.getYear();
+        kuukausi = paiva.getMonthOfYear();
 
         
         this.nykVuosi = vuosi;
@@ -65,23 +57,22 @@ public class Kalenteri extends TietokantaPerus {
         String sisalto = "";
         String solunSisalto = "";
         String luokka = "";
-        Calendar cal = Calendar.getInstance();
         if(this.nykPaiva == 0){
-            cal.setTime(new Date(this.nykVuosi, this.nykKuukausi-1, 0));
-            int ensimmainenViikonpaiva = cal.get(Calendar.DAY_OF_WEEK);
+            DateTime kalenteri = new DateTime(this.nykVuosi,this.nykKuukausi,1,12,0,0);
+            int ensimmainenViikonpaiva = kalenteri.getDayOfWeek();
             if(solunumero == ensimmainenViikonpaiva){
                     this.nykPaiva = 1;
             }
         }
         if(this.nykPaiva != 0 && this.nykPaiva <= this.paiviaKuukaudessa){
-            DateFormat dateFormat = new SimpleDateFormat("Y-MM-dd");
-            cal.setTime(new Date(this.nykVuosi, this.nykKuukausi-1, this.nykPaiva));
-            this.nykPaivays = dateFormat.format(cal.getTime());
+            DateTime kalenteri = new DateTime(this.nykVuosi,this.nykKuukausi,this.nykPaiva,12,0,0);
+            kalenteri.toString("Y-MM-dd");
+            this.nykPaivays = kalenteri.toString("Y-MM-dd");
             solunSisalto = Integer.toString(this.nykPaiva);
             this.nykPaiva++;
         } else{
             this.nykPaivays = null;
-            solunSisalto = null;
+            solunSisalto = "";
         }
         if(this.nykPaivays == this.nykyinenPaiva){
             luokka = "nykyinen";
@@ -90,7 +81,7 @@ public class Kalenteri extends TietokantaPerus {
         }
         
         sisalto = "<li id='li-" + this.nykPaivays + "' class='" + (solunumero%7==1?"start ":(solunumero%7==0?"end ":"")) +
-			(solunSisalto==null?"mask":"") + (luokka==""?"":"nykyinen") + "'>" + solunSisalto + "</li>";
+			(solunSisalto==""?"mask":"") + (luokka==""?"":"nykyinen") + "'>" + solunSisalto + "</li>";
         return sisalto;
         
     }
@@ -100,15 +91,13 @@ public class Kalenteri extends TietokantaPerus {
         int seuraavaKuukausi = this.nykKuukausi==12?1:this.nykKuukausi+1;
         int seuraavaVuosi = this.nykKuukausi==12?this.nykVuosi+1:this.nykVuosi;
         int edellinenKuukausi = this.nykKuukausi==1?12:this.nykKuukausi-1;
-        int edellinenVuosi = this.nykKuukausi==1?this.nykVuosi-1:this.nykVuosi;
-        
-        DateFormat dateFormat = new SimpleDateFormat("MMMM");
-        Calendar cal = Calendar.getInstance();
-        String nykyinenKuukausi = dateFormat.format(cal.getTime());
+        int edellinenVuosi = this.nykKuukausi==1?this.nykVuosi-1:this.nykVuosi;    
+        DateTime kalenteri = new DateTime(this.nykVuosi,this.nykKuukausi,1,12,0,0);
+        String nykyinenKuukausi = kalenteri.toString("MMM", new Locale("fi","FI"));
         navi = "<div class='header'>" +
-                "<a class='edellinen' href='" + this.naviLinkki + "?sivu=kalenteri&kuukausi=" + edellinenKuukausi + "&vuosi=" + edellinenVuosi + "'>Edellinen</a>"
+                "<a class='edellinen' href='" + this.naviLinkki + "?kuukausi=" + edellinenKuukausi + "&vuosi=" + edellinenVuosi + "'><</a>"
                 + nykyinenKuukausi + " " + this.nykVuosi
-                + "<a class='seuraava' href='" + this.naviLinkki + "?sivu=kalenteri&kuukausi=" + seuraavaKuukausi + "&vuosi=" + seuraavaVuosi + "'>Seuraava</a>"
+                + "<a class='seuraava' href='" + this.naviLinkki + "?kuukausi=" + seuraavaKuukausi + "&vuosi=" + seuraavaVuosi + "'>></a>"
             + "</div>";
         return navi;
     }
@@ -123,20 +112,15 @@ public class Kalenteri extends TietokantaPerus {
     
     private int viikkojaKuukaudessa(int kuukausi, int vuosi){
         int viikkoja = 0;
-        Calendar cal = Calendar.getInstance();
-        cal.set(Calendar.YEAR, vuosi);
-        cal.set(Calendar.DAY_OF_MONTH, 1);
-        cal.set(Calendar.MONTH, kuukausi-1);
-        viikkoja = cal.getActualMaximum(Calendar.WEEK_OF_MONTH);
+        DateTime kalenteri = new DateTime(vuosi,kuukausi,1,12,0,0);
+        viikkoja = kalenteri.dayOfMonth().withMaximumValue().weekOfWeekyear().get() - kalenteri.weekOfWeekyear().get() + 1;
         return viikkoja;
     }
     
     private int paiviaKuukaudessa(int kuukausi, int vuosi){
         int paivia = 0;
-        Calendar calendar = Calendar.getInstance();
-        calendar.set(Calendar.YEAR, vuosi);
-        calendar.set(Calendar.MONTH, kuukausi-1);
-        paivia = calendar.getActualMaximum(Calendar.DATE);
+        DateTime kalenteri = new DateTime(vuosi,kuukausi,1,12,0,0);
+        paivia = kalenteri.dayOfMonth().getMaximumValue();
         return paivia;
     }
     

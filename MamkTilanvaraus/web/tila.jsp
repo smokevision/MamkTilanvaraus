@@ -1,5 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <jsp:useBean id="apu" class="tilanvaraus.oliot.Tila"/>
+<jsp:useBean id="kalenteri" class="tilanvaraus.oliot.Kalenteri"/>
 <!DOCTYPE html>
 <html>
     <head>
@@ -32,7 +33,10 @@
                     %>
                     </div>
                     <div id="kalenteri_container">
-                        <p>Varauskalenteri</p>
+                        <h3>Varaa tila</h3>
+                        <%
+                            out.print(kalenteri.luoKalenteri(0,0));
+                        %>
                     </div>
                     <div id="kuvat_container">
                         <p>Kuvia tilasta</p>
