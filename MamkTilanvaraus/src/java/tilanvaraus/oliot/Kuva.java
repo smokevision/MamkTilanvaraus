@@ -11,10 +11,10 @@ public class Kuva extends TietokantaPerus {
         this.yhteys_auki = this.avaaYhteys("root", "");
     }
     
-    public boolean haeTilanKuvat(int id) {
+    public boolean haeTilanEsittelykuvat(int id) {
         boolean tila = true;
         try {
-             String lause = "select * from kuva where tilaid = ?;";
+             String lause = "select * from kuva where tilaid = ? and tyyppi = 'esittely';";
              komento = yhteys.prepareStatement(lause);
              komento.setInt(1, id);
              vastaus = komento.executeQuery();

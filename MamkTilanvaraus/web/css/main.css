@@ -44,6 +44,7 @@ html,body{
     border-collapse:collapse;
 }
 .tilataulu td{
+    text-align:right;
     padding:6px 3px;
 }
 #asiakaslista{
@@ -72,14 +73,15 @@ a:hover{
     width:calc(100% - 290px);
     margin-bottom:10px;
 }
-input[type="submit"]{
-    padding:4px 6px;
+input[type="submit"], .linkkinappi{
+    padding:6px 10px;
     font-size:15px;
-    border:1px solid #000;
+    border:1px solid #999;
     background-color:#fff;
+    color:#000;
     cursor:pointer;
 }
-input[type="submit"]:hover{
+input[type="submit"]:hover, .linkkinappi:hover{
     color:#0089cd;
     border:1px solid #0089cd;
 }
@@ -90,13 +92,49 @@ input[type="submit"]:hover{
 #kuvat_container{
     position:relative;
     clear:both;
-    height:160px;
+    min-height:166px;
     width:100%;
-    border:1px solid black;
     background-color:#fff;
     margin-top:30px;
     margin-bottom:30px;
     box-sizing:border-box;
+}
+#kuvat_container #tilakuvat{
+    list-style:none;
+    margin:0;
+    padding:0;
+}
+#kuvat_container #tilakuvat li{
+    float:left;
+    position:relative;
+    margin:5px;
+    padding:8px;
+    background:#fff;
+    -webkit-box-shadow:0 1px 4px rgba(0, 0, 0, 0.3);
+       -moz-box-shadow:0 1px 4px rgba(0, 0, 0, 0.3);
+            box-shadow:0 1px 4px rgba(0, 0, 0, 0.3);
+}
+#kuvat_container #tilakuvat li img{
+    height:150px;
+    width:auto;
+}
+#kuvat_container #tilakuvat li a, #kuvat_container #tilakuvat li a img{
+	position:relative;
+	display:block;
+}
+.hoverefekti{
+    height:100%;
+    width:100%;
+    background:url(../kuvat/ulkoasu/suurennuslasi.png) center center no-repeat #000;
+    position:absolute;
+    left:0;
+    top:0;
+    opacity:0;
+    filter:alpha(opacity=0);
+    z-index:99;
+    -webkit-box-shadow:0px 0px 4px #000;
+       -moz-box-shadow:0px 0px 4px #000;
+            box-shadow:0px 0px 4px #000;
 }
 
 /* KIRJAUTUMISSIVU */
@@ -207,7 +245,40 @@ input[type="submit"]:hover{
 #valikko_container ul li.active a{
     color:#fff;
 }
-
 .datepicker{
     width:100px;
+}
+#varaus_vaiheet{
+    width:100%;
+    height:35px;
+    line-height:35px;
+    text-align:center;
+    box-sizing:border-box;
+    color:#999;
+    margin-bottom:10px;
+}
+#varaus_vaiheet span.nykyinen{
+    color:#0089cd;
+}
+#yhteenveto{
+    width:100%;
+    height:200px;
+    border:1px solid #000;
+}
+.varaustaulu tr td{
+    padding:5px 10px;
+    vertical-align:top;
+}
+.varaustaulu tr td.vasen{
+    text-align:right;
+}
+.varaustaulu tr td.oikea{
+    text-align:left;
+}
+.varaustaulu tr td.oikea input[type="text"]{
+    width:200px;
+}
+.varaustaulu tr td.oikea input[type="number"]{
+    width:40px;
+    margin-right:10px;
 }

@@ -16,6 +16,7 @@
         <div id="wrapper">
             <div id="container">
                 <%@ include file="includes/header.jsp" %>
+                <div id="banneri"></div>
                 <div id="palsta">
                 <h1>Tilat</h1>
                 <p>

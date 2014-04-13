@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.0.4
+-- version 4.1.6
 -- http://www.phpmyadmin.net
 --
--- Palvelin: localhost
--- Luontiaika: 10.04.2014 klo 12:30
--- Palvelimen versio: 5.6.12-log
--- PHP:n versio: 5.4.12
+-- Host: localhost
+-- Generation Time: 13.04.2014 klo 19:28
+-- Palvelimen versio: 5.6.16
+-- PHP Version: 5.5.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,10 +17,8 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Tietokanta: `tilanvaraus_mamk`
+-- Database: `tilanvaraus_mamk`
 --
-CREATE DATABASE IF NOT EXISTS `tilanvaraus_mamk` DEFAULT CHARACTER SET utf8 COLLATE utf8_swedish_ci;
-USE `tilanvaraus_mamk`;
 
 -- --------------------------------------------------------
 
@@ -50,7 +48,7 @@ INSERT INTO `hinnasto` (`id`, `tilaId`, `pvm`, `tunti`, `hinta`) VALUES
 (7, 1, 2, '13', 100),
 (8, 1, 2, '14', 100),
 (9, 1, 2, '15', 100),
-(10, 1, 2, '16', 100),
+(10, 1, 2, '16', 120),
 (11, 1, 2, '17', 120),
 (12, 1, 2, '18', 120),
 (13, 1, 2, '19', 120),
@@ -65,7 +63,7 @@ INSERT INTO `hinnasto` (`id`, `tilaId`, `pvm`, `tunti`, `hinta`) VALUES
 (22, 1, 3, '13', 100),
 (23, 1, 3, '14', 100),
 (24, 1, 3, '15', 100),
-(25, 1, 3, '16', 100),
+(25, 1, 3, '16', 120),
 (26, 1, 3, '17', 120),
 (27, 1, 3, '18', 120),
 (28, 1, 3, '19', 120),
@@ -80,7 +78,7 @@ INSERT INTO `hinnasto` (`id`, `tilaId`, `pvm`, `tunti`, `hinta`) VALUES
 (52, 1, 4, '13', 100),
 (53, 1, 4, '14', 100),
 (54, 1, 4, '15', 100),
-(55, 1, 4, '16', 100),
+(55, 1, 4, '16', 120),
 (56, 1, 4, '17', 120),
 (57, 1, 4, '18', 120),
 (58, 1, 4, '19', 120),
@@ -181,10 +179,19 @@ INSERT INTO `kayttaja` (`id`, `etunimi`, `sukunimi`, `email`, `puh`, `yritys`, `
 
 CREATE TABLE IF NOT EXISTS `kuva` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `polku` text COLLATE utf8_swedish_ci NOT NULL,
+  `nimi` text COLLATE utf8_swedish_ci NOT NULL,
   `tilaId` int(10) unsigned DEFAULT NULL,
+  `tyyppi` text COLLATE utf8_swedish_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_swedish_ci AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_swedish_ci AUTO_INCREMENT=3 ;
+
+--
+-- Vedos taulusta `kuva`
+--
+
+INSERT INTO `kuva` (`id`, `nimi`, `tilaId`, `tyyppi`) VALUES
+(1, 'f34rnksndmf34', 1, 'esittely'),
+(2, 'dasd32adsef4q', 1, 'esittely');
 
 -- --------------------------------------------------------
 
@@ -214,7 +221,7 @@ CREATE TABLE IF NOT EXISTS `tila` (
   `hinta` text COLLATE utf8_swedish_ci,
   `henkilomaara` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_swedish_ci AUTO_INCREMENT=18 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_swedish_ci AUTO_INCREMENT=16 ;
 
 --
 -- Vedos taulusta `tila`
@@ -258,23 +265,38 @@ CREATE TABLE IF NOT EXISTS `varauksenpalvelut` (
 
 CREATE TABLE IF NOT EXISTS `varaus` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `varausnumero` int(11) NOT NULL,
   `tilaid` int(10) unsigned NOT NULL,
   `asiakasid` int(10) unsigned NOT NULL,
   `pvm` text COLLATE utf8_swedish_ci NOT NULL,
-  `alkuAika` int(11) unsigned NOT NULL,
-  `loppuAika` int(11) NOT NULL,
+  `kello` int(11) unsigned NOT NULL,
   `hinta` double NOT NULL,
   `maksutilanne` int(10) unsigned NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_swedish_ci AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_swedish_ci AUTO_INCREMENT=19 ;
 
 --
 -- Vedos taulusta `varaus`
 --
 
-INSERT INTO `varaus` (`id`, `tilaid`, `asiakasid`, `pvm`, `alkuAika`, `loppuAika`, `hinta`, `maksutilanne`) VALUES
-(1, 1, 1, '1397117339000', 11, 12, 200, 1),
-(3, 2, 2, '1397117339000', 9, 12, 300, 0);
+INSERT INTO `varaus` (`id`, `varausnumero`, `tilaid`, `asiakasid`, `pvm`, `kello`, `hinta`, `maksutilanne`) VALUES
+(1, 1, 1, 1, '1397293200000', 11, 100, 1),
+(3, 2, 1, 2, '1397293200000', 13, 100, 0),
+(4, 1, 1, 1, '1397293200000', 12, 100, 1),
+(5, 3, 1, 1, '1398243600000', 8, 100, 1),
+(6, 3, 1, 1, '1398243600000', 9, 100, 1),
+(7, 3, 1, 1, '1398243600000', 10, 100, 1),
+(8, 3, 1, 1, '1398243600000', 11, 100, 1),
+(9, 3, 1, 1, '1398243600000', 12, 100, 1),
+(10, 3, 1, 1, '1398243600000', 13, 100, 1),
+(11, 3, 1, 1, '1398243600000', 14, 100, 1),
+(12, 3, 1, 1, '1398243600000', 15, 100, 1),
+(13, 3, 1, 1, '1398243600000', 16, 120, 1),
+(14, 3, 1, 1, '1398243600000', 17, 120, 1),
+(15, 3, 1, 1, '1398243600000', 18, 120, 1),
+(16, 3, 1, 1, '1398243600000', 19, 120, 1),
+(17, 3, 1, 1, '1398243600000', 20, 120, 1),
+(18, 3, 1, 1, '1398243600000', 21, 120, 1);
 
 -- --------------------------------------------------------
 

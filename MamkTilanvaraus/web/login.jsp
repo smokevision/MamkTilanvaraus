@@ -21,6 +21,7 @@ if (session.getAttribute("loginStatus") == "logged") {
         <div id="wrapper">
             <div id="container">
                 <%@ include file="includes/header.jsp" %>
+                <div id="banneri"></div>
                 <div id="palsta">
                     <%
                     if (request.getParameter("nappi") != null) {

@@ -45,4 +45,3 @@
     %>
 
 </div>
-<div id="banneri"></div>

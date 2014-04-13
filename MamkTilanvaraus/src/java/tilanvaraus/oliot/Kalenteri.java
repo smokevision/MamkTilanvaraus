@@ -13,7 +13,6 @@ public class Kalenteri extends TietokantaPerus {
     private String nykPaivays = "";
     private String nykyinenPaivays = "";
     private int tilaId = 0;
-    private ResultSet varaukset = null;
     
     private boolean yhteys_auki = false;
     public Kalenteri() {
@@ -23,7 +22,6 @@ public class Kalenteri extends TietokantaPerus {
     public String luoKalenteri(int hakuVuosi, int hakuKuukausi, int tilaId){
         String sisalto = "";
         this.tilaId = tilaId;
-        this.varaukset = haeTilanVaraukset(this.tilaId);
         int vuosi = 0;
         int kuukausi = 0;
         DateTime paivays = new DateTime();
@@ -65,7 +63,6 @@ public class Kalenteri extends TietokantaPerus {
     }
     
     private String naytaPaiva(int solunumero){
-        ResultSet varausloop = null;
         String sisalto = "";
         String solunSisalto = "";
         String luokka = "";
@@ -81,6 +78,19 @@ public class Kalenteri extends TietokantaPerus {
             DateTime kalenteri = new DateTime(this.nykVuosi,this.nykKuukausi,this.nykPaiva,12,0);
             this.nykPaivays = kalenteri.toString("YYYY-MM-dd");
             solunSisalto = Integer.toString(this.nykPaiva);
+            DateTime aikaleima = new DateTime(this.nykVuosi,this.nykKuukausi,this.nykPaiva,12,0);
+            long paivays = aikaleima.getMillis();
+            int varaukset = haeTilanVaraukset(this.tilaId, paivays);
+            if(varaukset==0){
+                varausTila = "";
+            } else if(varaukset>0 && varaukset<14){
+                varausTila = " vapaita";
+            } else if(varaukset==14){
+                varausTila = " varattu";
+            } else {
+                varausTila = "";
+            }
+            
             this.nykPaiva++;
         } else{
             this.nykPaivays = "";
@@ -91,21 +101,9 @@ public class Kalenteri extends TietokantaPerus {
         } else {
             luokka = "";
         }
-        varausloop = this.varaukset;
-        try{
-            while (varausloop.next()) {
-                DateTime kalenteri = new DateTime(new Long(this.varaukset.getString("pvm")));
-                if(this.nykPaivays.equals(kalenteri.toString("YYYY-MM-dd"))){
-                    varausTila = "vapaita";
-                } else {
-                    varausTila = "";
-                }
-            }
-        } catch(Exception e){}
-        
         
         sisalto = "<li id='li-" + this.nykPaivays + "' class='" + (solunumero%7==1?"start ":(solunumero%7==0?"end ":"")) +
-                    (solunSisalto==""?"mask":"paiva") + (varausTila=="vapaita"?" vapaita ":varausTila) + (luokka=="nykyinen"?" nykyinen":"") + "'>" 
+                    (solunSisalto==""?"mask":"paiva") + (varausTila==""?"":varausTila) + (luokka=="nykyinen"?" nykyinen":"") + "'>" 
                     + solunSisalto + "</li>";
         return sisalto;
         
@@ -154,17 +152,51 @@ public class Kalenteri extends TietokantaPerus {
         return paivia;
     }
     
-    private ResultSet haeTilanVaraukset(int tilaId){
-        ResultSet varaukset = null;
+    private int haeTilanVaraukset(int tilaId, long pvm){
+        int varaukset = 0;
         try {
-             String lause = "select * from varaus where tilaid = ? order by loppuAika asc;";
+             String lause = "select count(kello) as total from varaus where tilaid = ? and pvm = ?";
              komento = yhteys.prepareStatement(lause);
              komento.setInt(1, tilaId);
-             varaukset = komento.executeQuery();
+             komento.setLong(2, pvm);
+             ResultSet tulos = komento.executeQuery();
+             while(tulos.next()){
+                varaukset = tulos.getInt("total");
+             }
         } catch (Exception e1) {
-            varaukset = null;
+            varaukset = 0;
         } finally {
             return varaukset;
         }
-    }    
+    }
+    
+    public String luoKellolista(int vuosi, int kuukausi, int paiva, int tilaId){
+        String sisalto = "";
+        DateTime kalenteri = new DateTime(vuosi,kuukausi,paiva,12,0);
+        long paivays = kalenteri.getMillis();
+        
+        ResultSet varaukset = null;
+        try {
+            String lause = "select * from varaus where tilaid = ? and pvm = ? order by kello asc;";
+            komento = yhteys.prepareStatement(lause);
+            komento.setInt(1, tilaId);
+            komento.setLong(2, paivays);
+            varaukset = komento.executeQuery();
+            List<String> lista = new ArrayList<String>();
+            while(varaukset.next()){
+                lista.add(varaukset.getString("kello"));
+            }
+            for(int i = 8; i <=21; i++){
+                if(lista.contains(Integer.toString(i))){
+                    sisalto += "<li class='varattu' value='" + i + "'>" + i + ":00 Varattu</li>";
+                } else {
+                    sisalto += "<li class='vapaa' value='" + i + "'>" + i + ":00 Vapaa</li>";
+                }
+            }
+            
+        } catch (Exception e1) {
+            varaukset = null;
+        }
+        return sisalto;
+    }
 }

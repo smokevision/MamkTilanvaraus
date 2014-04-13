@@ -15,6 +15,7 @@
         <div id="wrapper">
             <div id="container">
                 <%@ include file="includes/header.jsp" %>
+                <div id="banneri"></div>
                 <div id="palsta">
                 <h1>Yhteystiedot</h1>
                 <p>
