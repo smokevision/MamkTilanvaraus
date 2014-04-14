@@ -14,7 +14,7 @@ public class Kuva extends TietokantaPerus {
     public boolean haeTilanEsittelykuvat(int id) {
         boolean tila = true;
         try {
-             String lause = "select * from kuva where tilaid = ? and tyyppi = 'esittely';";
+             String lause = "select * from tilakuvat where tilaid = ? and tyyppi = 'esittely';";
              komento = yhteys.prepareStatement(lause);
              komento.setInt(1, id);
              vastaus = komento.executeQuery();
@@ -25,10 +25,10 @@ public class Kuva extends TietokantaPerus {
         }
     }
     
-    public boolean haeKaikkiKuvat() {
+    public boolean haeKaikkienTilojenKuvat() {
         boolean tila = true;
         try {
-             String lause = "select * from kuva where tilaid = null;";
+             String lause = "select * from tilakuvat;";
              komento = yhteys.prepareStatement(lause);
              vastaus = komento.executeQuery();
         } catch (Exception e1) {

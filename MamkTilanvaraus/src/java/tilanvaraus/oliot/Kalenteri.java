@@ -155,7 +155,7 @@ public class Kalenteri extends TietokantaPerus {
     private int haeTilanVaraukset(int tilaId, long pvm){
         int varaukset = 0;
         try {
-             String lause = "select count(kello) as total from varaus where tilaid = ? and pvm = ?";
+             String lause = "select count(kello) as total from varauksentunnit where tilaid = ? and pvm = ?";
              komento = yhteys.prepareStatement(lause);
              komento.setInt(1, tilaId);
              komento.setLong(2, pvm);
@@ -177,7 +177,7 @@ public class Kalenteri extends TietokantaPerus {
         
         ResultSet varaukset = null;
         try {
-            String lause = "select * from varaus where tilaid = ? and pvm = ? order by kello asc;";
+            String lause = "select * from varauksentunnit where tilaid = ? and pvm = ? order by kello asc;";
             komento = yhteys.prepareStatement(lause);
             komento.setInt(1, tilaId);
             komento.setLong(2, paivays);

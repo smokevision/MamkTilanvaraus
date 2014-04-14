@@ -22,16 +22,17 @@
     %>
     <a href="#" id="loginlink">Kirjaudu sisään <img src="kuvat/ulkoasu/login.png" alt="Kirjaudu"/></a>
     <div id="kirjautuminen">
+        <a title="Sulje" id="loginsulje" href="javascript:;"></a>
         <h2>Kirjaudu sisään</h2>
         <form method="post" action="login.jsp">
             <table id="logintable">
                 <tr>
-                    <td>Tunnus</td>
-                    <td><input type="text" name="tunnus" /></td>
+                    <td class="vasen">Tunnus</td>
+                    <td class="oikea"><input type="text" name="tunnus" /></td>
                 </tr>
                 <tr>
-                    <td>Salasana</td>
-                    <td><input type="password" name="salasana" /></td>
+                    <td class="vasen">Salasana</td>
+                    <td class="oikea"><input type="password" name="salasana" /></td>
                 </tr>
                 <tr>
                     <td><input type="submit" name="nappi" value="Kirjaudu"/></td>
@@ -43,5 +44,4 @@
     <%
     }
     %>
-
 </div>

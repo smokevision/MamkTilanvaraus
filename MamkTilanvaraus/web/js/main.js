@@ -10,6 +10,9 @@ $(document).ready(function(){
     $("#kirjautuminen").click(function(e) {
         e.stopPropagation();
     });
+    $("#loginsulje").on("click",function(){
+        $("#kirjautuminen").fadeOut();
+    })
     
     //datepicker
     $("#datepicker1, #datepicker2").datepicker({
