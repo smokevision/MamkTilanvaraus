@@ -35,7 +35,7 @@
                             </tr>
                             <tr>
                                 <td class="vasen">Y-tunnus:</td>
-                                <td class="oikea"><input type="text" name="etunimi"/></td>
+                                <td class="oikea"><input type="text" name="ytunnus"/></td>
                             </tr>
                             <tr>
                                 <td class="vasen">Katuosoite*:</td>

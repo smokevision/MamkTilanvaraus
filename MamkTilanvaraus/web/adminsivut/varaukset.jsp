@@ -4,8 +4,8 @@
     } else if (session.getAttribute("loginStatus") == "logged") {
 %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<jsp:useBean id="apu" class="tilanvaraus.oliot.Varaus"/>
-<jsp:useBean id="apu2" class="tilanvaraus.oliot.Paivamaarat"/>
+<jsp:useBean id="varaus" class="tilanvaraus.oliot.Varaus"/>
+<jsp:useBean id="pvmpapu" class="tilanvaraus.oliot.Paivamaarat"/>
 <!DOCTYPE html>
 <html>
     <head>
@@ -30,25 +30,26 @@
                         <th>Tila</th>
                         <th>Asiakas (ID)</th>
                         <th>Pvm</th>
-                        <th>Kello</th>
                         <th>Hinta</th>
                         <th>Maksutilanne</th>
+                        <th>Maksutapa</th>
                     </tr>
                     <% 
-                    if(apu.haeVaraukset()){
-                        while (apu.getVastaus().next()) {
-                            String linkki = "varaus.jsp?id="+apu.getVastaus().getString("id");
-                            String aikaleima = apu.getVastaus().getString("pvm");
-                            String pvm = apu2.muunnaAikaleima(aikaleima);
-                            String maksutilanne = (Integer.parseInt(apu.getVastaus().getString("maksutilanne")) == 1) ? "Maksettu" : "Ei maksettu";
-                            out.print("<tr><td>");
-                            out.print("<a href='"+linkki+"'>"+apu.getVastaus().getString("id")+"</a></td><td>");
-                            out.print("<a href='"+linkki+"'>"+apu.getVastaus().getString("nimi")+"</a></td><td>");
-                            out.print("<a href='"+linkki+"'>"+apu.getVastaus().getString("etunimi")+" "+apu.getVastaus().getString("sukunimi")+" ("+apu.getVastaus().getString("asiakasId")+")</a></td><td>");
-                            out.print("<a href='"+linkki+"'>"+pvm+"</a></td><td>");
-                            out.print("<a href='"+linkki+"'>"+apu.getVastaus().getString("alkuAika")+"-"+apu.getVastaus().getString("loppuAika")+"</a></td><td>");
-                            out.print("<a href='"+linkki+"'>"+apu.getVastaus().getString("hinta")+"€</a></td><td>");
-                            out.print("<a href='"+linkki+"'>"+maksutilanne+"</a></td></tr>");
+                    if(varaus.haeVaraukset()){
+                        while (varaus.getVastaus().next()) {
+                            String linkki = "varaus.jsp?id="+varaus.getVastaus().getString("id");
+                            long aikaleima = varaus.getVastaus().getLong("pvm");
+                            String pvm = pvmpapu.muunnaAikaleima(aikaleima);
+                            String maksutilanne = (Integer.parseInt(varaus.getVastaus().getString("maksutilanne")) == 1) ? "Maksettu" : "Ei maksettu";
+                            out.print("<tr>");
+                            out.print("<td><a href='"+linkki+"'>"+varaus.getVastaus().getString("id")+"</a></td>");
+                            out.print("<td><a href='"+linkki+"'>"+varaus.getVastaus().getString("nimi")+"</a></td>");
+                            out.print("<td><a href='"+linkki+"'>"+varaus.getVastaus().getString("etunimi")+" "+varaus.getVastaus().getString("sukunimi")+" ("+varaus.getVastaus().getString("asiakasId")+")</a></td>");
+                            out.print("<td><a href='"+linkki+"'>"+pvm+"</a></td>");
+                            out.print("<td><a href='"+linkki+"'>"+varaus.getVastaus().getString("summa")+"€</a></td>");
+                            out.print("<td><a href='"+linkki+"'>"+maksutilanne+"</a></td>");
+                            out.print("<td><a href='"+linkki+"'>"+varaus.getVastaus().getString("maksutapa")+"</a></td>");
+                            out.print("</tr>");
                         }
                     }
                     %>

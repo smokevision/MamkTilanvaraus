@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Palvelin: localhost
--- Luontiaika: 14.04.2014 klo 08:16
+-- Luontiaika: 14.04.2014 klo 17:50
 -- Palvelimen versio: 5.6.12-log
 -- PHP:n versio: 5.4.12
 
@@ -160,6 +160,9 @@ CREATE TABLE IF NOT EXISTS `kayttaja` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
   `etunimi` varchar(50) COLLATE utf8_swedish_ci NOT NULL,
   `sukunimi` text COLLATE utf8_swedish_ci NOT NULL,
+  `katuosoite` text COLLATE utf8_swedish_ci NOT NULL,
+  `postinumero` int(11) NOT NULL,
+  `postitoimipaikka` text COLLATE utf8_swedish_ci NOT NULL,
   `email` text COLLATE utf8_swedish_ci NOT NULL,
   `puh` text COLLATE utf8_swedish_ci NOT NULL,
   `yritys` text COLLATE utf8_swedish_ci,
@@ -171,9 +174,9 @@ CREATE TABLE IF NOT EXISTS `kayttaja` (
 -- Vedos taulusta `kayttaja`
 --
 
-INSERT INTO `kayttaja` (`id`, `etunimi`, `sukunimi`, `email`, `puh`, `yritys`, `salasana`) VALUES
-(1, 'Matti', 'Meikäläinen', 'matti.meikalainen@mail.com', '0404856073', '', '5c54fe614285a0e57ecb54c05c016108'),
-(2, 'Kalle', 'Virtanen', 'kvirtanen@gmail.com', '0506862342', '', '5c54fe614285a0e57ecb54c05c016108');
+INSERT INTO `kayttaja` (`id`, `etunimi`, `sukunimi`, `katuosoite`, `postinumero`, `postitoimipaikka`, `email`, `puh`, `yritys`, `salasana`) VALUES
+(1, 'Matti', 'Meikäläinen', 'Kotikatu 3', 50100, 'Mikkeli', 'matti.meikalainen@mail.com', '0404856073', '', '5c54fe614285a0e57ecb54c05c016108'),
+(2, 'Kalle', 'Virtanen', 'Olkikuja 45 A3', 50100, 'Mikkeli', 'kvirtanen@gmail.com', '0506862342', '', '5c54fe614285a0e57ecb54c05c016108');
 
 -- --------------------------------------------------------
 
@@ -344,7 +347,10 @@ CREATE TABLE IF NOT EXISTS `varaukset` (
   `asiakasId` int(11) NOT NULL,
   `tilaId` int(11) NOT NULL,
   `varausaika` text COLLATE utf8_swedish_ci NOT NULL,
+  `pvm` text COLLATE utf8_swedish_ci NOT NULL,
   `summa` double NOT NULL,
+  `maksutapa` text COLLATE utf8_swedish_ci NOT NULL,
+  `maksutilanne` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `id` (`id`),
   KEY `asiakasId` (`asiakasId`),
@@ -355,10 +361,10 @@ CREATE TABLE IF NOT EXISTS `varaukset` (
 -- Vedos taulusta `varaukset`
 --
 
-INSERT INTO `varaukset` (`id`, `asiakasId`, `tilaId`, `varausaika`, `summa`) VALUES
-(1, 1, 1, '1397293200000', 200),
-(2, 2, 1, '1397293200000', 100),
-(3, 1, 1, '1398243600000', 1520);
+INSERT INTO `varaukset` (`id`, `asiakasId`, `tilaId`, `varausaika`, `pvm`, `summa`, `maksutapa`, `maksutilanne`) VALUES
+(1, 1, 1, '1397293200000', '1397293200000', 200, 'Verkkomaksu', 1),
+(2, 2, 1, '1397293200000', '1397293200000', 100, 'Lasku', 0),
+(3, 1, 1, '1398243600000', '1398243600000', 1520, 'Verkkomaksu', 1);
 
 -- --------------------------------------------------------
 
@@ -401,24 +407,24 @@ ALTER TABLE `tilakuvat`
 -- Rajoitteet taululle `varauksenpalvelut`
 --
 ALTER TABLE `varauksenpalvelut`
-  ADD CONSTRAINT `varauksenpalvelut_ibfk_2` FOREIGN KEY (`palveluid`) REFERENCES `palvelu` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `varauksenpalvelut_ibfk_1` FOREIGN KEY (`varausid`) REFERENCES `varaukset` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `varauksenpalvelut_ibfk_1` FOREIGN KEY (`varausid`) REFERENCES `varaukset` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `varauksenpalvelut_ibfk_2` FOREIGN KEY (`palveluid`) REFERENCES `palvelu` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Rajoitteet taululle `varauksentunnit`
 --
 ALTER TABLE `varauksentunnit`
-  ADD CONSTRAINT `varauksentunnit_ibfk_4` FOREIGN KEY (`kello`) REFERENCES `hinnasto` (`tunti`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `varauksentunnit_ibfk_1` FOREIGN KEY (`varausnumero`) REFERENCES `varaukset` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `varauksentunnit_ibfk_2` FOREIGN KEY (`asiakasid`) REFERENCES `kayttaja` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `varauksentunnit_ibfk_3` FOREIGN KEY (`tilaid`) REFERENCES `tila` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `varauksentunnit_ibfk_3` FOREIGN KEY (`tilaid`) REFERENCES `tila` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `varauksentunnit_ibfk_4` FOREIGN KEY (`kello`) REFERENCES `hinnasto` (`tunti`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Rajoitteet taululle `varaukset`
 --
 ALTER TABLE `varaukset`
-  ADD CONSTRAINT `varaukset_ibfk_2` FOREIGN KEY (`tilaId`) REFERENCES `tila` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `varaukset_ibfk_1` FOREIGN KEY (`asiakasId`) REFERENCES `kayttaja` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `varaukset_ibfk_1` FOREIGN KEY (`asiakasId`) REFERENCES `kayttaja` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `varaukset_ibfk_2` FOREIGN KEY (`tilaId`) REFERENCES `tila` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

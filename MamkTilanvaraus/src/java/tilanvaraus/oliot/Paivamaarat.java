@@ -1,5 +1,5 @@
 package tilanvaraus.oliot;
-import java.text.*;
+import org.joda.time.DateTime;
 
 public class Paivamaarat extends TietokantaPerus {
     
@@ -12,11 +12,29 @@ public class Paivamaarat extends TietokantaPerus {
         this.varausId = id;
     }
     
-    public String muunnaAikaleima(String leima){
+    public String muunnaAikaleima(long aikaleima){
         String muunnettu = "";
-        SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
-        muunnettu = sdf.format(Long.parseLong(leima));
+        DateTime aika = new DateTime(new Long(aikaleima));
+        muunnettu = aika.toString("dd.MM.YYYY");
         return muunnettu;
-    } 
+    }
+    public int paivaAikaleimasta(long aikaleima){
+        int muunnettu = 0;
+        DateTime aika = new DateTime(new Long(aikaleima));
+        muunnettu = aika.getDayOfMonth();
+        return muunnettu;
+    }
+    public int kuukausiAikaleimasta(long aikaleima){
+        int muunnettu = 0;
+        DateTime aika = new DateTime(new Long(aikaleima));
+        muunnettu = aika.getMonthOfYear();
+        return muunnettu;
+    }
+    public int vuosiAikaleimasta(long aikaleima){
+        int muunnettu = 0;
+        DateTime aika = new DateTime(new Long(aikaleima));
+        muunnettu = aika.getYear();
+        return muunnettu;
+    }
     
 }

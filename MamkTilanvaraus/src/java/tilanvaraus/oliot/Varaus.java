@@ -55,7 +55,12 @@ public class Varaus extends TietokantaPerus {
     public boolean haeVaraukset() {
         boolean tila = true;
         try {
-             String lause = "select v.id, t.nimi, k.etunimi, k.sukunimi, v.asiakasId, v.pvm, v.alkuAika, v.loppuAika, v.hinta, v.maksutilanne from varaus AS v JOIN tila AS t ON v.tilaId = t.id JOIN kayttaja AS k ON v.asiakasId = k.id order by pvm asc;";
+             String lause = "select v.id,v.asiakasId,k.etunimi,k.sukunimi,v.tilaId,t.nimi,v.varausaika,vt.pvm,v.maksutapa,v.maksutilanne,v.summa "
+                     + "from varaukset as v "
+                     + "join varauksentunnit as vt on v.id = vt.varausnumero "
+                     + "join tila as t on v.tilaId = t.id "
+                     + "join kayttaja as k on v.asiakasId = k.id "
+                     + "group by v.id order by v.id asc;";
              komento = yhteys.prepareStatement(lause);
              vastaus = komento.executeQuery();
         } catch (Exception e1) {
@@ -65,12 +70,12 @@ public class Varaus extends TietokantaPerus {
         }
     }
     
-    public boolean haeTilanVaraukset(int tilaId) {
+    public boolean haeTilanVaraukset() {
         boolean tila = true;
         try {
              String lause = "select * from varaus where tilaid = ? order by loppuAika asc;";
              komento = yhteys.prepareStatement(lause);
-             komento.setInt(1, tilaId);
+             komento.setInt(1, this.tilaId);
              vastaus = komento.executeQuery();
         } catch (Exception e1) {
             tila = false;
@@ -82,7 +87,22 @@ public class Varaus extends TietokantaPerus {
     public boolean haeVaraus() {
         boolean tila = true;
         try {
-             String lause = "select * from varaus where id = ?;";
+             String lause = "select v.id,v.asiakasId,k.etunimi,k.sukunimi,k.katuosoite,k.postinumero,k.postitoimipaikka,k.email,k.puh,k.yritys,v.tilaId,v.varausaika,v.pvm,v.summa,v.maksutapa,v.maksutilanne "
+                     + "from varaukset as v join kayttaja as k on v.asiakasId = k.id where v.id = ?";
+             komento = yhteys.prepareStatement(lause);
+             komento.setInt(1, this.varausId);
+             vastaus = komento.executeQuery();
+        } catch (Exception e1) {
+            tila = false;
+        } finally {
+            return tila;
+        } 
+    }
+    
+    public boolean haeVarauksenTunnit() {
+        boolean tila = true;
+        try {
+             String lause = "select * from varauksentunnit where varausnumero = ?";
              komento = yhteys.prepareStatement(lause);
              komento.setInt(1, this.varausId);
              vastaus = komento.executeQuery();

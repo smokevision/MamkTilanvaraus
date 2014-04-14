@@ -225,6 +225,9 @@ div.tyhja{
     width: 105px;
     cursor:pointer;
 }
+.kellolista li:first-child {
+    margin-top:0px;
+}
 .kellolista li.varattu{
     background:#f0f0f1;
     background:-webkit-gradient(linear, left bottom, left top, color-stop(1, #f0f0f1), color-stop(0, #d5d6d9) );

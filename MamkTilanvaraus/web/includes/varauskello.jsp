@@ -8,6 +8,11 @@ out.print("<h4>" + paiva + "." + kuukausi + "." + vuosi + "</h4>");
 %>
 <ol id="selectable" class="kellolista">
     <%
-    out.print(kalenteri.luoKellolista(vuosi,kuukausi,paiva,tilaId));
+    if(request.getParameter("varaus") != null){
+        int varausId = Integer.parseInt(request.getParameter("varaus"));
+        out.print(kalenteri.luoVarauksenKellolista(vuosi,kuukausi,paiva,tilaId,varausId));
+    } else {
+        out.print(kalenteri.luoKellolista(vuosi,kuukausi,paiva,tilaId));
+    }
     %>
 </ol>

@@ -199,4 +199,37 @@ public class Kalenteri extends TietokantaPerus {
         }
         return sisalto;
     }
+    
+    public String luoVarauksenKellolista(int vuosi, int kuukausi, int paiva, int tilaId, int varausId){
+        String sisalto = "";
+        DateTime kalenteri = new DateTime(vuosi,kuukausi,paiva,12,0);
+        long paivays = kalenteri.getMillis();
+        
+        ResultSet varaukset = null;
+        try {
+            String lause = "select * from varauksentunnit where tilaid = ? and pvm = ? and varausnumero != ? order by kello asc;";
+            komento = yhteys.prepareStatement(lause);
+            komento.setInt(1, tilaId);
+            komento.setLong(2, paivays);
+            komento.setInt(3, varausId);
+            varaukset = komento.executeQuery();
+            List<String> lista = new ArrayList<String>();
+            while(varaukset.next()){
+                lista.add(varaukset.getString("kello"));
+            }
+            
+            
+            for(int i = 8; i <=21; i++){
+                if(lista.contains(Integer.toString(i))){
+                    sisalto += "<li class='varattu' value='" + i + "'>" + i + ":00 Varattu</li>";
+                } else {
+                    sisalto += "<li class='vapaa' value='" + i + "'>" + i + ":00 Vapaa</li>";
+                }
+            }
+            
+        } catch (Exception e1) {
+            varaukset = null;
+        }
+        return sisalto;
+    }
 }
