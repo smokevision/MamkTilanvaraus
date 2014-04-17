@@ -25,6 +25,7 @@
                     </div>
                     <div id="kuvaus">
                     <%
+                    request.setCharacterEncoding("UTF-8");
                     String etunimi = "";
                     String sukunimi = "";
                     String yritys = "";
@@ -110,8 +111,10 @@
                             </tr>
                             <tr>
                                 <td class="vasen">Hinta yhteensä:</td>
-                                <td class="oikea">200€<br/>
-                                Sisältää alv. 24%</td>
+                                <td class="oikea">
+                                    <span id="hinta"></span>
+                                    <br/>Sisältää alv. 24%
+                                </td>
                             </tr>
                         </table>
                             <p><input type="checkbox" name="varausehdot" required="required"/> Olen lukenut <a href="ehdot.jsp" target="_blank">varausehdot</a> ja hyväksyn ne</p> 
@@ -169,6 +172,7 @@
             $(".valitutajat").each(function(){
                 tunnit.push(parseInt($(this).val()));
             });
+            $("#hinta").load("includes/hintalaskuri.jsp",{vuosi: vuosi, kuukausi: kuukausi, paiva: paiva, valitutajat : tunnit});
             $("#varaus_kellonajat").load("includes/varauskello.jsp", {tilaid: tilaid, vuosi: vuosi, kuukausi: kuukausi, paiva: paiva}, function(){
                 $("#selectable li").each(function(){
                     var nappi = $(this);
@@ -196,37 +200,37 @@
             
             });
             $(document).on("click",".edellinen, .seuraava",function(e){
-            e.preventDefault();
-            var arr = $(this).attr("value").split(',');
-            var vuosi = arr[1];
-            var kuukausi = arr[0];
-            $("#kalenteri_holder").load("includes/kalenteri.jsp", {tilaid: tilaid, vuosi: vuosi, kuukausi: kuukausi});
-        });
-        $(document).on("click",".paiva",function(e){
-            $("#valitut_kellonajat").empty();
-            var arr = $(this).attr("id").split('-');
-            var vuosi = arr[1];
-            var kuukausi = arr[2];
-            var paiva = arr[3];
-            $("#varaus_kellonajat").load("includes/varauskello.jsp", {tilaid: tilaid, vuosi: vuosi, kuukausi: kuukausi, paiva: paiva}, function() {
-                $("#selectable").bind("mousedown", function(e){
-                                                            e.metaKey = true;
-                                                        }).selectable({
-                                                            filter: ".vapaa",
-                                                            stop: function() {
-                                                                $("#valitut_kellonajat").empty();
-                                                                $("#valitut_kellonajat").append("<input type='hidden' name='vuosi' value='"+vuosi+"'/>");
-                                                                $("#valitut_kellonajat").append("<input type='hidden' name='kuukausi' value='"+kuukausi+"'/>");
-                                                                $("#valitut_kellonajat").append("<input type='hidden' name='paiva' value='"+paiva+"'/>");
-                                                                $(".ui-selected", this).each(function() {
-                                                                    var index = $("#selectable li").index(this)+8;
-                                                                    $("#valitut_kellonajat").append("<input type='hidden' name='valitutajat' value='"+index+"'/>");
-                                                                });
-                                                                
-                                                            }
-                                                        });
+                e.preventDefault();
+                var arr = $(this).attr("value").split(',');
+                var vuosi = arr[1];
+                var kuukausi = arr[0];
+                $("#kalenteri_holder").load("includes/kalenteri.jsp", {tilaid: tilaid, vuosi: vuosi, kuukausi: kuukausi});
             });
-        });
+            $(document).on("click",".paiva",function(e){
+                $("#valitut_kellonajat").empty();
+                var arr = $(this).attr("id").split('-');
+                var vuosi = arr[1];
+                var kuukausi = arr[2];
+                var paiva = arr[3];
+                $("#varaus_kellonajat").load("includes/varauskello.jsp", {tilaid: tilaid, vuosi: vuosi, kuukausi: kuukausi, paiva: paiva}, function() {
+                    $("#selectable").bind("mousedown", function(e){
+                                                                e.metaKey = true;
+                                                            }).selectable({
+                                                                filter: ".vapaa",
+                                                                stop: function() {
+                                                                    $("#valitut_kellonajat").empty();
+                                                                    $("#valitut_kellonajat").append("<input type='hidden' name='vuosi' value='"+vuosi+"'/>");
+                                                                    $("#valitut_kellonajat").append("<input type='hidden' name='kuukausi' value='"+kuukausi+"'/>");
+                                                                    $("#valitut_kellonajat").append("<input type='hidden' name='paiva' value='"+paiva+"'/>");
+                                                                    $(".ui-selected", this).each(function() {
+                                                                        var index = $("#selectable li").index(this)+8;
+                                                                        $("#valitut_kellonajat").append("<input type='hidden' name='valitutajat' value='"+index+"'/>");
+                                                                    });
+
+                                                                }
+                                                            });
+                });
+            });
         </script>
     </body>
 </html>

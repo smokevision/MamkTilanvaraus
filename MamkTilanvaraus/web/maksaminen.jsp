@@ -25,6 +25,7 @@
                     <h1>Tarkista tiedot</h1>
                     <p>Tarkista että tiedot ovat oikein. Mikäli tiedoissa on korjattavaa, palaa edelliselle sivulle.</p>
                     <%
+                    request.setCharacterEncoding("UTF-8");
                     int tilaId = Integer.parseInt(request.getParameter("tilaId"));
                     String tilanNimi = "";
                     tila.setTilaId(tilaId);
@@ -38,7 +39,6 @@
                     int kuukausi = Integer.parseInt(request.getParameter("kuukausi"));
                     int paiva = Integer.parseInt(request.getParameter("paiva"));
                     String valitutAjat[] = request.getParameterValues("valitutajat");
-                    
                     int userId = 0;
                     if (session.getAttribute("loginStatus") != null && session.getAttribute("loginStatus") == "logged" && session.getAttribute("loginUserId") != null) {
                         userId = (Integer) session.getAttribute("loginUserId");
@@ -53,6 +53,10 @@
                     String email = request.getParameter("email");
                     String puhelin = request.getParameter("puhelin");
                     String maksutapa = request.getParameter("maksutapa");
+                    int kahvi = Integer.parseInt(request.getParameter("kahvi"));
+                    int pulla = Integer.parseInt(request.getParameter("pulla"));
+                    int voileipa = Integer.parseInt(request.getParameter("voileipa"));
+                    int kakku = Integer.parseInt(request.getParameter("kakku"));
                     Double hinta = 0.0;
                     hinta = varaus.laskeVarauksenHinta(valitutAjat, vuosi, kuukausi, paiva);
                     %>
@@ -114,8 +118,24 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td class="vasen">Palvelut:</td>
-                                <td class="oikea"></td>
+                                <td class="vasen">Tarjoilut:</td>
+                                <td class="oikea">
+                                <%
+                                if(kahvi == 0 && pulla == 0 && voileipa == 0 && kakku == 0){
+                                    out.print("Ei tarjoiluja");
+                                } else {
+                                    if (kahvi>0){
+                                        out.print("Kahvi "+kahvi+" kpl<br/>");
+                                    } if (pulla>0){
+                                        out.print("Pulla "+pulla+" kpl<br/>");
+                                    } if (voileipa>0){
+                                        out.print("Voileipä "+voileipa+" kpl<br/>");
+                                    } if (kakku>0){
+                                        out.print("Kakku "+kakku+" kpl");
+                                    } 
+                                }
+                                %>    
+                                </td>
                             </tr>
                             <tr>
                                 <td class="vasen">Maksutapa:</td>

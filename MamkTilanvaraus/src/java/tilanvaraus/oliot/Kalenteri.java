@@ -90,7 +90,6 @@ public class Kalenteri extends TietokantaPerus {
             } else {
                 varausTila = "";
             }
-            
             this.nykPaiva++;
         } else{
             this.nykPaivays = "";

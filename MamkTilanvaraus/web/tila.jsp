@@ -136,7 +136,7 @@
                                                                 if(valitut>0){
                                                                     $("#valitut_kellonajat").append("<p><input type='submit' value='Siirry varaamaan' name='nappi'/></p>");
                                                                 } else{
-                                                                    $("#valitut_kellonajat").append("<p>Valitse aika</p>");
+                                                                    $("#valitut_kellonajat").append("<p>Valitse tunnit</p>");
                                                                 }
                                                                 
                                                             }
