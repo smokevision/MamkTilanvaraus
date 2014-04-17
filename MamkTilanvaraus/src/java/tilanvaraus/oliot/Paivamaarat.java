@@ -42,5 +42,17 @@ public class Paivamaarat extends TietokantaPerus {
         numero = aika.getDayOfWeek();
         return numero;
     }
+    public Long haeNykyinenAikaleima(){
+        Long aikaleima = null;
+        DateTime aika = new DateTime();
+        aikaleima = aika.getMillis();
+        return aikaleima;
+    }
+    public Long haePaivanAikaleima(int vuosi, int kuukausi, int paiva){
+        Long aikaleima = null;
+        DateTime aika = new DateTime(vuosi,kuukausi,paiva,12,0);
+        aikaleima = aika.getMillis();
+        return aikaleima;
+    }
     
 }

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Palvelin: localhost
--- Luontiaika: 17.04.2014 klo 08:15
+-- Luontiaika: 17.04.2014 klo 12:25
 -- Palvelimen versio: 5.6.12-log
 -- PHP:n versio: 5.4.12
 
@@ -289,7 +289,7 @@ CREATE TABLE IF NOT EXISTS `tilakuvat` (
   `tyyppi` text COLLATE utf8_swedish_ci NOT NULL,
   PRIMARY KEY (`id`),
   KEY `tilaId` (`tilaId`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_swedish_ci AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_swedish_ci AUTO_INCREMENT=5 ;
 
 --
 -- Vedos taulusta `tilakuvat`
@@ -297,7 +297,8 @@ CREATE TABLE IF NOT EXISTS `tilakuvat` (
 
 INSERT INTO `tilakuvat` (`id`, `nimi`, `tilaId`, `tyyppi`) VALUES
 (1, 'f34rnksndmf34', 1, 'esittely'),
-(2, 'dasd32adsef4q', 1, 'esittely');
+(2, 'dasd32adsef4q', 1, 'esittely'),
+(4, 'asdad', 3, '234');
 
 -- --------------------------------------------------------
 
@@ -327,13 +328,10 @@ CREATE TABLE IF NOT EXISTS `varauksentunnit` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
   `varausnumero` int(11) NOT NULL,
   `tilaid` int(10) NOT NULL,
-  `asiakasid` int(10) NOT NULL,
   `pvm` text COLLATE utf8_swedish_ci NOT NULL,
   `kello` int(11) NOT NULL,
-  `hinta` double NOT NULL,
   PRIMARY KEY (`id`),
   KEY `varausnumero` (`varausnumero`),
-  KEY `asiakasid` (`asiakasid`),
   KEY `tilaid` (`tilaid`),
   KEY `kello` (`kello`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_swedish_ci AUTO_INCREMENT=19 ;
@@ -342,24 +340,24 @@ CREATE TABLE IF NOT EXISTS `varauksentunnit` (
 -- Vedos taulusta `varauksentunnit`
 --
 
-INSERT INTO `varauksentunnit` (`id`, `varausnumero`, `tilaid`, `asiakasid`, `pvm`, `kello`, `hinta`) VALUES
-(1, 1, 1, 1, '1397293200000', 11, 100),
-(3, 2, 1, 2, '1397293200000', 13, 100),
-(4, 1, 1, 1, '1397293200000', 12, 100),
-(5, 3, 1, 1, '1398243600000', 8, 100),
-(6, 3, 1, 1, '1398243600000', 9, 100),
-(7, 3, 1, 1, '1398243600000', 10, 100),
-(8, 3, 1, 1, '1398243600000', 11, 100),
-(9, 3, 1, 1, '1398243600000', 12, 100),
-(10, 3, 1, 1, '1398243600000', 13, 100),
-(11, 3, 1, 1, '1398243600000', 14, 100),
-(12, 3, 1, 1, '1398243600000', 15, 100),
-(13, 3, 1, 1, '1398243600000', 16, 120),
-(14, 3, 1, 1, '1398243600000', 17, 120),
-(15, 3, 1, 1, '1398243600000', 18, 120),
-(16, 3, 1, 1, '1398243600000', 19, 120),
-(17, 3, 1, 1, '1398243600000', 20, 120),
-(18, 3, 1, 1, '1398243600000', 21, 120);
+INSERT INTO `varauksentunnit` (`id`, `varausnumero`, `tilaid`, `pvm`, `kello`) VALUES
+(1, 1, 1, '1397293200000', 11),
+(3, 2, 1, '1397293200000', 13),
+(4, 1, 1, '1397293200000', 12),
+(5, 3, 1, '1398243600000', 8),
+(6, 3, 1, '1398243600000', 9),
+(7, 3, 1, '1398243600000', 10),
+(8, 3, 1, '1398243600000', 11),
+(9, 3, 1, '1398243600000', 12),
+(10, 3, 1, '1398243600000', 13),
+(11, 3, 1, '1398243600000', 14),
+(12, 3, 1, '1398243600000', 15),
+(13, 3, 1, '1398243600000', 16),
+(14, 3, 1, '1398243600000', 17),
+(15, 3, 1, '1398243600000', 18),
+(16, 3, 1, '1398243600000', 19),
+(17, 3, 1, '1398243600000', 20),
+(18, 3, 1, '1398243600000', 21);
 
 -- --------------------------------------------------------
 
@@ -380,7 +378,7 @@ CREATE TABLE IF NOT EXISTS `varaukset` (
   KEY `id` (`id`),
   KEY `asiakasId` (`asiakasId`),
   KEY `tilaId` (`tilaId`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_swedish_ci AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_swedish_ci AUTO_INCREMENT=5 ;
 
 --
 -- Vedos taulusta `varaukset`
@@ -440,7 +438,6 @@ ALTER TABLE `varauksenpalvelut`
 --
 ALTER TABLE `varauksentunnit`
   ADD CONSTRAINT `varauksentunnit_ibfk_1` FOREIGN KEY (`varausnumero`) REFERENCES `varaukset` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `varauksentunnit_ibfk_2` FOREIGN KEY (`asiakasid`) REFERENCES `kayttaja` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `varauksentunnit_ibfk_3` FOREIGN KEY (`tilaid`) REFERENCES `tila` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `varauksentunnit_ibfk_4` FOREIGN KEY (`kello`) REFERENCES `hinnasto` (`tunti`) ON DELETE CASCADE ON UPDATE CASCADE;
 

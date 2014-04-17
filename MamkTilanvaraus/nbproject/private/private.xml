@@ -12,11 +12,11 @@
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/Asennukset/wamp/www/MamkTilanvaraus/MamkTilanvaraus/web/css/main.css</file>
-            <file>file:/D:/Asennukset/wamp/www/MamkTilanvaraus/MamkTilanvaraus/src/java/tilanvaraus/oliot/Paivamaarat.java</file>
-            <file>file:/D:/Asennukset/wamp/www/MamkTilanvaraus/MamkTilanvaraus/web/maksaminen.jsp</file>
-            <file>file:/D:/Asennukset/wamp/www/MamkTilanvaraus/MamkTilanvaraus/web/varaus.jsp</file>
-            <file>file:/D:/Asennukset/wamp/www/MamkTilanvaraus/MamkTilanvaraus/src/java/tilanvaraus/oliot/Varaus.java</file>
+            <file>file:/C:/GitHub/MamkTilanvaraus/MamkTilanvaraus/src/java/tilanvaraus/oliot/Varaus.java</file>
+            <file>file:/C:/GitHub/MamkTilanvaraus/MamkTilanvaraus/web/maksaminen.jsp</file>
+            <file>file:/C:/GitHub/MamkTilanvaraus/MamkTilanvaraus/web/varaus.jsp</file>
+            <file>file:/C:/GitHub/MamkTilanvaraus/MamkTilanvaraus/web/vahvistus.jsp</file>
+            <file>file:/C:/GitHub/MamkTilanvaraus/MamkTilanvaraus/src/java/tilanvaraus/oliot/Paivamaarat.java</file>
         </group>
     </open-files>
 </project-private>

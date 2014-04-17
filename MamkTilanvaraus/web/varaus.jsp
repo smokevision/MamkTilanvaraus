@@ -95,8 +95,8 @@
                                 <td class="vasen">Maksutapa*:</td>
                                 <td class="oikea">
                                     <select name="maksutapa">
-                                        <option value="verkkomaksu">Verkkomaksu</option>
-                                        <option value="lasku">Lasku</option>
+                                        <option value="Verkkomaksu">Verkkomaksu</option>
+                                        <option value="Lasku">Lasku</option>
                                     </select>
                                 </td>
                             </tr>
@@ -128,6 +128,7 @@
                         int kuukausi = Integer.parseInt(request.getParameter("kuukausi"));
                         int paiva = Integer.parseInt(request.getParameter("paiva"));
                         tila.setTilaId(tilaId);
+                        varaus.setTilaId(tilaId);
                         out.print("<input type='hidden' name='tilaId' value='"+tilaId+"'>");
                         if(tila.listaaTila()){
                             while (tila.getVastaus().next()) {
@@ -190,11 +191,13 @@
                                                                 $("#valitut_kellonajat").append("<input type='hidden' name='vuosi' value='"+vuosi+"'/>");
                                                                 $("#valitut_kellonajat").append("<input type='hidden' name='kuukausi' value='"+kuukausi+"'/>");
                                                                 $("#valitut_kellonajat").append("<input type='hidden' name='paiva' value='"+paiva+"'/>");
+                                                                tunnit = [];
                                                                 $(".ui-selected", this).each(function() {
                                                                     var index = $("#selectable li").index(this)+8;
+                                                                    tunnit.push(parseInt(index));
                                                                     $("#valitut_kellonajat").append("<input type='hidden' name='valitutajat' class='valitutajat' value='"+index+"'/>");
                                                                 });
-                                                                
+                                                                $("#hinta").load("includes/hintalaskuri.jsp",{vuosi: vuosi, kuukausi: kuukausi, paiva: paiva, valitutajat : tunnit});
                                                             }
                                                         });
             
@@ -222,11 +225,13 @@
                                                                     $("#valitut_kellonajat").append("<input type='hidden' name='vuosi' value='"+vuosi+"'/>");
                                                                     $("#valitut_kellonajat").append("<input type='hidden' name='kuukausi' value='"+kuukausi+"'/>");
                                                                     $("#valitut_kellonajat").append("<input type='hidden' name='paiva' value='"+paiva+"'/>");
+                                                                    tunnit = [];
                                                                     $(".ui-selected", this).each(function() {
                                                                         var index = $("#selectable li").index(this)+8;
+                                                                        tunnit.push(parseInt(index));
                                                                         $("#valitut_kellonajat").append("<input type='hidden' name='valitutajat' value='"+index+"'/>");
                                                                     });
-
+                                                                    $("#hinta").load("includes/hintalaskuri.jsp",{vuosi: vuosi, kuukausi: kuukausi, paiva: paiva, valitutajat : tunnit});
                                                                 }
                                                             });
                 });

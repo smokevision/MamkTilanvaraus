@@ -38,7 +38,7 @@
                     int vuosi = Integer.parseInt(request.getParameter("vuosi"));
                     int kuukausi = Integer.parseInt(request.getParameter("kuukausi"));
                     int paiva = Integer.parseInt(request.getParameter("paiva"));
-                    String valitutAjat[] = request.getParameterValues("valitutajat");
+                    String[] valitutAjat = request.getParameterValues("valitutajat");
                     int userId = 0;
                     if (session.getAttribute("loginStatus") != null && session.getAttribute("loginStatus") == "logged" && session.getAttribute("loginUserId") != null) {
                         userId = (Integer) session.getAttribute("loginUserId");
@@ -59,6 +59,33 @@
                     int kakku = Integer.parseInt(request.getParameter("kakku"));
                     Double hinta = 0.0;
                     hinta = varaus.laskeVarauksenHinta(valitutAjat, vuosi, kuukausi, paiva);
+
+                    session.setAttribute("userId", userId);
+                    session.setAttribute("sukunimi", sukunimi);
+                    session.setAttribute("sukunimi", sukunimi);
+                    session.setAttribute("yritys", yritys);
+                    session.setAttribute("ytunnus", ytunnus);
+                    session.setAttribute("katuosoite", katuosoite);
+                    session.setAttribute("postinumero", postinumero);
+                    session.setAttribute("postitoimipaikka", postitoimipaikka);
+                    session.setAttribute("email", email);
+                    session.setAttribute("kahvi", kahvi);
+                    session.setAttribute("pulla", pulla);
+                    session.setAttribute("voileipa", voileipa);
+                    session.setAttribute("kakku", kakku);
+                    session.setAttribute("hinta", hinta);
+                    session.setAttribute("maksutapa",maksutapa);
+                    session.setAttribute("tilaId", tilaId);
+                    session.setAttribute("vuosi", vuosi);
+                    session.setAttribute("kuukausi", kuukausi);
+                    session.setAttribute("paiva", paiva);
+                    session.setAttribute("valitutAjat", valitutAjat);
+                    if(maksutapa.equals("lasku")){
+                        session.setAttribute("maksutilanne", 0);
+                    } else {
+                        session.setAttribute("maksutilanne", 1);
+                    }
+
                     %>
                     <div id="maksaminen_yhteystiedot">
                         <h3>Yhteystiedot</h3>
@@ -148,7 +175,7 @@
                         </table>
                     </div>
                     <%                    
-                    if(maksutapa.equals("verkkomaksu")){
+                    if(maksutapa.equals("Verkkomaksu")){
                     %>
                     <h1>Maksaminen</h1>
                     <p>Siirry maksamaan valitsemalla pankki:</p>
@@ -156,8 +183,8 @@
                         <input type="submit" value="Pankki"/>
                     </div>
                     <%
-                    } else if(maksutapa.equals("lasku")){
-                    out.print("<input type='submit' name='nappi' value='Vahvista varaus'/>");
+                    } else if(maksutapa.equals("Lasku")){
+                        out.print("<input type='submit' name='nappi' value='Vahvista varaus'/>");
                     }    
                     %>
                     </form>

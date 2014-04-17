@@ -21,9 +21,33 @@
                     <div id="varaus_vaiheet">
                         Varauksen tiedot >> Yhteenveto/maksaminen >> <span class="nykyinen">Valmis</span>
                     </div>
-                    <h1>Kiitos varauksesta</h1>
-                    <p>Varauksesi on nyt rekisteröity. Olemme lähettäneet sähköpostiisi varausvahvistuksen.</p>
-                    <p><a href="index.jsp">Palaa etusivulle</a></p>
+                    <%
+                    varaus.setAsiakasId((Integer) session.getAttribute("userId"));
+                    varaus.setTilaId((Integer) session.getAttribute("tilaId"));
+                    varaus.setPvm((Integer) session.getAttribute("vuosi"),(Integer) session.getAttribute("kuukausi"),(Integer) session.getAttribute("paiva"));
+                    varaus.setHinta((Double) session.getAttribute("hinta"));
+                    varaus.setMaksutapa((String) session.getAttribute("maksutapa"));
+                    varaus.setMaksutilanne((Integer) session.getAttribute("maksutilanne"));
+
+                    varaus.setAsiakasId((Integer) session.getAttribute("userId"));
+                    varaus.setPvm((Integer) session.getAttribute("vuosi"),(Integer) session.getAttribute("kuukausi"),(Integer) session.getAttribute("paiva"));
+                    String[] valitutAjat = (String[]) session.getAttribute("valitutAjat");
+                    varaus.setValitutAjat(valitutAjat);
+
+                    if(varaus.lisaaVaraus()){
+                        %>
+                        <h1>Kiitos varauksesta</h1>
+                        <p>Varauksesi on nyt rekisteröity. Olemme lähettäneet sähköpostiisi varausvahvistuksen.</p>
+                        <p><a href="index.jsp">Palaa etusivulle</a></p>
+                        <%
+                    } else {
+                        %>
+                        <h1>Tahtui virhe!</h1>
+                        <p>Hups, tapahtui järjestelmävirhe, varauksesi ei tallentunut.</p>
+                        <p><a href="index.jsp">Palaa etusivulle</a></p>
+                        <%
+                    }
+                    %>
                 </div>
             </div>
             <%@ include file="includes/footer.jsp" %>
