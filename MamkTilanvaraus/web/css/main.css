@@ -35,6 +35,7 @@ html,body{
 }
 #palsta h1{
     font-variant:small-caps;
+    clear:both;
 }
 #tilalista{
     border:none;
@@ -287,4 +288,43 @@ input[type="submit"]:hover, .linkkinappi:hover{
 .varaustaulu tr td.oikea input[type="number"]{
     width:40px;
     margin-right:10px;
+}
+.omatilitaulu tr td{
+    padding:2px 5px;
+    vertical-align:top;
+}
+.omatilitaulu tr td.vasen{
+    text-align:right;
+}
+.omatilitaulu tr td.oikea{
+    text-align:left;
+}
+#maksaminen_yhteystiedot, #maksaminen_varaus{
+    position:relative;
+    float:left;
+    width:50%;
+    margin-bottom:25px;
+}
+#maksaminen_yhteystiedot h3, #maksaminen_varaus h3{
+    color:#0089cd;
+    font-variant:small-caps;
+    font-size:22px;
+    font-weight:normal;
+}
+.maksaminen_yhteenvetotaulu td.vasen{
+    padding:2px 5px;
+    vertical-align:top;
+    text-align:right;
+}
+.maksaminen_yhteenvetotaulu td.oikea{
+    padding:2px 5px;
+    vertical-align:top;
+    text-align:vasen;
+}
+#pankit{
+    clear:both;
+    width:100%;
+    height:200px;
+    box-sizing:border-box;
+    border:1px solid #000;
 }

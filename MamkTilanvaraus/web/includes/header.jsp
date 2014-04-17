@@ -3,7 +3,7 @@
     <ul id="navi">
         <li id="eka"><a href="index.jsp">Etusivu</a></li>
         <li><a href="tilat.jsp">Tilat</a></li>
-        <li><a href="yhteys.jsp">Yhteystiedot</a></li>
+        <li><a href="yhteys.jsp">Yhteys</a></li>
         <%
         if (session.getAttribute("loginStatus") == "logged") {
         %>
@@ -14,8 +14,9 @@
     </ul>
     
     <%
-    if (session.getAttribute("loginStatus") == "logged") {
+    if (session.getAttribute("loginStatus") != null && session.getAttribute("loginStatus") == "logged") {
     %>
+    
     <a href="logout.jsp" id="logoutlink">Kirjaudu ulos <img src="kuvat/ulkoasu/logout.png" alt="Kirjaudu ulos"/></a>
     <%
     } else {

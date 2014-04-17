@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Palvelin: localhost
--- Luontiaika: 14.04.2014 klo 17:50
+-- Luontiaika: 17.04.2014 klo 08:15
 -- Palvelimen versio: 5.6.12-log
 -- PHP:n versio: 5.4.12
 
@@ -166,6 +166,7 @@ CREATE TABLE IF NOT EXISTS `kayttaja` (
   `email` text COLLATE utf8_swedish_ci NOT NULL,
   `puh` text COLLATE utf8_swedish_ci NOT NULL,
   `yritys` text COLLATE utf8_swedish_ci,
+  `ytunnus` text COLLATE utf8_swedish_ci,
   `salasana` text COLLATE utf8_swedish_ci NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_swedish_ci AUTO_INCREMENT=3 ;
@@ -174,9 +175,9 @@ CREATE TABLE IF NOT EXISTS `kayttaja` (
 -- Vedos taulusta `kayttaja`
 --
 
-INSERT INTO `kayttaja` (`id`, `etunimi`, `sukunimi`, `katuosoite`, `postinumero`, `postitoimipaikka`, `email`, `puh`, `yritys`, `salasana`) VALUES
-(1, 'Matti', 'Meikäläinen', 'Kotikatu 3', 50100, 'Mikkeli', 'matti.meikalainen@mail.com', '0404856073', '', '5c54fe614285a0e57ecb54c05c016108'),
-(2, 'Kalle', 'Virtanen', 'Olkikuja 45 A3', 50100, 'Mikkeli', 'kvirtanen@gmail.com', '0506862342', '', '5c54fe614285a0e57ecb54c05c016108');
+INSERT INTO `kayttaja` (`id`, `etunimi`, `sukunimi`, `katuosoite`, `postinumero`, `postitoimipaikka`, `email`, `puh`, `yritys`, `ytunnus`, `salasana`) VALUES
+(1, 'Matti', 'Meikäläinen', 'Kotikatu 3', 50100, 'Mikkeli', 'matti.meikalainen@mail.com', '0404856073', '', '', '5c54fe614285a0e57ecb54c05c016108'),
+(2, 'Kalle', 'Virtanen', 'Olkikuja 45 A3', 50100, 'Mikkeli', 'kvirtanen@gmail.com', '0506862342', '', '', '5c54fe614285a0e57ecb54c05c016108');
 
 -- --------------------------------------------------------
 
@@ -214,6 +215,30 @@ CREATE TABLE IF NOT EXISTS `sivukuvat` (
   `tyyppi` int(11) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_swedish_ci AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Rakenne taululle `sivut`
+--
+
+CREATE TABLE IF NOT EXISTS `sivut` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `nimi` text COLLATE utf8_swedish_ci NOT NULL,
+  `sisalto` text COLLATE utf8_swedish_ci NOT NULL,
+  `paivitetty` text COLLATE utf8_swedish_ci NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_swedish_ci AUTO_INCREMENT=5 ;
+
+--
+-- Vedos taulusta `sivut`
+--
+
+INSERT INTO `sivut` (`id`, `nimi`, `sisalto`, `paivitetty`) VALUES
+(1, 'etusivu', '<h1>Hyviä kokoushetkiä Kasarmin kampuksella</h1>\n\n<p>Tervetuloa Mikkelin ammattikorkeakoulun tilanvarausjärjestelmään. Kasarmin kampuksella on nykyaikaiset ja monipuoliset tilat tapahtumajärjestäjien käyttöön. Kampuksen keskeinen ja puistomaisen rauhallinen sijainti tarjoaa ihanteellisen ympäristön niin pienille kuin suurillekin ryhmille, jopa 300 hengelle. Viihtyisät tilat ja onnistunut tarjoilu luovat mukavia muistoja. Kasarmin kampukselle on Mikkelin keskustasta vaivatonta saapua, autolla vain muutama minuutti ja kävellenkin 10-15 minuuttia.</p>\n\n<h1>Ravintolapalvelut</h1>\n\n<p>Kasarmin kampuksen ravintolapalvelut; Ravintola Talli, Ravintola DeXi ja Ravintola Kasarmina tuottavat kaikki kokous- ja ravintolapalvelut ammattitaidolla ja kokemuksella Kasarmin kampusalueella. Tunnusmerkkejä ovat tilaisuuksien räätälöity toteutus, muuntautuvat ravintolatilat eri puolilla kampusaluetta, joustava palveluasenne ja lähiruoka-ajattelu. Valmiudet riittävät vaivatta niin pienten kokousten kuin suurten tapahtumien tyylikkääseen toteuttamiseen.</p>', '1397648629000'),
+(2, 'ehdot', '', '1397648629000'),
+(3, 'rekisteriseloste', '', '1397648629000'),
+(4, 'yhteys', '<h1>Yhteys</h1>', '1397648629000');
 
 -- --------------------------------------------------------
 

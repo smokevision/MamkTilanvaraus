@@ -1,6 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<jsp:useBean id="apu" class="tilanvaraus.oliot.Tila"/>
-<jsp:useBean id="kuva" class="tilanvaraus.oliot.Kuva"/>
+<jsp:useBean id="apu" scope="session" class="tilanvaraus.oliot.Tila"/>
+<jsp:useBean id="kuva" scope="session" class="tilanvaraus.oliot.Kuva"/>
 <!DOCTYPE html>
 <html>
     <head>

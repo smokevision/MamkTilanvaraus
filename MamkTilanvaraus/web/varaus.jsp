@@ -1,6 +1,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<jsp:useBean id="varaus" class="tilanvaraus.oliot.Varaus"/>
-<jsp:useBean id="tila" class="tilanvaraus.oliot.Tila"/>
+<jsp:useBean id="varaus" scope="session" class="tilanvaraus.oliot.Varaus"/>
+<jsp:useBean id="tila" scope="session" class="tilanvaraus.oliot.Tila"/>
+<jsp:useBean id="asiakas" scope="session" class="tilanvaraus.oliot.Asiakas"/>
 <!DOCTYPE html>
 <html>
     <head>
@@ -20,42 +21,74 @@
                 <div id="palsta">
                     <form method='POST' action='maksaminen.jsp'>
                     <div id="varaus_vaiheet">
-                        <span class="nykyinen">Varauksen tiedot >></span> Maksaminen/hyväksyminen >> Valmis
+                        <span class="nykyinen">Varauksen tiedot >></span> Yhteenveto/maksaminen >> Valmis
                     </div>
                     <div id="kuvaus">
-                    <h1>Yhteystiedot</h1>
+                    <%
+                    String etunimi = "";
+                    String sukunimi = "";
+                    String yritys = "";
+                    String ytunnus = "";
+                    String katuosoite = "";
+                    String postinumero = "";
+                    String postitoimipaikka = "";
+                    String email = "";
+                    String puhelin = "";
+                    if (session.getAttribute("loginStatus") != null && session.getAttribute("loginStatus") == "logged" && session.getAttribute("loginUserId") != null) {
+                        int userId = (Integer) session.getAttribute("loginUserId");
+                        asiakas.setAsiakasId(userId);
+                        if(asiakas.haeAsiakas()){
+                            while (asiakas.getVastaus().next()){
+                                etunimi = asiakas.getVastaus().getString("etunimi");
+                                sukunimi = asiakas.getVastaus().getString("sukunimi");
+                                yritys = asiakas.getVastaus().getString("yritys");
+                                ytunnus = asiakas.getVastaus().getString("ytunnus");
+                                katuosoite = asiakas.getVastaus().getString("katuosoite");
+                                postinumero = asiakas.getVastaus().getString("postinumero");
+                                postitoimipaikka = asiakas.getVastaus().getString("postitoimipaikka");
+                                email = asiakas.getVastaus().getString("email");
+                                puhelin = asiakas.getVastaus().getString("puh");
+                            }
+                        }
+                    }
+                    %>
+                    <h1>Yhteystiedot ja palvelut</h1>
                         <table class='varaustaulu'>
                             <tr>
                                 <td class="vasen">Etunimi*:</td>
-                                <td class="oikea"><input type="text" name="etunimi"/></td>
+                                <td class="oikea"><input type="text" name="etunimi" value="<% out.print(etunimi); %>"/></td>
                             </tr>
                             <tr>
                                 <td class="vasen">Sukunimi*:</td>
-                                <td class="oikea"><input type="text" name="sukunimi"/></td>
+                                <td class="oikea"><input type="text" name="sukunimi" value="<% out.print(sukunimi); %>"/></td>
+                            </tr>
+                            <tr>
+                                <td class="vasen">Yritys:</td>
+                                <td class="oikea"><input type="text" name="yritys" value="<% out.print(yritys); %>"/></td>
                             </tr>
                             <tr>
                                 <td class="vasen">Y-tunnus:</td>
-                                <td class="oikea"><input type="text" name="ytunnus"/></td>
+                                <td class="oikea"><input type="text" name="ytunnus" value="<% out.print(ytunnus); %>"/></td>
                             </tr>
                             <tr>
                                 <td class="vasen">Katuosoite*:</td>
-                                <td class="oikea"><input type="text" name="katuosoite"/></td>
+                                <td class="oikea"><input type="text" name="katuosoite" value="<% out.print(katuosoite); %>"/></td>
                             </tr>
                             <tr>
                                 <td class="vasen">Postinumero*:</td>
-                                <td class="oikea"><input type="text" name="postinumero"/></td>
+                                <td class="oikea"><input type="text" name="postinumero" value="<% out.print(postinumero); %>"/></td>
                             </tr>
                             <tr>
                                 <td class="vasen">Postitoimipaikka*:</td>
-                                <td class="oikea"><input type="text" name="postitoimipaikka"/></td>
+                                <td class="oikea"><input type="text" name="postitoimipaikka" value="<% out.print(postitoimipaikka); %>"/></td>
                             </tr>
                             <tr>
                                 <td class="vasen">Sähköposti*:</td>
-                                <td class="oikea"><input type="text" name="email"/></td>
+                                <td class="oikea"><input type="text" name="email" value="<% out.print(email); %>"/></td>
                             </tr>
                             <tr>
                                 <td class="vasen">Puhelin*:</td>
-                                <td class="oikea"><input type="text" name="puh"/></td>
+                                <td class="oikea"><input type="text" name="puhelin" value="<% out.print(puhelin); %>"/></td>
                             </tr>
                             <tr>
                                 <td class="vasen">Maksutapa*:</td>
@@ -81,8 +114,8 @@
                                 Sisältää alv. 24%</td>
                             </tr>
                         </table>
-                    <p><input type="checkbox" name="varausehdot" required="required"/> Olen lukenut <a href="ehdot.jsp">varausehdot</a> ja hyväksyn ne</p> 
-                    <a class="linkkinappi" href="tilat.jsp" alt="Peruuta">Peruuta</a> <input type='submit' value='Jatka varaamista' name='nappi'/> 
+                            <p><input type="checkbox" name="varausehdot" required="required"/> Olen lukenut <a href="ehdot.jsp" target="_blank">varausehdot</a> ja hyväksyn ne</p> 
+                    <a class="linkkinappi" href="tilat.jsp">Peruuta</a> <input type='submit' value='Jatka varaamista' name='nappi'/> 
                     </div>
                     <div id="varaus_container">
                         <%
@@ -92,6 +125,7 @@
                         int kuukausi = Integer.parseInt(request.getParameter("kuukausi"));
                         int paiva = Integer.parseInt(request.getParameter("paiva"));
                         tila.setTilaId(tilaId);
+                        out.print("<input type='hidden' name='tilaId' value='"+tilaId+"'>");
                         if(tila.listaaTila()){
                             while (tila.getVastaus().next()) {
                                 out.print("<h2>"+tila.getVastaus().getString("nimi")+"</h2>");

@@ -61,6 +61,10 @@
                             <td><input type='text' name='yritys'/></td>
                         </tr>
                         <tr>
+                            <td>Y-tunnus</td>
+                            <td><input type='text' name='yritys'/></td>
+                        </tr>
+                        <tr>
                             <td>Salasana:</td>
                             <td><input type='text' name='salasana' required='required'/></td>
                         </tr>

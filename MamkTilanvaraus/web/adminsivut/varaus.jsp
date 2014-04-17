@@ -55,6 +55,10 @@
                                 <td class="oikea"><input type="text" name="sukunimi" value="<% out.print(varaus.getVastaus().getString("sukunimi"));%>"/></td>
                             </tr>
                             <tr>
+                                <td class="vasen">Yritys:</td>
+                                <td class="oikea"><input type="text" name="yritys" value="<% out.print(varaus.getVastaus().getString("yritys"));%>"/></td>
+                            </tr>
+                            <tr>
                                 <td class="vasen">Y-tunnus:</td>
                                 <td class="oikea"><input type="text" name="ytunnus" value="<% out.print(varaus.getVastaus().getString("yritys"));%>"/></td>
                             </tr>

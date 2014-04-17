@@ -1,7 +1,7 @@
 package tilanvaraus.oliot;
 import java.sql.*;
 
-public class Varaus extends TietokantaPerus {
+public class Varaus extends Paivamaarat {
     private int varausId = 0;
     private int tilaId = 0;
     private int asiakasId = 0;
@@ -73,9 +73,23 @@ public class Varaus extends TietokantaPerus {
     public boolean haeTilanVaraukset() {
         boolean tila = true;
         try {
-             String lause = "select * from varaus where tilaid = ? order by loppuAika asc;";
+             String lause = "select * from varaukset where tilaid = ? order by id asc;";
              komento = yhteys.prepareStatement(lause);
              komento.setInt(1, this.tilaId);
+             vastaus = komento.executeQuery();
+        } catch (Exception e1) {
+            tila = false;
+        } finally {
+            return tila;
+        }
+    }
+    
+    public boolean haeAsiakkaanVaraukset() {
+        boolean tila = true;
+        try {
+             String lause = "select * from varaukset as v join tila as t on v.tilaId = t.id where v.asiakasId = ? order by v.id asc;";
+             komento = yhteys.prepareStatement(lause);
+             komento.setInt(1, this.asiakasId);
              vastaus = komento.executeQuery();
         } catch (Exception e1) {
             tila = false;
@@ -132,4 +146,30 @@ public class Varaus extends TietokantaPerus {
             return tila;
         } 
     }
+    
+    public Double haeTuntihinta(int tunti, int paivaNumero){
+        Double tuntihinta = 0.0;
+        try {
+            String lause = "select hinta from hinnasto where tilaId = ? and pvm = ? and tunti = ?";
+            komento = yhteys.prepareStatement(lause);
+            komento.setInt(1, this.tilaId);
+            komento.setInt(2, paivaNumero);
+            komento.setInt(3, tunti);
+            vastaus = komento.executeQuery();
+            while(vastaus.next()){
+               tuntihinta = vastaus.getDouble("hinta");
+            }
+        } catch (Exception e1) {}
+        return tuntihinta;
+    }
+    
+    public Double laskeVarauksenHinta(String valitutAjat[], int vuosi, int kuukausi, int paiva){
+        Double hinta = 0.0;
+        int viikonpaiva = haeViikonpaivanNumero(vuosi, kuukausi, paiva);
+        for(int i=0;i<valitutAjat.length;i++){
+            hinta += haeTuntihinta(Integer.parseInt(valitutAjat[i]), viikonpaiva);
+        }
+        return hinta;
+    }
+    
 }

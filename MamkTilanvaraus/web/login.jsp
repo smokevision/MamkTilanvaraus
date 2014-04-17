@@ -31,6 +31,7 @@ if (session.getAttribute("loginStatus") == "logged") {
                             if (apu.userLogin(tunnus, salasana)){
                                 session.setAttribute("loginStatus", "logged");
                                 session.setAttribute("loginPermission", "user");
+                                session.setAttribute("loginUserId", apu.getUserId());
                                 response.sendRedirect("omatili.jsp");
                             } else {
                                 out.print("<p class='virhe'>Käyttäjätunnus ja salasana eivät täsmää</p>");

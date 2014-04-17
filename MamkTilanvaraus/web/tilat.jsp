@@ -1,5 +1,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<jsp:useBean id="apu" class="tilanvaraus.oliot.Tila"/>
+<jsp:useBean id="apu" scope="session" class="tilanvaraus.oliot.Tila"/>
 <!DOCTYPE html>
 <html>
     <head>

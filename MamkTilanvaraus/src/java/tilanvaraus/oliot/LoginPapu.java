@@ -4,6 +4,7 @@ import java.security.*;
 
 public class LoginPapu extends TietokantaPerus {
     protected ResultSet tulosjoukko = null;
+    private int userId = 0;
     
     private boolean yhteys_auki = false;
     public boolean getYhteysAuki() {
@@ -12,6 +13,10 @@ public class LoginPapu extends TietokantaPerus {
     
     public LoginPapu() {
         this.yhteys_auki = this.avaaYhteys("root", "");
+    }
+    
+    public int getUserId(){
+        return this.userId;
     }
     
     //salasanan muuntaminen MD5 muotoon
@@ -43,6 +48,14 @@ public class LoginPapu extends TietokantaPerus {
              while (tulosjoukko.next()) {
                 if(tulosjoukko.getInt(1) == 1){
                     tila = true;
+                    String lause2 = "select id from kayttaja where email=? and salasana=?";
+                    this.komento = this.yhteys.prepareStatement(lause2);
+                    komento.setString(1, tunnus);
+                    komento.setString(2, salasana);
+                    tulosjoukko = komento.executeQuery();
+                    while (tulosjoukko.next()) {
+                        this.userId = tulosjoukko.getInt("id");
+                    }
                 }
              }
         } catch (Exception e1) {

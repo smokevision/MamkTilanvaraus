@@ -36,5 +36,11 @@ public class Paivamaarat extends TietokantaPerus {
         muunnettu = aika.getYear();
         return muunnettu;
     }
+    public int haeViikonpaivanNumero(int vuosi, int kuukausi, int paiva){
+        int numero = 0;
+        DateTime aika = new DateTime(vuosi,kuukausi,paiva,12,0);
+        numero = aika.getDayOfWeek();
+        return numero;
+    }
     
 }
