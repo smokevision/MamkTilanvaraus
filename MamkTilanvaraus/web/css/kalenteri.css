@@ -126,6 +126,12 @@ div#kalenteri ul.paivat li{
     -ms-border-radius:3px;
     -o-border-radius:3px;
     border-radius:3px;
+    
+    color:#fff;
+    line-height:30px;
+    text-align:center;
+}
+div#kalenteri ul.paivat li.paiva{
     background: #38c400;
     background: -webkit-gradient(linear, left bottom, left top, color-stop(1, #a0e900), color-stop(0, #38c400) );
     background: -webkit-linear-gradient(#a0e900, #38c400);
@@ -133,23 +139,8 @@ div#kalenteri ul.paivat li{
     background: -ms-linear-gradient(#a0e900, #38c400);
     background: -o-linear-gradient(#a0e900, #38c400);
     background: linear-gradient(#a0e900, #38c400);
-    color:#fff;
-    line-height:30px;
-    text-align:center;
 }
-div#kalenteri ul.paivat li.mask{
-    background:#f0f0f1;
-    background:-webkit-gradient(linear, left bottom, left top, color-stop(1, #f0f0f1), color-stop(0, #d5d6d9) );
-    background:-webkit-linear-gradient(#f0f0f1, #d5d6d9);
-    background:-moz-linear-gradient(#f0f0f1, #d5d6d9);
-    background:-ms-linear-gradient(#f0f0f1, #d5d6d9);
-    background:-o-linear-gradient(#f0f0f1, #d5d6d9);
-    background:linear-gradient(#f0f0f1, #d5d6d9);
-}
-div#kalenteri ul.paivat li.nykyinen{
-    color:#0089cd;
-    border:1px solid #0089cd;
-}
+
 div#kalenteri ul.paivat li.varattu{
     background: #ffff33;
     background: -webkit-gradient(linear, left bottom, left top, color-stop(1, #ff4901), color-stop(0, #cc3300) );
@@ -169,6 +160,20 @@ div#kalenteri ul.paivat li.vapaita{
     background: -o-linear-gradient(#ffff33, #cccc00);
     background: linear-gradient(#ffff33, #cccc00);
     color:#996600;
+}
+div#kalenteri ul.paivat li.mask,div#kalenteri ul.paivat li.mennytpaiva{
+    background:#f0f0f1;
+    background:-webkit-gradient(linear, left bottom, left top, color-stop(1, #f0f0f1), color-stop(0, #d5d6d9) );
+    background:-webkit-linear-gradient(#f0f0f1, #d5d6d9);
+    background:-moz-linear-gradient(#f0f0f1, #d5d6d9);
+    background:-ms-linear-gradient(#f0f0f1, #d5d6d9);
+    background:-o-linear-gradient(#f0f0f1, #d5d6d9);
+    background:linear-gradient(#f0f0f1, #d5d6d9);
+    color:#fff;
+}
+div#kalenteri ul.paivat li.nykyinen{
+    color:#0089cd;
+    border:1px solid #0089cd;
 }
 div#kalenteri ul.paivat li.paiva:hover{
     opacity: 0.8; 

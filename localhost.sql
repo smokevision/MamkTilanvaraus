@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.0.4
+-- version 4.1.6
 -- http://www.phpmyadmin.net
 --
--- Palvelin: localhost
--- Luontiaika: 17.04.2014 klo 12:25
--- Palvelimen versio: 5.6.12-log
--- PHP:n versio: 5.4.12
+-- Host: localhost
+-- Generation Time: 24.04.2014 klo 18:39
+-- Palvelimen versio: 5.6.16
+-- PHP Version: 5.5.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,10 +17,8 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- Tietokanta: `tilanvaraus_mamk`
+-- Database: `tilanvaraus_mamk`
 --
-CREATE DATABASE IF NOT EXISTS `tilanvaraus_mamk` DEFAULT CHARACTER SET utf8 COLLATE utf8_swedish_ci;
-USE `tilanvaraus_mamk`;
 
 -- --------------------------------------------------------
 
@@ -334,7 +332,7 @@ CREATE TABLE IF NOT EXISTS `varauksentunnit` (
   KEY `varausnumero` (`varausnumero`),
   KEY `tilaid` (`tilaid`),
   KEY `kello` (`kello`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_swedish_ci AUTO_INCREMENT=19 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_swedish_ci AUTO_INCREMENT=26 ;
 
 --
 -- Vedos taulusta `varauksentunnit`
@@ -357,7 +355,13 @@ INSERT INTO `varauksentunnit` (`id`, `varausnumero`, `tilaid`, `pvm`, `kello`) V
 (15, 3, 1, '1398243600000', 18),
 (16, 3, 1, '1398243600000', 19),
 (17, 3, 1, '1398243600000', 20),
-(18, 3, 1, '1398243600000', 21);
+(18, 3, 1, '1398243600000', 21),
+(20, 8, 1, '1398848400000', 8),
+(21, 8, 1, '1398848400000', 9),
+(22, 8, 1, '1398848400000', 10),
+(23, 8, 1, '1398848400000', 11),
+(24, 8, 1, '1398848400000', 12),
+(25, 8, 1, '1398848400000', 13);
 
 -- --------------------------------------------------------
 
@@ -378,7 +382,7 @@ CREATE TABLE IF NOT EXISTS `varaukset` (
   KEY `id` (`id`),
   KEY `asiakasId` (`asiakasId`),
   KEY `tilaId` (`tilaId`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_swedish_ci AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_swedish_ci AUTO_INCREMENT=9 ;
 
 --
 -- Vedos taulusta `varaukset`
@@ -387,7 +391,8 @@ CREATE TABLE IF NOT EXISTS `varaukset` (
 INSERT INTO `varaukset` (`id`, `asiakasId`, `tilaId`, `varausaika`, `pvm`, `summa`, `maksutapa`, `maksutilanne`) VALUES
 (1, 1, 1, '1397293200000', '1397293200000', 200, 'Verkkomaksu', 1),
 (2, 2, 1, '1397293200000', '1397293200000', 100, 'Lasku', 0),
-(3, 1, 1, '1398243600000', '1398243600000', 1520, 'Verkkomaksu', 1);
+(3, 1, 1, '1398243600000', '1398243600000', 1520, 'Verkkomaksu', 1),
+(8, 2, 1, '1398356079489', '1398848400000', 600, 'Verkkomaksu', 1);
 
 -- --------------------------------------------------------
 
