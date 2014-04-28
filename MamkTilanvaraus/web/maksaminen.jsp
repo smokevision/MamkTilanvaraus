@@ -180,7 +180,13 @@
                     <h1>Maksaminen</h1>
                     <p>Siirry maksamaan valitsemalla pankki:</p>
                     <div id="pankit">
-                        <input type="submit" value="Pankki"/>
+                        <input type="submit" class="pankki" id="nordea" value="Nordea"/>
+                        <input type="submit" class="pankki" id="op" value="Osuus-Pankki"/>
+                        <input type="submit" class="pankki" id="danske" value="Danske Bank"/>
+                        <input type="submit" class="pankki" id="aktia" value="Aktia"/>
+                        <input type="submit" class="pankki" id="alandsbanken" value="Ålandsbanken"/>
+                        <input type="submit" class="pankki" id="spankki" value="S-pankki"/>
+                        <input type="submit" class="pankki" id="handelsbanken" value="Handelsbanken"/>
                     </div>
                     <%
                     } else if(maksutapa.equals("Lasku")){

@@ -2,6 +2,7 @@
 <jsp:useBean id="varaus" scope="session" class="tilanvaraus.oliot.Varaus"/>
 <jsp:useBean id="tila" scope="session" class="tilanvaraus.oliot.Tila"/>
 <jsp:useBean id="asiakas" scope="session" class="tilanvaraus.oliot.Asiakas"/>
+<jsp:useBean id="palvelu" scope="session" class="tilanvaraus.oliot.Palvelu"/>
 <!DOCTYPE html>
 <html>
     <head>
@@ -103,10 +104,13 @@
                             <tr>
                                 <td class="vasen">Tarjoilut:</td>
                                 <td class="oikea">
-                                    <input type="number" name="kahvi" value="0"/> Kahvi<br/>
-                                    <input type="number" name="pulla" value="0"/> Pulla<br/>
-                                    <input type="number" name="voileipa" value="0"/> Voileipä<br/>
-                                    <input type="number" name="kakku" value="0"/> Kakku<br/>
+                                    <%
+                                    if(palvelu.listaaPalvelut()){
+                                        while (palvelu.getVastaus().next()){
+                                            out.print("<input type='number' name='"+palvelu.getVastaus().getString("tunnus")+"' value='0' min='0'/> "+palvelu.getVastaus().getString("nimi")+"<br/>");
+                                        }
+                                    }
+                                    %>
                                 </td>
                             </tr>
                             <tr>

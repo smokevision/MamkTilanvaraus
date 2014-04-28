@@ -9,9 +9,11 @@ public class Kalenteri extends TietokantaPerus {
     private int nykKuukausi = 0;
     private int nykPaiva = 0;
     private int paiviaKuukaudessa = 0;
+    private Long kasiteltavaAikaleima = null;
     private String naviLinkki = "";    
     private String nykPaivays = "";
     private String nykyinenPaivays = "";
+    private Long nykyinenAikaleima = null;
     private int tilaId = 0;
     
     private boolean yhteys_auki = false;
@@ -26,6 +28,8 @@ public class Kalenteri extends TietokantaPerus {
         int kuukausi = 0;
         DateTime paivays = new DateTime();
         this.nykyinenPaivays = paivays.toString("YYYY-MM-dd");
+        DateTime nykyinenPaivays = new DateTime(Integer.parseInt(paivays.toString("YYYY")),Integer.parseInt(paivays.toString("MM")),Integer.parseInt(paivays.toString("dd")),12,0);
+        this.nykyinenAikaleima = nykyinenPaivays.getMillis();
             
         if(hakuVuosi != 0 && hakuKuukausi != 0){
             DateTime paiva = new DateTime(hakuVuosi,hakuKuukausi,1,12,0);
@@ -67,6 +71,9 @@ public class Kalenteri extends TietokantaPerus {
         String solunSisalto = "";
         String luokka = "";
         String varausTila = "";
+        String valittavaPaiva = "paiva";
+        
+        
         if(this.nykPaiva == 0){
             DateTime kalenteri = new DateTime(this.nykVuosi,this.nykKuukausi,1,12,0);
             int ensimmainenViikonpaiva = kalenteri.getDayOfWeek();
@@ -78,9 +85,8 @@ public class Kalenteri extends TietokantaPerus {
             DateTime kalenteri = new DateTime(this.nykVuosi,this.nykKuukausi,this.nykPaiva,12,0);
             this.nykPaivays = kalenteri.toString("YYYY-MM-dd");
             solunSisalto = Integer.toString(this.nykPaiva);
-            DateTime aikaleima = new DateTime(this.nykVuosi,this.nykKuukausi,this.nykPaiva,12,0);
-            long paivays = aikaleima.getMillis();
-            int varaukset = haeTilanVaraukset(this.tilaId, paivays);
+            this.kasiteltavaAikaleima = kalenteri.getMillis();
+            int varaukset = haeTilanVaraukset(this.tilaId, this.kasiteltavaAikaleima);
             if(varaukset==0){
                 varausTila = "";
             } else if(varaukset>0 && varaukset<14){
@@ -91,10 +97,14 @@ public class Kalenteri extends TietokantaPerus {
                 varausTila = "";
             }
             this.nykPaiva++;
+            if(this.kasiteltavaAikaleima < this.nykyinenAikaleima){
+                valittavaPaiva = "mennytpaiva";
+            }
         } else{
             this.nykPaivays = "";
             solunSisalto = "";
         }
+        
         if(this.nykPaivays.equals(this.nykyinenPaivays)){
             luokka = "nykyinen";
         } else {
@@ -102,7 +112,7 @@ public class Kalenteri extends TietokantaPerus {
         }
         
         sisalto = "<li id='li-" + this.nykPaivays + "' class='" + (solunumero%7==1?"start ":(solunumero%7==0?"end ":"")) +
-                    (solunSisalto==""?"mask":"paiva") + (varausTila==""?"":varausTila) + (luokka=="nykyinen"?" nykyinen":"") + "'>" 
+                    (solunSisalto==""?"mask":valittavaPaiva) + (varausTila==""?"":varausTila) + (luokka=="nykyinen"?" nykyinen":"") + "'>" 
                     + solunSisalto + "</li>";
         return sisalto;
         

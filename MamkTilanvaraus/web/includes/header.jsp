@@ -1,3 +1,4 @@
+<jsp:useBean id="loginasiakas" class="tilanvaraus.oliot.Asiakas"/>
 <div id="header">
     <a href="index.jsp"><img src="kuvat/ulkoasu/MAMK_logo_400.png" alt="logo" id="logo"/></a>
     <ul id="navi">
@@ -12,11 +13,17 @@
         }
         %>
     </ul>
-    
+    <div id="headerlogin">
     <%
     if (session.getAttribute("loginStatus") != null && session.getAttribute("loginStatus") == "logged") {
+    int userId = (Integer) session.getAttribute("loginUserId");
+    loginasiakas.setAsiakasId(userId);
+    if(loginasiakas.haeAsiakas()){
+        while (loginasiakas.getVastaus().next()){
+            out.print("Hei, "+loginasiakas.getVastaus().getString("etunimi")+" "+loginasiakas.getVastaus().getString("sukunimi")+"<br/>");
+        }
+    }
     %>
-    
     <a href="logout.jsp" id="logoutlink">Kirjaudu ulos <img src="kuvat/ulkoasu/logout.png" alt="Kirjaudu ulos"/></a>
     <%
     } else {
@@ -36,13 +43,17 @@
                     <td class="oikea"><input type="password" name="salasana" /></td>
                 </tr>
                 <tr>
-                    <td><input type="submit" name="nappi" value="Kirjaudu"/></td>
-                    <td><a href="login.jsp">Unohtuiko salasana?</a></td>
+                    <td class="vasen"><input type="submit" name="nappi" value="Kirjaudu"/></td>
+                    <td class="oikea"><a href="login.jsp">Unohtuiko salasana?</a></td>
                 </tr>
             </table>
         </form>
+        <h2>Ei tunnuksia?</h2>
+        <a href="rekisteroityminen.jsp">Rekisteröidy</a>
+        
     </div>
     <%
     }
     %>
+    </div>
 </div>

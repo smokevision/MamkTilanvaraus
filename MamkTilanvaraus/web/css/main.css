@@ -324,7 +324,33 @@ input[type="submit"]:hover, .linkkinappi:hover{
 #pankit{
     clear:both;
     width:100%;
-    height:200px;
+    margin-top:20px;
     box-sizing:border-box;
-    border:1px solid #000;
+}
+#pankit .pankki{
+    height:90px;
+    min-width:60px;
+    border:none;
+    line-height:135px;
+}
+#nordea{
+    background:url('../kuvat/ulkoasu/logo_nordea.gif') top center no-repeat;
+}
+#op{
+    background:url('../kuvat/ulkoasu/logo_op.jpg') top center no-repeat;
+}
+#danske{
+    background:url('../kuvat/ulkoasu/logo_danskebank.gif') top center no-repeat;
+}
+#aktia{
+    background:url('../kuvat/ulkoasu/logo_aktia.gif') top center no-repeat;
+}
+#spankki{
+    background:url('../kuvat/ulkoasu/logo_spankki.gif') top center no-repeat;
+}
+#handelsbanken{
+    background:url('../kuvat/ulkoasu/logo_handelsbanken.gif') top center no-repeat;
+}
+#alandsbanken{
+    background:url('../kuvat/ulkoasu/logo_alandsbanken.gif') top center no-repeat;
 }

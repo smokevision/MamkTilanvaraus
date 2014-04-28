@@ -171,12 +171,16 @@ public class Varaus extends Paivamaarat {
             komento.setDouble(5, this.hinta);
             komento.setString(6, this.maksutapa);
             komento.setInt(7, this.maksutilanne);
-            vastaus = komento.executeQuery();
+            komento.executeUpdate();
             ResultSet rs = komento.getGeneratedKeys();
             if (rs.next()){
                 int varausId = rs.getInt(1);
                 setVarausId(varausId);
-                lisaaVarauksenTunnit();
+                if(lisaaVarauksenTunnit()){
+                    tila = true;
+                } else {
+                    tila = false;
+                }
             }
         } catch (Exception e1) {
             tila = false;
@@ -195,10 +199,12 @@ public class Varaus extends Paivamaarat {
                 komento.setInt(2, this.tilaId);
                 komento.setLong(3, this.pvm);
                 komento.setString(4, this.valitutAjat[i]);
-                vastaus = komento.executeQuery();
-           } catch (Exception e1) {}
+                komento.executeUpdate();
+           } catch (Exception e1) {
+               tila = false;
+           }
         }
-        return true;
+        return tila;
     }
     
     public Double haeTuntihinta(int tunti, int paivaNumero){

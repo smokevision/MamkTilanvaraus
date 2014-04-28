@@ -12,11 +12,22 @@
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/D:/Asennukset/wamp/www/MamkTilanvaraus/MamkTilanvaraus/web/varaus.jsp</file>
             <file>file:/D:/Asennukset/wamp/www/MamkTilanvaraus/MamkTilanvaraus/web/maksaminen.jsp</file>
             <file>file:/D:/Asennukset/wamp/www/MamkTilanvaraus/MamkTilanvaraus/src/java/tilanvaraus/oliot/Varaus.java</file>
             <file>file:/D:/Asennukset/wamp/www/MamkTilanvaraus/MamkTilanvaraus/src/java/tilanvaraus/oliot/Paivamaarat.java</file>
             <file>file:/D:/Asennukset/wamp/www/MamkTilanvaraus/MamkTilanvaraus/web/css/main.css</file>
+=======
+            <file>file:/Applications/XAMPP/xamppfiles/htdocs/MamkTilanvaraus/MamkTilanvaraus/web/muokkaatietoja.jsp</file>
+            <file>file:/Applications/XAMPP/xamppfiles/htdocs/MamkTilanvaraus/MamkTilanvaraus/web/css/main.css</file>
+            <file>file:/Applications/XAMPP/xamppfiles/htdocs/MamkTilanvaraus/MamkTilanvaraus/web/rekisteroityminen.jsp</file>
+            <file>file:/Applications/XAMPP/xamppfiles/htdocs/MamkTilanvaraus/MamkTilanvaraus/web/maksaminen.jsp</file>
+            <file>file:/Applications/XAMPP/xamppfiles/htdocs/MamkTilanvaraus/MamkTilanvaraus/web/omatili.jsp</file>
+            <file>file:/Applications/XAMPP/xamppfiles/htdocs/MamkTilanvaraus/MamkTilanvaraus/web/varaus.jsp</file>
+            <file>file:/Applications/XAMPP/xamppfiles/htdocs/MamkTilanvaraus/MamkTilanvaraus/web/includes/header.jsp</file>
+            <file>file:/Applications/XAMPP/xamppfiles/htdocs/MamkTilanvaraus/MamkTilanvaraus/web/vaihdasalasana.jsp</file>
+>>>>>>> eeb7075e0f077409809f430d5ffe6821e5ec7bda
         </group>
     </open-files>
 </project-private>
