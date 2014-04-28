@@ -107,7 +107,7 @@
                                     <%
                                     if(palvelu.listaaPalvelut()){
                                         while (palvelu.getVastaus().next()){
-                                            out.print("<input type='number' name='"+palvelu.getVastaus().getString("nimi")+"' value='0' min='0'/> "+palvelu.getVastaus().getString("nimi")+"<br/>");
+                                            out.print("<input type='number' name='"+palvelu.getVastaus().getString("tunnus")+"' value='0' min='0'/> "+palvelu.getVastaus().getString("nimi")+"<br/>");
                                         }
                                     }
                                     %>
