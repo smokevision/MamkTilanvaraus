@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: 24.04.2014 klo 18:39
+-- Generation Time: 28.04.2014 klo 13:57
 -- Palvelimen versio: 5.6.16
 -- PHP Version: 5.5.9
 
@@ -185,6 +185,7 @@ INSERT INTO `kayttaja` (`id`, `etunimi`, `sukunimi`, `katuosoite`, `postinumero`
 
 CREATE TABLE IF NOT EXISTS `palvelu` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
+  `tunnus` text COLLATE utf8_swedish_ci NOT NULL,
   `nimi` varchar(50) COLLATE utf8_swedish_ci NOT NULL,
   `kuvaus` varchar(50) COLLATE utf8_swedish_ci DEFAULT NULL,
   `hinta` double NOT NULL,
@@ -195,11 +196,11 @@ CREATE TABLE IF NOT EXISTS `palvelu` (
 -- Vedos taulusta `palvelu`
 --
 
-INSERT INTO `palvelu` (`id`, `nimi`, `kuvaus`, `hinta`) VALUES
-(1, 'Kahvi', '', 1),
-(2, 'Pulla', '', 1),
-(3, 'Voileipä', '', 2),
-(4, 'Kakku', '', 20);
+INSERT INTO `palvelu` (`id`, `tunnus`, `nimi`, `kuvaus`, `hinta`) VALUES
+(1, 'kahvi', 'Kahvi', '', 1),
+(2, 'pulla', 'Pulla', '', 1),
+(3, 'voileipa', 'Voileipä', '', 2),
+(4, 'kakku', 'Kakku', '', 20);
 
 -- --------------------------------------------------------
 
