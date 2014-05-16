@@ -132,8 +132,7 @@ public class Varaus extends Paivamaarat {
     public boolean haeVaraus() {
         boolean tila = true;
         try {
-             String lause = "select v.id,v.asiakasId,k.etunimi,k.sukunimi,k.katuosoite,k.postinumero,k.postitoimipaikka,k.email,k.puh,k.yritys,v.tilaId,v.varausaika,v.pvm,v.summa,v.maksutapa,v.maksutilanne "
-                     + "from varaukset as v join kayttaja as k on v.asiakasId = k.id where v.id = ?";
+             String lause = "select * from varaukset where id = ?";
              komento = yhteys.prepareStatement(lause);
              komento.setInt(1, this.varausId);
              vastaus = komento.executeQuery();
@@ -162,7 +161,7 @@ public class Varaus extends Paivamaarat {
         boolean tila = true;
         Long varausaika = haeNykyinenAikaleima();
         try {
-            String lause = "insert into varaukset (asiakasId,tilaId,varausaika,pvm,summa,maksutapa,maksutilanne) values (?,?,?,?,?,?,?);";
+            String lause = "insert into varaukset (asiakasId,tilaId,varausaika,pvm,summa,maksutapa,maksutilanne,etunimi,sukunimi,katuosoite,postinumero,postitoimipaikka,email,puh,yritys,ytunnus) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);";
             komento = yhteys.prepareStatement(lause,Statement.RETURN_GENERATED_KEYS);
             komento.setInt(1, this.asiakasId);
             komento.setInt(2, this.tilaId);
@@ -171,6 +170,15 @@ public class Varaus extends Paivamaarat {
             komento.setDouble(5, this.hinta);
             komento.setString(6, this.maksutapa);
             komento.setInt(7, this.maksutilanne);
+            komento.setString(8, this.etunimi);
+            komento.setString(9, this.sukunimi);
+            komento.setString(10, this.katuosoite);
+            komento.setString(11, this.postinumero);
+            komento.setString(12, this.postitoimipaikka);
+            komento.setString(13, this.email);
+            komento.setString(14, this.puhelin);
+            komento.setString(15, this.yritys);
+            komento.setString(16, this.ytunnus);
             komento.executeUpdate();
             ResultSet rs = komento.getGeneratedKeys();
             if (rs.next()){

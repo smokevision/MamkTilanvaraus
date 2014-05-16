@@ -28,6 +28,15 @@
                     varaus.setHinta((Double) session.getAttribute("hinta"));
                     varaus.setMaksutapa((String) session.getAttribute("maksutapa"));
                     varaus.setMaksutilanne((Integer) session.getAttribute("maksutilanne"));
+                    varaus.setEtunimi((String) session.getAttribute("etunimi"));
+                    varaus.setSukunimi((String) session.getAttribute("sukunimi"));
+                    varaus.setKatuosoite((String) session.getAttribute("katuosoite"));
+                    varaus.setPostinumero((String) session.getAttribute("postinumero"));
+                    varaus.setPostitoimipaikka((String) session.getAttribute("postitoimipaikka"));
+                    varaus.setEmail((String) session.getAttribute("email"));
+                    varaus.setPuhelin((String) session.getAttribute("puhelin"));
+                    varaus.setYritys((String) session.getAttribute("yritys"));
+                    varaus.setYtunnus((String) session.getAttribute("ytunnus"));
 
                     varaus.setAsiakasId((Integer) session.getAttribute("userId"));
                     varaus.setPvm((Integer) session.getAttribute("vuosi"),(Integer) session.getAttribute("kuukausi"),(Integer) session.getAttribute("paiva"));

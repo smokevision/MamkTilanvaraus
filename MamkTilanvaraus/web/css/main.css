@@ -387,8 +387,48 @@ input[type="submit"]:hover, .linkkinappi:hover{
 #alandsbanken{
     background:url('../kuvat/ulkoasu/logo_alandsbanken.gif') top center no-repeat;
 }
-
 .tilabanneri{
     width:100%;
     height:auto;
+}
+#yhteyslomake{
+    float:left;
+    width:60%;
+}
+#yhteyslomake input[type="text"], #yhteyslomake textarea{
+    width:100%;
+    height:auto;
+    box-sizing:border-box;
+    font-family: 'Open Sans', sans-serif;
+    font-size:16px;
+    padding:15px;
+    margin-top:2px;
+    border:1px solid #999;
+    color:#000;
+    resize:none;
+}
+#vastaus{
+    display:none;
+}
+#yhteystiedot{
+    position:relative;
+    border-left:2px solid #0089cd;
+    float:left;
+    margin-left:20px;
+    padding-left:15px;
+    text-align: left;
+}
+.lomakevirhe{
+    position:absolute;
+    height:55px;
+    width:310px;
+    margin-top:-45px;
+    margin-left:5px;
+    background:url('../kuvat/ulkoasu/virheviesti.png') left top no-repeat;
+    color:#000;
+    text-align:left;
+    line-height:34px;
+    padding-left:34px;
+    display:none;
+    pointer-events:none;
 }

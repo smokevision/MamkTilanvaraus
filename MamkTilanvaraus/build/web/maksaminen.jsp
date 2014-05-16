@@ -39,7 +39,7 @@
                     int kuukausi = Integer.parseInt(request.getParameter("kuukausi"));
                     int paiva = Integer.parseInt(request.getParameter("paiva"));
                     String[] valitutAjat = request.getParameterValues("valitutajat");
-                    int userId = 0;
+                    int userId = 4;
                     if (session.getAttribute("loginStatus") != null && session.getAttribute("loginStatus") == "logged" && session.getAttribute("loginUserId") != null) {
                         userId = (Integer) session.getAttribute("loginUserId");
                     }
@@ -61,14 +61,15 @@
                     hinta = varaus.laskeVarauksenHinta(valitutAjat, vuosi, kuukausi, paiva);
 
                     session.setAttribute("userId", userId);
+                    session.setAttribute("etunimi", etunimi);
                     session.setAttribute("sukunimi", sukunimi);
-                    session.setAttribute("sukunimi", sukunimi);
-                    session.setAttribute("yritys", yritys);
-                    session.setAttribute("ytunnus", ytunnus);
                     session.setAttribute("katuosoite", katuosoite);
                     session.setAttribute("postinumero", postinumero);
                     session.setAttribute("postitoimipaikka", postitoimipaikka);
                     session.setAttribute("email", email);
+                    session.setAttribute("puhelin", puhelin);
+                    session.setAttribute("yritys", yritys);
+                    session.setAttribute("ytunnus", ytunnus);
                     session.setAttribute("kahvi", kahvi);
                     session.setAttribute("pulla", pulla);
                     session.setAttribute("voileipa", voileipa);

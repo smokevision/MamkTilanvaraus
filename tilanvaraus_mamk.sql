@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Palvelin: localhost
--- Luontiaika: 08.05.2014 klo 18:17
+-- Luontiaika: 16.05.2014 klo 16:35
 -- Palvelimen versio: 5.6.12-log
 -- PHP:n versio: 5.4.12
 
@@ -379,7 +379,7 @@ CREATE TABLE IF NOT EXISTS `kayttaja` (
   `ytunnus` text COLLATE utf8_swedish_ci NOT NULL,
   `salasana` text COLLATE utf8_swedish_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_swedish_ci AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_swedish_ci AUTO_INCREMENT=5 ;
 
 --
 -- Vedos taulusta `kayttaja`
@@ -387,8 +387,9 @@ CREATE TABLE IF NOT EXISTS `kayttaja` (
 
 INSERT INTO `kayttaja` (`id`, `etunimi`, `sukunimi`, `katuosoite`, `postinumero`, `postitoimipaikka`, `email`, `puh`, `yritys`, `ytunnus`, `salasana`) VALUES
 (1, 'Matti', 'Meikäläinen', 'Kotikatu 3', '50100', 'Mikkeli', 'matti.meikalainen@mail.com', '0404856073', '', '', '5c54fe614285a0e57ecb54c05c016108'),
-(2, 'Kalle', 'Virtanen', 'Olkikuja 45 A3', '50100', 'Mikkeli', 'kvirtanen@gmail.com', '0506862342', '', '', '5c54fe614285a0e57ecb54c05c016108'),
-(3, 'Ville', 'Lindsberg', 'Olkkolankatu 13-15 A13', '50100', 'Mikkeli', 'ville.lindsberg@windowslive.com', '0405871072', '', '', 'dad011a757b45e147dd26518d92a9336');
+(2, 'Kalle', 'Virtanen', 'Olkikuja 45 A3', '50100', 'Mikkeli', 'kvirtanen@mail.com', '0506862342', '', '', '5c54fe614285a0e57ecb54c05c016108'),
+(3, 'Ville', 'Lindsberg', 'Olkkolankatu 13-15 A13', '50100', 'Mikkeli', 'ville.lindsberg@windowslive.com', '0405871072', '', '', 'dad011a757b45e147dd26518d92a9336'),
+(4, 'rekisteröimätön', 'rekisteröimätön', 'rekisteröimätön', 'rekisteröimätön', 'rekisteröimätön', 'rekisteröimätön', 'rekisteröimätön', 'rekisteröimätön', 'rekisteröimätön', 'rekisteröimätön');
 
 -- --------------------------------------------------------
 
@@ -399,8 +400,8 @@ INSERT INTO `kayttaja` (`id`, `etunimi`, `sukunimi`, `katuosoite`, `postinumero`
 CREATE TABLE IF NOT EXISTS `palvelu` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
   `tunnus` text COLLATE utf8_swedish_ci NOT NULL,
-  `nimi` varchar(50) COLLATE utf8_swedish_ci NOT NULL,
-  `kuvaus` varchar(50) COLLATE utf8_swedish_ci DEFAULT NULL,
+  `nimi` text COLLATE utf8_swedish_ci NOT NULL,
+  `kuvaus` text COLLATE utf8_swedish_ci,
   `hinta` double NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_swedish_ci AUTO_INCREMENT=5 ;
@@ -453,10 +454,9 @@ CREATE TABLE IF NOT EXISTS `sivut` (
 --
 
 INSERT INTO `sivut` (`id`, `nimi`, `sisalto`, `paivitetty`) VALUES
-(1, 'etusivu', '<h1>Hyviä kokoushetkiä Kasarmin kampuksella</h1>\n\n<p>Tervetuloa Mikkelin ammattikorkeakoulun tilanvarausjärjestelmään. Kasarmin kampuksella on nykyaikaiset ja monipuoliset tilat tapahtumajärjestäjien käyttöön. Kampuksen keskeinen ja puistomaisen rauhallinen sijainti tarjoaa ihanteellisen ympäristön niin pienille kuin suurillekin ryhmille, jopa 300 hengelle. Viihtyisät tilat ja onnistunut tarjoilu luovat mukavia muistoja. Kasarmin kampukselle on Mikkelin keskustasta vaivatonta saapua, autolla vain muutama minuutti ja kävellenkin 10-15 minuuttia.</p>\n\n<h1>Ravintolapalvelut</h1>\n\n<p>Kasarmin kampuksen ravintolapalvelut; Ravintola Talli, Ravintola DeXi ja Ravintola Kasarmina tuottavat kaikki kokous- ja ravintolapalvelut ammattitaidolla ja kokemuksella Kasarmin kampusalueella. Tunnusmerkkejä ovat tilaisuuksien räätälöity toteutus, muuntautuvat ravintolatilat eri puolilla kampusaluetta, joustava palveluasenne ja lähiruoka-ajattelu. Valmiudet riittävät vaivatta niin pienten kokousten kuin suurten tapahtumien tyylikkääseen toteuttamiseen.</p>', '1397648629000'),
-(2, 'ehdot', '', '1397648629000'),
-(3, 'rekisteriseloste', '', '1397648629000'),
-(4, 'yhteys', '<h1>Yhteys</h1>', '1397648629000');
+(1, 'etusivu', '<h1>Hyviä kokoushetkiä Kasarmin kampuksella</h1>\n\n<p>Tervetuloa Mikkelin ammattikorkeakoulun tilanvarausjärjestelmään. Kasarmin kampuksella on nykyaikaiset ja monipuoliset tilat tapahtumajärjestäjien käyttöön. Kampuksen keskeinen ja puistomaisen rauhallinen sijainti tarjoaa ihanteellisen ympäristön niin pienille kuin suurillekin ryhmille, jopa 300 hengelle. Viihtyisät tilat ja onnistunut tarjoilu luovat mukavia muistoja. Kasarmin kampukselle on Mikkelin keskustasta vaivatonta saapua, autolla vain muutama minuutti ja kävellenkin 10-15 minuuttia.</p>\n\n<h1>Ravintolapalvelut</h1>\n\n<p>Ravintola Talli, Ravintola DeXi ja Ravintola Kasarmina tuottavat kaikki kokous- ja ravintolapalvelut ammattitaidolla ja kokemuksella Kasarmin kampusalueella. Tunnusmerkkejä ovat tilaisuuksien räätälöity toteutus, muuntautuvat ravintolatilat eri puolilla kampusaluetta, joustava palveluasenne ja lähiruoka-ajattelu. Valmiudet riittävät vaivatta niin pienten kokousten kuin suurten tapahtumien tyylikkääseen toteuttamiseen.</p>', '1397648629000'),
+(2, 'ehdot', '<h1>Varausehdot<h1>', '1397648629000'),
+(4, 'yhteys', '<h2>Yhteystiedot</h2>\r\n\r\n<p>\r\n<b>Johanna Räsänen</b><br/>\r\npuh. 0153 556 303<br/>\r\nsähköposti: myyntipalvelu(at)mamk.fi\r\n</p>\r\n<p>\r\n<b>Kampuskahvitus</b><br/>\r\npuh. 040 8420 588<br/>\r\nsähköposti: kahvitus(at)mamk.fi\r\n</p>\r\n<p>\r\n<b>Ravintola Talli</b><br/>\r\nPatteristonkatu 2<br/>\r\n50100 Mikkeli<br/>\r\npuh. 0153 557 419<br/>\r\nsähköposti: ravintolatalli(at)mamk.fi<br/>\r\nwww.ravintolatalli.fi\r\n</p>\r\n<p>\r\n<b>Ravintola DeXi</b><br/>\r\nPatteristonkatu 3<br/>\r\n50100 Mikkeli<br/>\r\npuh. 0153 556 090<br/>\r\nsähköposti: dexi(at)mamk.fi<br/>\r\nwww.dexi.fi\r\n</p>', '1397648629000');
 
 -- --------------------------------------------------------
 
@@ -561,7 +561,7 @@ CREATE TABLE IF NOT EXISTS `varauksentunnit` (
   KEY `varausnumero` (`varausnumero`),
   KEY `tilaid` (`tilaid`),
   KEY `kello` (`kello`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_swedish_ci AUTO_INCREMENT=73 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_swedish_ci AUTO_INCREMENT=84 ;
 
 --
 -- Vedos taulusta `varauksentunnit`
@@ -637,7 +637,18 @@ INSERT INTO `varauksentunnit` (`id`, `varausnumero`, `tilaid`, `pvm`, `kello`) V
 (69, 13, 1, '1401008400000', 18),
 (70, 13, 1, '1401008400000', 19),
 (71, 13, 1, '1401008400000', 20),
-(72, 13, 1, '1401008400000', 21);
+(72, 13, 1, '1401008400000', 21),
+(73, 14, 1, '1401526800000', 8),
+(74, 14, 1, '1401526800000', 9),
+(75, 14, 1, '1401526800000', 10),
+(76, 14, 1, '1401526800000', 11),
+(77, 14, 1, '1401526800000', 12),
+(78, 14, 1, '1401526800000', 13),
+(79, 14, 1, '1401526800000', 14),
+(80, 15, 1, '1401526800000', 15),
+(81, 15, 1, '1401526800000', 16),
+(82, 15, 1, '1401526800000', 17),
+(83, 15, 1, '1401526800000', 18);
 
 -- --------------------------------------------------------
 
@@ -654,26 +665,37 @@ CREATE TABLE IF NOT EXISTS `varaukset` (
   `summa` double NOT NULL,
   `maksutapa` text COLLATE utf8_swedish_ci NOT NULL,
   `maksutilanne` int(11) NOT NULL DEFAULT '0',
+  `etunimi` text COLLATE utf8_swedish_ci NOT NULL,
+  `sukunimi` text COLLATE utf8_swedish_ci NOT NULL,
+  `katuosoite` text COLLATE utf8_swedish_ci NOT NULL,
+  `postinumero` text COLLATE utf8_swedish_ci NOT NULL,
+  `postitoimipaikka` text COLLATE utf8_swedish_ci NOT NULL,
+  `email` text COLLATE utf8_swedish_ci NOT NULL,
+  `puh` text COLLATE utf8_swedish_ci NOT NULL,
+  `yritys` text COLLATE utf8_swedish_ci NOT NULL,
+  `ytunnus` text COLLATE utf8_swedish_ci NOT NULL,
   PRIMARY KEY (`id`),
   KEY `id` (`id`),
   KEY `asiakasId` (`asiakasId`),
   KEY `tilaId` (`tilaId`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_swedish_ci AUTO_INCREMENT=14 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_swedish_ci AUTO_INCREMENT=16 ;
 
 --
 -- Vedos taulusta `varaukset`
 --
 
-INSERT INTO `varaukset` (`id`, `asiakasId`, `tilaId`, `varausaika`, `pvm`, `summa`, `maksutapa`, `maksutilanne`) VALUES
-(1, 1, 1, '1397293200000', '1397293200000', 200, 'Verkkomaksu', 1),
-(2, 2, 1, '1397293200000', '1397293200000', 100, 'Lasku', 0),
-(3, 1, 1, '1398243600000', '1398243600000', 1520, 'Verkkomaksu', 1),
-(8, 2, 1, '1398356079489', '1398848400000', 600, 'Verkkomaksu', 1),
-(9, 2, 1, '1398692691388', '1398848400000', 200, 'Lasku', 1),
-(10, 3, 1, '1398789656610', '1398934800000', 1160, 'Lasku', 0),
-(11, 3, 3, '1398791391516', '1399194000000', 1680, 'Verkkomaksu', 1),
-(12, 2, 1, '1399572360441', '1400749200000', 600, 'Verkkomaksu', 1),
-(13, 2, 1, '1399572377037', '1401008400000', 1680, 'Verkkomaksu', 1);
+INSERT INTO `varaukset` (`id`, `asiakasId`, `tilaId`, `varausaika`, `pvm`, `summa`, `maksutapa`, `maksutilanne`, `etunimi`, `sukunimi`, `katuosoite`, `postinumero`, `postitoimipaikka`, `email`, `puh`, `yritys`, `ytunnus`) VALUES
+(1, 1, 1, '1397293200000', '1397293200000', 200, 'Verkkomaksu', 1, 'Matti', 'Meikäläinen', 'Kotikatu 3', '50100', 'Mikkeli', 'matti.meikalainen@mail.com', '0404856073', '', ''),
+(2, 2, 1, '1397293200000', '1397293200000', 100, 'Lasku', 0, 'Kalle', 'Virtanen', 'Olkikuja 45 A3', '50100', 'Mikkeli', 'kvirtanen@gmail.com', '0506862342', '', ''),
+(3, 1, 1, '1398243600000', '1398243600000', 1520, 'Verkkomaksu', 1, 'Matti', 'Meikäläinen', 'Kotikatu 3', '50100', 'Mikkeli', 'matti.meikalainen@mail.com', '0404856073', '', ''),
+(8, 2, 1, '1398356079489', '1398848400000', 600, 'Verkkomaksu', 1, 'Kalle', 'Virtanen', 'Olkikuja 45 A3', '50100', 'Mikkeli', 'kvirtanen@gmail.com', '0506862342', '', ''),
+(9, 2, 1, '1398692691388', '1398848400000', 200, 'Lasku', 1, 'Kalle', 'Virtanen', 'Olkikuja 45 A3', '50100', 'Mikkeli', 'kvirtanen@gmail.com', '0506862342', '', ''),
+(10, 3, 1, '1398789656610', '1398934800000', 1160, 'Lasku', 0, 'Ville', 'Lindsberg', 'Olkkolankatu 13-15 A13', '50100', 'Mikkeli', 'ville.lindsberg@windowslive.com', '0405871072', '', ''),
+(11, 3, 3, '1398791391516', '1399194000000', 1680, 'Verkkomaksu', 1, 'Ville', 'Lindsberg', 'Olkkolankatu 13-15 A13', '50100', 'Mikkeli', 'ville.lindsberg@windowslive.com', '0405871072', '', ''),
+(12, 2, 1, '1399572360441', '1400749200000', 600, 'Verkkomaksu', 1, 'Kalle', 'Virtanen', 'Olkikuja 45 A3', '50100', 'Mikkeli', 'kvirtanen@gmail.com', '0506862342', '', ''),
+(13, 2, 1, '1399572377037', '1401008400000', 1680, 'Verkkomaksu', 1, 'Kalle', 'Virtanen', 'Olkikuja 45 A3', '50100', 'Mikkeli', 'kvirtanen@gmail.com', '0506862342', '', ''),
+(14, 4, 1, '1399740024392', '1401526800000', 700, 'Lasku', 0, 'Kalle', 'Koikkala', 'Jokikuja 2', '50100', 'Mikkeli', 'kalle.koikkale@mail.com', '0405486723', '', ''),
+(15, 4, 1, '1399741781339', '1401526800000', 440, 'Verkkomaksu', 1, 'Pentti', 'Kallio', 'Kotikatu 31', '52700', 'Mäntyharju', 'pkallio@mail.com', '05069823424', '', '');
 
 -- --------------------------------------------------------
 
@@ -683,9 +705,8 @@ INSERT INTO `varaukset` (`id`, `asiakasId`, `tilaId`, `varausaika`, `pvm`, `summ
 
 CREATE TABLE IF NOT EXISTS `yllapito` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `tunnus` varchar(50) COLLATE utf8_swedish_ci NOT NULL,
-  `salasana` varchar(50) COLLATE utf8_swedish_ci NOT NULL,
-  `oikeus` varchar(50) COLLATE utf8_swedish_ci NOT NULL,
+  `tunnus` text COLLATE utf8_swedish_ci NOT NULL,
+  `salasana` text COLLATE utf8_swedish_ci NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_swedish_ci AUTO_INCREMENT=2 ;
 
@@ -693,8 +714,8 @@ CREATE TABLE IF NOT EXISTS `yllapito` (
 -- Vedos taulusta `yllapito`
 --
 
-INSERT INTO `yllapito` (`id`, `tunnus`, `salasana`, `oikeus`) VALUES
-(1, 'admin', '023efff6da238fb3b97281cf03b32729', '');
+INSERT INTO `yllapito` (`id`, `tunnus`, `salasana`) VALUES
+(1, 'admin', '023efff6da238fb3b97281cf03b32729');
 
 --
 -- Rajoitteet vedostauluille

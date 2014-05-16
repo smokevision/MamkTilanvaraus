@@ -20,7 +20,7 @@
             <div id="container">
                 <%@ include file="includes/header.jsp" %>
                 <div id="palsta">
-                    <form method='POST' action='maksaminen.jsp'>
+                    <form method='post' id="varauslomake" action='maksaminen.jsp'>
                     <div id="varaus_vaiheet">
                         <span class="nykyinen">Varauksen tiedot >></span> Yhteenveto/maksaminen >> Valmis
                     </div>
@@ -58,44 +58,65 @@
                         <table class='varaustaulu'>
                             <tr>
                                 <td class="vasen">Etunimi*:</td>
-                                <td class="oikea"><input type="text" name="etunimi" value="<% out.print(etunimi); %>"/></td>
+                                <td class="oikea">
+                                    <label class="lomakevirhe" id="etunimivirhe" for="etunimi">Etunimi on liian lyhyt</label>
+                                    <input type="text" name="etunimi" id="etunimi" value="<% out.print(etunimi); %>"/>
+                                </td>
                             </tr>
                             <tr>
                                 <td class="vasen">Sukunimi*:</td>
-                                <td class="oikea"><input type="text" name="sukunimi" value="<% out.print(sukunimi); %>"/></td>
+                                <td class="oikea">
+                                    <label class="lomakevirhe" id="sukunimivirhe" for="sukunimi">Sukunimi on liian lyhyt</label>
+                                    <input type="text" name="sukunimi" id="sukunimi" value="<% out.print(sukunimi); %>"/>
+                                </td>
                             </tr>
                             <tr>
                                 <td class="vasen">Yritys:</td>
-                                <td class="oikea"><input type="text" name="yritys" value="<% out.print(yritys); %>"/></td>
+                                <td class="oikea"><input type="text" name="yritys" id="yritys" value="<% out.print(yritys); %>"/></td>
                             </tr>
                             <tr>
                                 <td class="vasen">Y-tunnus:</td>
-                                <td class="oikea"><input type="text" name="ytunnus" value="<% out.print(ytunnus); %>"/></td>
+                                <td class="oikea"><input type="text" name="ytunnus" id="ytunnus" value="<% out.print(ytunnus); %>"/></td>
                             </tr>
                             <tr>
                                 <td class="vasen">Katuosoite*:</td>
-                                <td class="oikea"><input type="text" name="katuosoite" value="<% out.print(katuosoite); %>"/></td>
+                                <td class="oikea">
+                                    <label class="lomakevirhe" id="katuosoitevirhe" for="katuosoite">Katuosoite on virheellinen</label>
+                                    <input type="text" name="katuosoite" id="katuosoite" value="<% out.print(katuosoite); %>"/>
+                                </td>
                             </tr>
                             <tr>
                                 <td class="vasen">Postinumero*:</td>
-                                <td class="oikea"><input type="text" name="postinumero" value="<% out.print(postinumero); %>"/></td>
+                                <td class="oikea">
+                                    <label class="lomakevirhe" id="postinumerovirhe" for="postinumero">Postinumero on virheellinen</label>
+                                    <input type="text" name="postinumero" id="postinumero" value="<% out.print(postinumero); %>"/>
+                                </td>
                             </tr>
                             <tr>
                                 <td class="vasen">Postitoimipaikka*:</td>
-                                <td class="oikea"><input type="text" name="postitoimipaikka" value="<% out.print(postitoimipaikka); %>"/></td>
+                                <td class="oikea">
+                                    <label class="lomakevirhe" id="postitoimipaikkavirhe" for="postitoimipaikka">Postitoimipaikka on liian lyhyt</label>
+                                    <input type="text" name="postitoimipaikka" id="postitoimipaikka" value="<% out.print(postitoimipaikka); %>"/>
+                                </td>
                             </tr>
                             <tr>
                                 <td class="vasen">Sähköposti*:</td>
-                                <td class="oikea"><input type="text" name="email" value="<% out.print(email); %>"/></td>
+                                <td class="oikea">
+                                    <label class="lomakevirhe" id="emailvirhe" for="email">Sähköpostiosoite on virheellinen</label>
+                                    <input type="text" name="email" id="email" value="<% out.print(email); %>"/>
+                                </td>
                             </tr>
                             <tr>
                                 <td class="vasen">Puhelin*:</td>
-                                <td class="oikea"><input type="text" name="puhelin" value="<% out.print(puhelin); %>"/></td>
+                                <td class="oikea">
+                                    <label class="lomakevirhe" id="puhelinvirhe" for="puhelin">Puhelinnumero on virheellinen</label>
+                                    <input type="text" name="puhelin" id="puhelin" value="<% out.print(puhelin); %>"/>
+                                </td>
                             </tr>
                             <tr>
                                 <td class="vasen">Maksutapa*:</td>
                                 <td class="oikea">
-                                    <select name="maksutapa">
+                                    <select name="maksutapa" id="maksutapa">
                                         <option value="Verkkomaksu">Verkkomaksu</option>
                                         <option value="Lasku">Lasku</option>
                                     </select>
@@ -122,11 +143,10 @@
                             </tr>
                         </table>
                             <p><input type="checkbox" name="varausehdot" required="required"/> Olen lukenut <a href="ehdot.jsp" target="_blank">varausehdot</a> ja hyväksyn ne</p> 
-                    <a class="linkkinappi" href="tilat.jsp">Peruuta</a> <input type='submit' value='Jatka varaamista' name='nappi'/> 
+                    <a class="linkkinappi" href="tilat.jsp">Peruuta</a> <input type='submit' value='Jatka varaamista' id="submitnappi" name='nappi'/> 
                     </div>
                     <div id="varaus_container">
                         <%
-                        request.setCharacterEncoding("UTF-8");
                         int tilaId = Integer.parseInt(request.getParameter("tilaid"));
                         int vuosi = Integer.parseInt(request.getParameter("vuosi"));
                         int kuukausi = Integer.parseInt(request.getParameter("kuukausi"));
@@ -169,23 +189,90 @@
             <%@ include file="includes/footer.jsp" %>
         </div>
         <script>
-            var tilaid = $("#tilaid").val();
-            var vuosi = $("#vuosi").val();
-            var kuukausi = $("#kuukausi").val();
-            var paiva = $("#paiva").val();
-            var tunnit = [];
-            $(".valitutajat").each(function(){
-                tunnit.push(parseInt($(this).val()));
+        $("#varauslomake").submit(function(e){
+            e.preventDefault();
+            var lomake = $(this);
+            var etunimi = $("#etunimi").val();
+            var sukunimi = $("#sukunimi").val();
+            var katuosoite = $("#katuosoite").val();
+            var postinumero = $("#postinumero").val();
+            var postitoimipaikka = $("#postitoimipaikka").val();
+            var email = $("#email").val();
+            var puhelin = $("#puhelin").val();
+            var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+            if(etunimi.length < 2){
+                $("#etunimivirhe").fadeIn();
+            } else if(sukunimi.length < 2){
+                $("#sukunimivirhe").fadeIn();
+            } else if(katuosoite.length < 2){
+                $("#katuosoitevirhe").fadeIn();
+            } else if(postinumero.length !== 5 || !$.isNumeric(postinumero)){
+                $("#postinumerovirhe").fadeIn();
+            } else if(postitoimipaikka.length < 2){
+                $("#postitoimipaikkavirhe").fadeIn();
+            } else if(!email || !emailReg.test(email)){
+                $("#emailvirhe").fadeIn();
+            } else if(puhelin.length < 2){
+                $("#puhelinvirhe").fadeIn();
+            } else {
+                lomake.unbind('submit').submit();
+            }
+        });
+
+        $("#etunimi,#sukunimi,#yritys,#ytunnus,#katuosoite,#postinumero,#postitoimipaikka,#email,#puhelin").focus(function(){
+            $(".lomakevirhe").fadeOut();	
+        });
+        var tilaid = $("#tilaid").val();
+        var vuosi = $("#vuosi").val();
+        var kuukausi = $("#kuukausi").val();
+        var paiva = $("#paiva").val();
+        var tunnit = [];
+        $(".valitutajat").each(function(){
+            tunnit.push(parseInt($(this).val()));
+        });
+        $("#hinta").load("includes/hintalaskuri.jsp",{vuosi: vuosi, kuukausi: kuukausi, paiva: paiva, valitutajat : tunnit});
+        $("#varaus_kellonajat").load("includes/varauskello.jsp", {tilaid: tilaid, vuosi: vuosi, kuukausi: kuukausi, paiva: paiva}, function(){
+            $("#selectable li").each(function(){
+                var nappi = $(this);
+                var kello = parseInt($(this).val());
+                if($.inArray(kello, tunnit) > -1){
+                    nappi.addClass('ui-selected');
+                }
             });
-            $("#hinta").load("includes/hintalaskuri.jsp",{vuosi: vuosi, kuukausi: kuukausi, paiva: paiva, valitutajat : tunnit});
-            $("#varaus_kellonajat").load("includes/varauskello.jsp", {tilaid: tilaid, vuosi: vuosi, kuukausi: kuukausi, paiva: paiva}, function(){
-                $("#selectable li").each(function(){
-                    var nappi = $(this);
-                    var kello = parseInt($(this).val());
-                    if($.inArray(kello, tunnit) > -1){
-                        nappi.addClass('ui-selected');
-                    }
-                });
+            $("#selectable").bind("mousedown", function(e){
+                                                        e.metaKey = true;
+                                                    }).selectable({
+                                                        filter: ".vapaa",
+                                                        stop: function() {
+                                                            $("#valitut_kellonajat").empty();
+                                                            $("#valitut_kellonajat").append("<input type='hidden' name='vuosi' value='"+vuosi+"'/>");
+                                                            $("#valitut_kellonajat").append("<input type='hidden' name='kuukausi' value='"+kuukausi+"'/>");
+                                                            $("#valitut_kellonajat").append("<input type='hidden' name='paiva' value='"+paiva+"'/>");
+                                                            tunnit = [];
+                                                            $(".ui-selected", this).each(function() {
+                                                                var index = $("#selectable li").index(this)+8;
+                                                                tunnit.push(parseInt(index));
+                                                                $("#valitut_kellonajat").append("<input type='hidden' name='valitutajat' class='valitutajat' value='"+index+"'/>");
+                                                            });
+                                                            $("#hinta").load("includes/hintalaskuri.jsp",{vuosi: vuosi, kuukausi: kuukausi, paiva: paiva, valitutajat : tunnit});
+                                                        }
+                                                    });
+
+        });
+        $(document).on("click",".edellinen, .seuraava",function(e){
+            e.preventDefault();
+            var arr = $(this).attr("value").split(',');
+            var vuosi = arr[1];
+            var kuukausi = arr[0];
+            $("#kalenteri_holder").load("includes/kalenteri.jsp", {tilaid: tilaid, vuosi: vuosi, kuukausi: kuukausi});
+        });
+        $(document).on("click",".paiva",function(e){
+            $("#valitut_kellonajat").empty();
+            var arr = $(this).attr("id").split('-');
+            var vuosi = arr[1];
+            var kuukausi = arr[2];
+            var paiva = arr[3];
+            $("#varaus_kellonajat").load("includes/varauskello.jsp", {tilaid: tilaid, vuosi: vuosi, kuukausi: kuukausi, paiva: paiva}, function() {
                 $("#selectable").bind("mousedown", function(e){
                                                             e.metaKey = true;
                                                         }).selectable({
@@ -199,47 +286,13 @@
                                                                 $(".ui-selected", this).each(function() {
                                                                     var index = $("#selectable li").index(this)+8;
                                                                     tunnit.push(parseInt(index));
-                                                                    $("#valitut_kellonajat").append("<input type='hidden' name='valitutajat' class='valitutajat' value='"+index+"'/>");
+                                                                    $("#valitut_kellonajat").append("<input type='hidden' name='valitutajat' value='"+index+"'/>");
                                                                 });
                                                                 $("#hinta").load("includes/hintalaskuri.jsp",{vuosi: vuosi, kuukausi: kuukausi, paiva: paiva, valitutajat : tunnit});
                                                             }
                                                         });
-            
             });
-            $(document).on("click",".edellinen, .seuraava",function(e){
-                e.preventDefault();
-                var arr = $(this).attr("value").split(',');
-                var vuosi = arr[1];
-                var kuukausi = arr[0];
-                $("#kalenteri_holder").load("includes/kalenteri.jsp", {tilaid: tilaid, vuosi: vuosi, kuukausi: kuukausi});
-            });
-            $(document).on("click",".paiva",function(e){
-                $("#valitut_kellonajat").empty();
-                var arr = $(this).attr("id").split('-');
-                var vuosi = arr[1];
-                var kuukausi = arr[2];
-                var paiva = arr[3];
-                $("#varaus_kellonajat").load("includes/varauskello.jsp", {tilaid: tilaid, vuosi: vuosi, kuukausi: kuukausi, paiva: paiva}, function() {
-                    $("#selectable").bind("mousedown", function(e){
-                                                                e.metaKey = true;
-                                                            }).selectable({
-                                                                filter: ".vapaa",
-                                                                stop: function() {
-                                                                    $("#valitut_kellonajat").empty();
-                                                                    $("#valitut_kellonajat").append("<input type='hidden' name='vuosi' value='"+vuosi+"'/>");
-                                                                    $("#valitut_kellonajat").append("<input type='hidden' name='kuukausi' value='"+kuukausi+"'/>");
-                                                                    $("#valitut_kellonajat").append("<input type='hidden' name='paiva' value='"+paiva+"'/>");
-                                                                    tunnit = [];
-                                                                    $(".ui-selected", this).each(function() {
-                                                                        var index = $("#selectable li").index(this)+8;
-                                                                        tunnit.push(parseInt(index));
-                                                                        $("#valitut_kellonajat").append("<input type='hidden' name='valitutajat' value='"+index+"'/>");
-                                                                    });
-                                                                    $("#hinta").load("includes/hintalaskuri.jsp",{vuosi: vuosi, kuukausi: kuukausi, paiva: paiva, valitutajat : tunnit});
-                                                                }
-                                                            });
-                });
-            });
+        });
         </script>
     </body>
 </html>

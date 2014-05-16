@@ -1,4 +1,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<jsp:useBean id="sivu" class="tilanvaraus.oliot.Sivu"/>
 <!DOCTYPE html>
 <html>
     <head>
@@ -17,10 +18,14 @@
                 <%@ include file="includes/header.jsp" %>
                 <div id="banneri"></div>
                 <div id="palsta">
-                <h1>Varausehdot</h1>
-                <p>
-                    Varausehdot tänne
-                </p>
+                <%
+                sivu.setSivuNimi("ehdot");
+                if(sivu.haeSivuNimi()){
+                    while (sivu.getVastaus().next()) {
+                        out.print(sivu.getVastaus().getString("sisalto"));
+                    }
+                }
+                %>
                 </div>
             </div>
             <%@ include file="includes/footer.jsp" %>

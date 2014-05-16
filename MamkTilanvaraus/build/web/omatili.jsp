@@ -99,6 +99,7 @@
                 varaus.setAsiakasId(userId);    
                 if(varaus.haeAsiakkaanVaraukset()){
                     if (varaus.getVastaus().next()){
+                        
                 %>
                 <table id="asiakaslista">
                     <tr class="eka">
@@ -110,6 +111,7 @@
                         <th>Maksutilanne</th>
                     </tr>
                         <%
+                        while (varaus.getVastaus().next()){
                         String linkki = "omavaraus.jsp?id="+varaus.getVastaus().getString("id");
                         long aikaleima = varaus.getVastaus().getLong("pvm");
                         String pvm = pvmpapu.muunnaAikaleima(aikaleima);
@@ -122,6 +124,7 @@
                         out.print("<td><a href='"+linkki+"'>"+varaus.getVastaus().getString("maksutapa")+"</a></td>");
                         out.print("<td><a href='"+linkki+"'>"+maksutilanne+"</a></td>");
                         out.print("</tr>");
+                        }
                     } else {
                         out.print("<p>Ei aikaisempia varauksia</p>");
                     }
